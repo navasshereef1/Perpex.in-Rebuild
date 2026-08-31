@@ -18,8 +18,8 @@ export default async function ServicesPage() {
     <>
       <PageHero
         eyebrow="Diagnose — Design — Enable — Control"
-        title="The transformation framework"
-        description="Each service is powerful on its own. Together, they create irreversible transformation."
+        title="Four services. No guesswork."
+        description="Each one is powerful on its own. Run in sequence, they compound — a system that gets built once and holds."
       />
       <ServicesAccordion services={services} />
     </>

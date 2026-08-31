@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import Reveal from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
   title: "Careers",
-  description: "Join PerpeX Insights.",
+  description: "Join PerpeX Insights — build the systems that transform real businesses.",
 };
 
 export default function CareersPage() {
@@ -15,7 +16,7 @@ export default function CareersPage() {
         description="Open roles are managed directly — reach out with your resume and what you'd want to work on."
       />
       <section className="px-6 pb-24 md:px-10 md:pb-32">
-        <div className="mx-auto max-w-[1440px] rounded-[28px] bg-cream-100 p-10 md:p-14">
+        <Reveal className="mx-auto max-w-[1440px] rounded-[28px] bg-cream-100 p-10 md:p-14">
           <p className="max-w-lg text-[16px] leading-relaxed text-navy-900/65">
             We don&rsquo;t have open roles listed here right now. If you want to work on
             operational transformation for real businesses — Gap Analysis, Documentation,
@@ -25,7 +26,7 @@ export default function CareersPage() {
             </a>{" "}
             and we&rsquo;ll reach out if there&rsquo;s a fit.
           </p>
-        </div>
+        </Reveal>
       </section>
     </>
   );

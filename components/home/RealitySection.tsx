@@ -1,3 +1,5 @@
+import Reveal from "../ui/Reveal";
+
 const observations = [
   "Processes exist only in people's heads — not on paper",
   "No clarity on who owns what decisions",
@@ -22,12 +24,15 @@ export default function RealitySection() {
   return (
     <section className="px-6 py-16 md:px-10 md:py-20">
       <div className="mx-auto max-w-[1440px]">
-        <h2 className="max-w-xl font-display text-4xl leading-[1.1] tracking-tight text-navy-900 md:text-5xl">
-          It repeats across every sector
-        </h2>
+        <Reveal>
+          <span className="text-[13px] text-navy-900/45">The Business Reality We Solve</span>
+          <h2 className="mt-3 max-w-xl font-display text-4xl leading-[1.1] tracking-tight text-navy-900 md:text-5xl">
+            Different business. Same broken pattern.
+          </h2>
+        </Reveal>
 
         <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
-          <div className="rounded-[28px] bg-cream-100 p-8 md:p-10">
+          <Reveal delay={0.05} className="rounded-[28px] bg-cream-100 p-8 md:p-10">
             <span className="text-[13px] text-navy-900/45">What we observe</span>
             <ul className="mt-5 space-y-3.5">
               {observations.map((o) => (
@@ -36,8 +41,8 @@ export default function RealitySection() {
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="rounded-[28px] bg-navy-900 p-8 text-cream-50 md:p-10">
+          </Reveal>
+          <Reveal delay={0.1} className="rounded-[28px] bg-navy-900 p-8 text-cream-50 md:p-10">
             <span className="text-[13px] text-cyan-300/80">What it costs the business</span>
             <ul className="mt-5 space-y-3.5">
               {consequences.map((c) => (
@@ -46,7 +51,7 @@ export default function RealitySection() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

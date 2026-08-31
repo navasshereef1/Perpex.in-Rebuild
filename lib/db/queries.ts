@@ -68,6 +68,24 @@ export async function getSectors() {
   }, fallback.sectors);
 }
 
+export async function getCaseStudies() {
+  return safeQuery(async () => {
+    const { db } = await import("./index");
+    const { caseStudies } = await import("./schema");
+    const { desc, eq } = await import("drizzle-orm");
+    return db
+      .select()
+      .from(caseStudies)
+      .where(eq(caseStudies.isPublished, true))
+      .orderBy(desc(caseStudies.publishedAt));
+  }, []);
+}
+
+export async function getCaseStudyBySlug(slug: string) {
+  const all = await getCaseStudies();
+  return all.find((c: any) => c.slug === slug) ?? null;
+}
+
 export async function getTestimonials() {
   return safeQuery(async () => {
     const { db } = await import("./index");

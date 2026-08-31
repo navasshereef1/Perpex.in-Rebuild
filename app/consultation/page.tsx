@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import ConsultationForm from "./ConsultationForm";
+import FAQSection from "@/components/FAQSection";
 import { getServices } from "@/lib/db/queries";
 
 export const metadata: Metadata = {
   title: "Start a Discovery Conversation",
-  description: "Reach out and let us understand your business. The conversation is free. The clarity is immediate.",
+  description:
+    "Tell us where your business is breaking. One free, no-obligation conversation with PerpeX Insights — the clarity is immediate.",
 };
 
 export const dynamic = "force-dynamic";
@@ -17,7 +19,8 @@ export default async function ConsultationPage() {
     <>
       <PageHero
         eyebrow="The Next Step"
-        title="The conversation is free. The clarity is immediate."
+        title="Free. No obligation. 30 minutes that could save you a year."
+        description="We'll ask about your team, your bottlenecks, and where growth is starting to hurt. You'll leave knowing exactly what's broken — whether or not you engage us to fix it."
       />
 
       <section className="px-6 pb-24 md:px-10 md:pb-32">
@@ -51,6 +54,8 @@ export default async function ConsultationPage() {
           </div>
         </div>
       </section>
+
+      <FAQSection />
     </>
   );
 }

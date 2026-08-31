@@ -25,14 +25,14 @@ export default function Hero() {
   return (
     <section ref={containerRef} className="px-6 pb-16 pt-6 md:px-10 md:pb-24">
       <div className="mx-auto max-w-[1440px]">
+        <span className="hero-reveal mb-6 inline-flex items-center gap-2 rounded-full bg-navy-900/[0.06] px-4 py-2 text-[13px] text-navy-900/60">
+          B2B Transformation &amp; Execution — 140+ businesses, 10+ sectors
+        </span>
+
         <div className="relative">
-          <h1 className="hero-reveal max-w-3xl font-display text-[12vw] font-medium leading-[1.05] tracking-tight text-navy-900 md:text-[4.6vw]">
-            <span className="border-b-[3px] border-navy-900">We</span>{" "}
-            <span className="text-navy-900/35">diagnose the chaos,</span>{" "}
-            <span className="border-b-[3px] border-navy-900">build</span>{" "}
-            <span className="text-navy-900/35">the system, and</span>{" "}
-            <span className="border-b-[3px] border-navy-900">stay</span>{" "}
-            <span className="text-navy-900/35">until it works.</span>
+          <h1 className="hero-reveal max-w-3xl font-display text-[13vw] font-medium leading-[0.98] tracking-tight text-navy-900 sm:text-[10vw] md:text-[5.2vw]">
+            Organising the{" "}
+            <span className="italic text-cyan-500">un-organised.</span>
           </h1>
 
           <MediaPlaceholder
@@ -42,18 +42,24 @@ export default function Hero() {
           />
         </div>
 
-        <div className="hero-reveal mt-14 flex flex-col justify-between gap-8 border-t border-navy-900/10 pt-8 md:flex-row md:items-center">
-          <p className="max-w-md text-[15px] leading-relaxed text-navy-900/55">
-            PerpeX Insights — B2B Transformation &amp; Execution Services. Big-firm quality.
-            Scale-appropriate cost.
+        <div className="hero-reveal mt-10 flex flex-col justify-between gap-8 border-t border-navy-900/10 pt-8 md:flex-row md:items-end">
+          <p className="max-w-lg text-[16px] leading-relaxed text-navy-900/60 md:text-[17px]">
+            Most growing businesses run on tribal knowledge and founder heroics — until that
+            stops scaling. We diagnose exactly what&rsquo;s broken, document the system that
+            replaces it, train your team to run that system, and stay on to make sure it holds.
           </p>
-          <a
-            href="/consultation"
-            className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-navy-900 px-6 py-3 text-[14px] text-cream-50 transition-colors hover:bg-navy-800"
-          >
-            Start a Discovery Conversation
-            <span className="transition-transform group-hover:translate-x-1">→</span>
-          </a>
+          <div className="flex shrink-0 flex-col gap-3 sm:flex-row sm:items-center">
+            <a
+              href="/consultation"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-navy-900 px-6 py-3.5 text-[14px] text-cream-50 transition-colors hover:bg-navy-800"
+            >
+              Start a Discovery Conversation
+              <span className="transition-transform group-hover:translate-x-1">→</span>
+            </a>
+            <span className="text-center text-[12px] text-navy-900/40 sm:text-left">
+              Free · No obligation · 30 minutes
+            </span>
+          </div>
         </div>
       </div>
     </section>

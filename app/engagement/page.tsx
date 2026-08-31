@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import Tag from "@/components/ui/Tag";
+import Reveal from "@/components/ui/Reveal";
 import { getEngagementModels, getTrainingTiers } from "@/lib/db/queries";
 
 export const metadata: Metadata = {
@@ -21,33 +22,40 @@ export default async function EngagementPage() {
     <>
       <PageHero
         eyebrow="Working Together"
-        title="Engagement models"
-        description="All four services can be engaged independently or in any combination. The full transformation power comes when they're implemented in sequence."
+        title="Pick your depth of commitment."
+        description="Engage one service, or all four. Most clients start with a Diagnostic and scale up once they see what's actually broken."
       />
 
       <section className="px-6 pb-16 md:px-10 md:pb-20">
         <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-4 md:grid-cols-2">
-          {engagementModels.map((m: any) => (
-            <div key={m.name} className="rounded-[28px] border border-navy-900/[0.06] bg-white p-8">
+          {engagementModels.map((m: any, i: number) => (
+            <Reveal
+              key={m.name}
+              delay={(i % 2) * 0.06}
+              className="rounded-[28px] border border-navy-900/[0.06] bg-white p-8"
+            >
               <h3 className="font-display text-2xl text-navy-900">{m.name}</h3>
               <p className="mt-3 text-[15px] leading-relaxed text-navy-900/60">
                 {m.servicesIncluded}
               </p>
               <p className="mt-4 text-[13px] text-navy-900/40">Best for: {m.bestFor}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
       <section className="px-6 py-16 md:px-10 md:py-20">
         <div className="mx-auto max-w-[1440px]">
-          <h2 className="max-w-xl font-display text-4xl leading-[1.1] tracking-tight text-navy-900 md:text-5xl">
-            Three training tiers
-          </h2>
+          <Reveal>
+            <span className="text-[13px] text-navy-900/45">Under the Training Service</span>
+            <h2 className="mt-3 max-w-xl font-display text-4xl leading-[1.1] tracking-tight text-navy-900 md:text-5xl">
+              Three ways to build capability.
+            </h2>
+          </Reveal>
 
           <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
-            {trainingTiers.map((t: any) => (
-              <div key={t.name} className="rounded-[28px] bg-cream-100 p-8">
+            {trainingTiers.map((t: any, i: number) => (
+              <Reveal key={t.name} delay={(i % 3) * 0.06} className="rounded-[28px] bg-cream-100 p-8">
                 <Tag>{t.name}</Tag>
                 <dl className="mt-6 space-y-4 text-[14px]">
                   <div>
@@ -67,9 +75,24 @@ export default async function EngagementPage() {
                     <dd className="mt-1 leading-relaxed text-navy-900/70">{t.whatsIncluded}</dd>
                   </div>
                 </dl>
-              </div>
+              </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="px-6 pb-24 md:px-10 md:pb-32">
+        <div className="mx-auto max-w-[1440px] rounded-[28px] bg-navy-900 px-8 py-12 text-center text-cream-50 md:px-14 md:py-16">
+          <h2 className="font-display text-3xl md:text-4xl">Not sure which fits?</h2>
+          <p className="mx-auto mt-3 max-w-md text-[15px] text-cream-50/60">
+            That's exactly what the Discovery Conversation is for — no commitment, just clarity.
+          </p>
+          <a
+            href="/consultation"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-cyan-400 px-6 py-3 text-[14px] text-navy-900 hover:bg-cyan-300"
+          >
+            Start a Discovery Conversation →
+          </a>
         </div>
       </section>
     </>

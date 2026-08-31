@@ -1,3 +1,5 @@
+import Reveal from "../ui/Reveal";
+
 type Testimonial = {
   name: string;
   designation: string | null;
@@ -6,12 +8,17 @@ type Testimonial = {
 };
 
 export default function TestimonialsSection({ testimonials }: { testimonials: Testimonial[] }) {
+  if (testimonials.length === 0) return null;
+
   return (
     <section className="py-16 md:py-20">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
-        <h2 className="font-display text-4xl leading-[1.1] tracking-tight text-navy-900 md:text-5xl">
-          Their words, not ours.
-        </h2>
+        <Reveal>
+          <span className="text-[13px] text-navy-900/45">Client Findings</span>
+          <h2 className="mt-3 font-display text-4xl leading-[1.1] tracking-tight text-navy-900 md:text-5xl">
+            Their words, not ours.
+          </h2>
+        </Reveal>
       </div>
 
       <div className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 md:px-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
