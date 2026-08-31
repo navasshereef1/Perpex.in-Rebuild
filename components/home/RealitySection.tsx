@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Reveal from "../ui/Reveal";
 
 const observations = [
@@ -20,9 +23,18 @@ const consequences = [
   "Good people leave due to unclear expectations",
 ];
 
+const listVariants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.06 } },
+};
+const itemVariants = {
+  hidden: { opacity: 0, x: -8 },
+  show: { opacity: 1, x: 0 },
+};
+
 export default function RealitySection() {
   return (
-    <section className="px-6 py-16 md:px-10 md:py-20">
+    <section className="px-6 py-16 md:px-10 md:py-24">
       <div className="mx-auto max-w-[1440px]">
         <Reveal>
           <span className="text-[13px] text-navy-900/45">The Business Reality We Solve</span>
@@ -34,23 +46,45 @@ export default function RealitySection() {
         <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
           <Reveal delay={0.05} className="rounded-[28px] bg-cream-100 p-8 md:p-10">
             <span className="text-[13px] text-navy-900/45">What we observe</span>
-            <ul className="mt-5 space-y-3.5">
+            <motion.ul
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-60px" }}
+              variants={listVariants}
+              className="mt-5 space-y-3.5"
+            >
               {observations.map((o) => (
-                <li key={o} className="text-[15px] leading-relaxed text-navy-900/70">
+                <motion.li
+                  key={o}
+                  variants={itemVariants}
+                  className="text-[15px] leading-relaxed text-navy-900/70"
+                >
                   {o}
-                </li>
+                </motion.li>
               ))}
-            </ul>
+            </motion.ul>
           </Reveal>
-          <Reveal delay={0.1} className="rounded-[28px] bg-navy-900 p-8 text-cream-50 md:p-10">
-            <span className="text-[13px] text-cyan-300/80">What it costs the business</span>
-            <ul className="mt-5 space-y-3.5">
-              {consequences.map((c) => (
-                <li key={c} className="text-[15px] leading-relaxed text-cream-50/75">
-                  {c}
-                </li>
-              ))}
-            </ul>
+          <Reveal delay={0.1} className="grain relative overflow-hidden rounded-[28px] bg-navy-900 p-8 text-cream-50 md:p-10">
+            <div className="relative z-10">
+              <span className="text-[13px] text-cyan-300/80">What it costs the business</span>
+              <motion.ul
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "-60px" }}
+                variants={listVariants}
+                className="mt-5 space-y-3.5"
+              >
+                {consequences.map((c) => (
+                  <motion.li
+                    key={c}
+                    variants={itemVariants}
+                    className="text-[15px] leading-relaxed text-cream-50/75"
+                  >
+                    {c}
+                  </motion.li>
+                ))}
+              </motion.ul>
+            </div>
           </Reveal>
         </div>
       </div>

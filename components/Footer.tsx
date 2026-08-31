@@ -1,3 +1,5 @@
+import OrganizeCanvas from "./ui/OrganizeCanvas";
+
 const columns = [
   {
     title: "Services",
@@ -30,8 +32,14 @@ const columns = [
 export default function Footer() {
   return (
     <footer className="px-6 pb-6 pt-6 md:px-10">
-      <div className="relative mx-auto max-w-[1440px] overflow-hidden rounded-[32px] bg-navy-950 px-8 pb-4 pt-16 text-cream-50 md:px-14 md:pt-20">
-        <div className="grid grid-cols-1 gap-14 md:grid-cols-12">
+      <div className="grain relative mx-auto max-w-[1440px] overflow-hidden rounded-[32px] bg-navy-950 px-8 pb-4 pt-16 text-cream-50 md:px-14 md:pt-20">
+        <OrganizeCanvas
+          className="pointer-events-none absolute inset-0 h-full w-full opacity-30"
+          loop
+          dotColor="0, 178, 255"
+          lineColor="253, 252, 250"
+        />
+        <div className="relative z-10 grid grid-cols-1 gap-14 md:grid-cols-12">
           <div className="md:col-span-5">
             <span className="font-display text-3xl tracking-tight text-white">
               Let&rsquo;s meet.
@@ -82,7 +90,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-20 flex items-center justify-between border-t border-white/10 pt-6 text-[13px] text-cream-50/35">
+        <div className="relative z-10 mt-20 flex items-center justify-between border-t border-white/10 pt-6 text-[13px] text-cream-50/35">
           <span>© {new Date().getFullYear()} PerpeX Insights LLP</span>
           <span>All rights reserved</span>
         </div>

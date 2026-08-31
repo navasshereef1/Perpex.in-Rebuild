@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Magnetic from "@/components/ui/Magnetic";
 
 const inputClass =
   "rounded-2xl border border-navy-900/10 bg-cream-50 px-5 py-3.5 text-[15px] text-navy-900 outline-none transition-colors focus:border-navy-900/40";
@@ -83,14 +84,16 @@ export default function ConsultationForm({ services }: { services: Service[] }) 
 
       {status === "error" && <p className="mt-4 text-[14px] text-red-600">{errorMessage}</p>}
 
-      <button
-        type="submit"
-        disabled={status === "submitting"}
-        className="mt-6 inline-flex items-center gap-2 rounded-full bg-navy-900 px-7 py-3.5 text-[14px] text-cream-50 transition-colors hover:bg-navy-800 disabled:opacity-50"
-      >
-        {status === "submitting" ? "Sending…" : "Start the Conversation"}
-        <span aria-hidden>→</span>
-      </button>
+      <Magnetic className="mt-6">
+        <button
+          type="submit"
+          disabled={status === "submitting"}
+          className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-7 py-3.5 text-[14px] text-cream-50 transition-colors hover:bg-navy-800 disabled:opacity-50"
+        >
+          {status === "submitting" ? "Sending…" : "Start the Conversation"}
+          <span aria-hidden>→</span>
+        </button>
+      </Magnetic>
     </form>
   );
 }

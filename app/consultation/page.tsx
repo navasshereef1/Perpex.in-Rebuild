@@ -29,7 +29,7 @@ export default async function ConsultationPage() {
             <ConsultationForm services={services} />
           </div>
           <div className="flex flex-col gap-4 md:col-span-5">
-            <div className="rounded-[28px] bg-navy-900 p-8 text-cream-50">
+            <div className="grain rounded-[28px] bg-navy-900 p-8 text-cream-50">
               <span className="text-[13px] text-cyan-300/80">Direct</span>
               <div className="mt-4 space-y-2 text-[15px]">
                 <a href="tel:+919745100036" className="block text-cream-50/85 hover:text-white">

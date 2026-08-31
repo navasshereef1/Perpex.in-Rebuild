@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
+import CustomCursor from "@/components/CustomCursor";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -42,6 +43,7 @@ export default function RootLayout({
     <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${manrope.variable}`}>
       <body className="font-sans antialiased bg-cream-50 text-navy-900 selection:bg-cyan-400">
         <SmoothScroll />
+        <CustomCursor />
         <Navbar />
         {children}
         <Footer />

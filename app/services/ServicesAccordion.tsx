@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { accentColors } from "@/lib/accentColors";
-import MediaPlaceholder from "@/components/ui/MediaPlaceholder";
 
 type Service = {
   slug: string;
@@ -84,11 +83,13 @@ export default function ServicesAccordion({ services }: { services: Service[] })
                       View full service page →
                     </a>
                   </div>
-                  <div className="md:col-span-6">
-                    <MediaPlaceholder
-                      label={`${service.title} in practice`}
-                      className="h-64 w-full"
-                    />
+                  <div className="relative flex min-h-[220px] items-end justify-end overflow-hidden md:col-span-6">
+                    <span className="pointer-events-none select-none font-display text-[13rem] font-medium leading-none opacity-[0.08]">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="absolute bottom-0 left-0 rounded-full bg-white/15 px-4 py-2 text-[13px] backdrop-blur-sm">
+                      {(service.deliverables ?? []).length} deliverables
+                    </span>
                   </div>
                 </div>
               </motion.div>

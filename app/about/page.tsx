@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/ui/Reveal";
+import TiltCard from "@/components/ui/TiltCard";
+import Magnetic from "@/components/ui/Magnetic";
+import OrganizeCanvas from "@/components/ui/OrganizeCanvas";
 
 export const metadata: Metadata = {
   title: "About",
@@ -70,18 +73,16 @@ export default function AboutPage() {
 
           <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
             {onboarding.map((step, i) => (
-              <Reveal
-                key={step.title}
-                delay={(i % 2) * 0.06}
-                className="rounded-[28px] border border-navy-900/[0.06] bg-white p-8"
-              >
-                <span className="rounded-full bg-navy-900/[0.06] px-3.5 py-1.5 text-[13px] text-navy-900/60">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-5 font-display text-xl text-navy-900">{step.title}</h3>
-                <p className="mt-2 text-[14px] leading-relaxed text-navy-900/55">
-                  {step.description}
-                </p>
+              <Reveal key={step.title} delay={(i % 2) * 0.06}>
+                <TiltCard className="rounded-[28px] border border-navy-900/[0.06] bg-white p-8">
+                  <span className="rounded-full bg-navy-900/[0.06] px-3.5 py-1.5 text-[13px] text-navy-900/60">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-5 font-display text-xl text-navy-900">{step.title}</h3>
+                  <p className="mt-2 text-[14px] leading-relaxed text-navy-900/55">
+                    {step.description}
+                  </p>
+                </TiltCard>
               </Reveal>
             ))}
           </div>
@@ -89,14 +90,24 @@ export default function AboutPage() {
       </section>
 
       <section className="px-6 pb-24 md:px-10 md:pb-32">
-        <Reveal className="mx-auto max-w-[1440px] rounded-[28px] bg-navy-900 px-8 py-14 text-center text-cream-50 md:px-14 md:py-20">
-          <h2 className="font-display text-3xl md:text-4xl">Ready to see what's actually broken?</h2>
-          <a
-            href="/consultation"
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-cyan-400 px-6 py-3 text-[14px] text-navy-900 hover:bg-cyan-300"
-          >
-            Start a Discovery Conversation →
-          </a>
+        <Reveal className="grain relative overflow-hidden rounded-[28px] bg-navy-900 px-8 py-14 text-center text-cream-50 md:px-14 md:py-20">
+          <OrganizeCanvas
+            className="pointer-events-none absolute inset-0 h-full w-full opacity-30"
+            loop
+            dotColor="0, 178, 255"
+            lineColor="253, 252, 250"
+          />
+          <div className="relative z-10">
+            <h2 className="font-display text-3xl md:text-4xl">Ready to see what's actually broken?</h2>
+            <Magnetic className="mt-6">
+              <a
+                href="/consultation"
+                className="inline-flex items-center gap-2 rounded-full bg-cyan-400 px-6 py-3 text-[14px] text-navy-900 hover:bg-cyan-300"
+              >
+                Start a Discovery Conversation →
+              </a>
+            </Magnetic>
+          </div>
         </Reveal>
       </section>
     </>

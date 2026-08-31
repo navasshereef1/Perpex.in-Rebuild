@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import Magnetic from "./ui/Magnetic";
 
 const links = [
   { label: "Services", href: "/services" },
@@ -39,12 +40,14 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <a
-            href="/consultation"
-            className="hidden rounded-full bg-navy-900 px-5 py-2.5 text-[14px] text-cream-50 transition-colors hover:bg-navy-800 sm:inline-block"
-          >
-            Get in touch
-          </a>
+          <Magnetic className="hidden sm:inline-block">
+            <a
+              href="/consultation"
+              className="inline-block rounded-full bg-navy-900 px-5 py-2.5 text-[14px] text-cream-50 transition-colors hover:bg-navy-800"
+            >
+              Get in touch
+            </a>
+          </Magnetic>
 
           <button
             onClick={() => setOpen(true)}

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import PageHero from "@/components/PageHero";
+import Magnetic from "@/components/ui/Magnetic";
+import OrganizeCanvas from "@/components/ui/OrganizeCanvas";
 import { services as staticServices } from "@/lib/seedData";
 import { getServices, getServiceBySlug } from "@/lib/db/queries";
 
@@ -59,25 +61,35 @@ export default async function ServiceDetailPage({
             </div>
           </div>
 
-          <div className="rounded-[28px] bg-navy-900 p-8 text-cream-50 md:col-span-5 md:p-10">
-            <span className="text-[13px] text-cyan-300/80">Deliverables</span>
-            <ul className="mt-6 space-y-3">
-              {(service.deliverables as string[])?.map((d) => (
-                <li key={d} className="text-[14px] leading-relaxed text-cream-50/80">
-                  — {d}
-                </li>
-              ))}
-            </ul>
+          <div className="grain relative overflow-hidden rounded-[28px] bg-navy-900 p-8 text-cream-50 md:col-span-5 md:p-10">
+            <OrganizeCanvas
+              className="pointer-events-none absolute inset-0 h-full w-full opacity-25"
+              loop
+              dotColor="0, 178, 255"
+              lineColor="253, 252, 250"
+            />
+            <div className="relative z-10">
+              <span className="text-[13px] text-cyan-300/80">Deliverables</span>
+              <ul className="mt-6 space-y-3">
+                {(service.deliverables as string[])?.map((d) => (
+                  <li key={d} className="text-[14px] leading-relaxed text-cream-50/80">
+                    — {d}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
         <div className="mx-auto mt-6 flex max-w-[1440px] flex-col items-start justify-between gap-6 rounded-[28px] bg-cream-100 px-8 py-8 md:flex-row md:items-center">
-          <a
-            href="/consultation"
-            className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-6 py-3 text-[14px] text-cream-50 hover:bg-navy-800"
-          >
-            Start a Discovery Conversation →
-          </a>
+          <Magnetic>
+            <a
+              href="/consultation"
+              className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-6 py-3 text-[14px] text-cream-50 hover:bg-navy-800"
+            >
+              Start a Discovery Conversation →
+            </a>
+          </Magnetic>
           <a href={`/services/${next.slug}`} className="text-[14px] text-navy-900/55 hover:text-navy-900">
             Next: {next.title} →
           </a>

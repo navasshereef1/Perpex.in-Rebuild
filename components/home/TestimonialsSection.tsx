@@ -1,4 +1,5 @@
 import Reveal from "../ui/Reveal";
+import TiltCard from "../ui/TiltCard";
 
 type Testimonial = {
   name: string;
@@ -11,7 +12,7 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
   if (testimonials.length === 0) return null;
 
   return (
-    <section className="py-16 md:py-20">
+    <section className="py-16 md:py-24">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
         <Reveal>
           <span className="text-[13px] text-navy-900/45">Client Findings</span>
@@ -23,7 +24,7 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
 
       <div className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 md:px-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {testimonials.map((t) => (
-          <div
+          <TiltCard
             key={t.name}
             className="w-[85vw] shrink-0 snap-start rounded-[28px] bg-cream-100 p-8 sm:w-[420px] md:p-10"
           >
@@ -41,7 +42,7 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
                 </div>
               </div>
             </div>
-          </div>
+          </TiltCard>
         ))}
       </div>
     </section>
