@@ -2,11 +2,18 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { services } from "@/lib/seedData";
 import { accentColors } from "@/lib/accentColors";
 import MediaPlaceholder from "@/components/ui/MediaPlaceholder";
 
-export default function ServicesAccordion() {
+type Service = {
+  slug: string;
+  stage: string | null;
+  title: string;
+  description: string;
+  deliverables: string[];
+};
+
+export default function ServicesAccordion({ services }: { services: Service[] }) {
   const [open, setOpen] = useState(0);
 
   return (

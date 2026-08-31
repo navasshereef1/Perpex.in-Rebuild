@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { services } from "@/lib/seedData";
 
 const inputClass =
   "rounded-2xl border border-navy-900/10 bg-cream-50 px-5 py-3.5 text-[15px] text-navy-900 outline-none transition-colors focus:border-navy-900/40";
 
-export default function ConsultationForm() {
+type Service = { slug: string; title: string };
+
+export default function ConsultationForm({ services }: { services: Service[] }) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import Tag from "@/components/ui/Tag";
-import { engagementModels, trainingTiers } from "@/lib/seedData";
+import { getEngagementModels, getTrainingTiers } from "@/lib/db/queries";
 
 export const metadata: Metadata = {
   title: "Engagement Models",
@@ -9,7 +9,14 @@ export const metadata: Metadata = {
     "Engage one service or all four — Standalone, Diagnostic, System Build, Full Transformation, or Monitoring Retainer.",
 };
 
-export default function EngagementPage() {
+export const dynamic = "force-dynamic";
+
+export default async function EngagementPage() {
+  const [engagementModels, trainingTiers] = await Promise.all([
+    getEngagementModels(),
+    getTrainingTiers(),
+  ]);
+
   return (
     <>
       <PageHero
@@ -20,7 +27,7 @@ export default function EngagementPage() {
 
       <section className="px-6 pb-16 md:px-10 md:pb-20">
         <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-4 md:grid-cols-2">
-          {engagementModels.map((m) => (
+          {engagementModels.map((m: any) => (
             <div key={m.name} className="rounded-[28px] border border-navy-900/[0.06] bg-white p-8">
               <h3 className="font-display text-2xl text-navy-900">{m.name}</h3>
               <p className="mt-3 text-[15px] leading-relaxed text-navy-900/60">
@@ -39,7 +46,7 @@ export default function EngagementPage() {
           </h2>
 
           <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
-            {trainingTiers.map((t) => (
+            {trainingTiers.map((t: any) => (
               <div key={t.name} className="rounded-[28px] bg-cream-100 p-8">
                 <Tag>{t.name}</Tag>
                 <dl className="mt-6 space-y-4 text-[14px]">

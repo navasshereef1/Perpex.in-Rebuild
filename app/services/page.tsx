@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import ServicesAccordion from "./ServicesAccordion";
+import { getServices } from "@/lib/db/queries";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -8,7 +9,11 @@ export const metadata: Metadata = {
     "Gap Analysis, Documentation, Training, and Managing & Monitoring — the four-stage PerpeX transformation framework.",
 };
 
-export default function ServicesPage() {
+export const dynamic = "force-dynamic";
+
+export default async function ServicesPage() {
+  const services = await getServices();
+
   return (
     <>
       <PageHero
@@ -16,7 +21,7 @@ export default function ServicesPage() {
         title="The transformation framework"
         description="Each service is powerful on its own. Together, they create irreversible transformation."
       />
-      <ServicesAccordion />
+      <ServicesAccordion services={services} />
     </>
   );
 }

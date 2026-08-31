@@ -1,7 +1,13 @@
-import { services } from "@/lib/seedData";
 import Tag from "../ui/Tag";
 
-export default function FrameworkSection() {
+type Service = {
+  slug: string;
+  stage: string | null;
+  title: string;
+  description: string;
+};
+
+export default function FrameworkSection({ services }: { services: Service[] }) {
   return (
     <section className="px-6 py-16 md:px-10 md:py-20">
       <div className="mx-auto max-w-[1440px]">

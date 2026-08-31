@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import PageHero from "@/components/PageHero";
-import { services } from "@/lib/seedData";
+import { services as staticServices } from "@/lib/seedData";
+import { getServices, getServiceBySlug } from "@/lib/db/queries";
+
+export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
-  return services.map((s) => ({ slug: s.slug }));
+  return staticServices.map((s) => ({ slug: s.slug }));
 }
 
 export async function generateMetadata({
@@ -13,9 +16,9 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const service = services.find((s) => s.slug === slug);
+  const service = await getServiceBySlug(slug);
   if (!service) return {};
-  return { title: service.title, description: service.tagline };
+  return { title: service.title, description: service.tagline ?? undefined };
 }
 
 export default async function ServiceDetailPage({
@@ -24,16 +27,16 @@ export default async function ServiceDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const index = services.findIndex((s) => s.slug === slug);
-  const service = services[index];
+  const [service, allServices] = await Promise.all([getServiceBySlug(slug), getServices()]);
   if (!service) notFound();
 
-  const next = services[(index + 1) % services.length];
+  const index = allServices.findIndex((s: any) => s.slug === slug);
+  const next = allServices[(index + 1) % allServices.length];
 
   return (
     <>
       <PageHero
-        eyebrow={`Service ${String(index + 1).padStart(2, "0")} / 04 — ${service.stage}`}
+        eyebrow={`Service ${String(index + 1).padStart(2, "0")} / ${allServices.length} — ${service.stage}`}
         title={service.title}
         description={service.description}
       />
@@ -43,7 +46,7 @@ export default async function ServiceDetailPage({
           <div className="rounded-[28px] bg-cream-100 p-8 md:col-span-7 md:p-10">
             <span className="text-[13px] text-navy-900/45">What we cover</span>
             <div className="mt-6 space-y-6">
-              {service.whatWeAnalyze.map((item) => (
+              {(service.whatWeAnalyze as { title: string; description?: string }[])?.map((item) => (
                 <div key={item.title}>
                   <h3 className="font-display text-xl text-navy-900">{item.title}</h3>
                   {item.description && (
@@ -59,7 +62,7 @@ export default async function ServiceDetailPage({
           <div className="rounded-[28px] bg-navy-900 p-8 text-cream-50 md:col-span-5 md:p-10">
             <span className="text-[13px] text-cyan-300/80">Deliverables</span>
             <ul className="mt-6 space-y-3">
-              {service.deliverables.map((d) => (
+              {(service.deliverables as string[])?.map((d) => (
                 <li key={d} className="text-[14px] leading-relaxed text-cream-50/80">
                   — {d}
                 </li>

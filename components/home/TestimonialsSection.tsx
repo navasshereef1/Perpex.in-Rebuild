@@ -1,6 +1,11 @@
-import { testimonials } from "@/lib/seedData";
+type Testimonial = {
+  name: string;
+  designation: string | null;
+  company: string;
+  description: string;
+};
 
-export default function TestimonialsSection() {
+export default function TestimonialsSection({ testimonials }: { testimonials: Testimonial[] }) {
   return (
     <section className="py-16 md:py-20">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">

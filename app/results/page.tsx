@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
-import { testimonials, differentiators, sectors } from "@/lib/seedData";
+import { differentiators } from "@/lib/seedData";
+import { getTestimonials, getSectors } from "@/lib/db/queries";
 import { accentColors } from "@/lib/accentColors";
 
 export const metadata: Metadata = {
@@ -8,7 +9,11 @@ export const metadata: Metadata = {
   description: "140+ B2B clients served across consulting, training & managed execution.",
 };
 
-export default function ResultsPage() {
+export const dynamic = "force-dynamic";
+
+export default async function ResultsPage() {
+  const [testimonials, sectors] = await Promise.all([getTestimonials(), getSectors()]);
+
   return (
     <>
       <PageHero
@@ -19,7 +24,7 @@ export default function ResultsPage() {
 
       <section className="px-6 pb-16 md:px-10 md:pb-20">
         <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-4 md:grid-cols-2">
-          {testimonials.map((t) => (
+          {testimonials.map((t: any) => (
             <div key={t.name} className="rounded-[28px] bg-cream-100 p-8">
               <p className="font-display text-xl leading-snug text-navy-900">
                 &ldquo;{t.description}&rdquo;
@@ -38,7 +43,7 @@ export default function ResultsPage() {
             Sectors we serve
           </h2>
           <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
-            {sectors.map((s, i) => {
+            {sectors.map((s: string, i: number) => {
               const accent = accentColors[i % accentColors.length];
               return (
                 <div

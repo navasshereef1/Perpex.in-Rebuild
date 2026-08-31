@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import ConsultationForm from "./ConsultationForm";
+import { getServices } from "@/lib/db/queries";
 
 export const metadata: Metadata = {
   title: "Start a Discovery Conversation",
   description: "Reach out and let us understand your business. The conversation is free. The clarity is immediate.",
 };
 
-export default function ConsultationPage() {
+export const dynamic = "force-dynamic";
+
+export default async function ConsultationPage() {
+  const services = await getServices();
+
   return (
     <>
       <PageHero
@@ -18,7 +23,7 @@ export default function ConsultationPage() {
       <section className="px-6 pb-24 md:px-10 md:pb-32">
         <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-4 md:grid-cols-12">
           <div className="md:col-span-7">
-            <ConsultationForm />
+            <ConsultationForm services={services} />
           </div>
           <div className="flex flex-col gap-4 md:col-span-5">
             <div className="rounded-[28px] bg-navy-900 p-8 text-cream-50">

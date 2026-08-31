@@ -6,16 +6,21 @@ import RealitySection from "@/components/home/RealitySection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import DifferentiatorsSection from "@/components/home/DifferentiatorsSection";
 import CTASection from "@/components/home/CTASection";
+import { getServices, getTestimonials } from "@/lib/db/queries";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const [services, testimonials] = await Promise.all([getServices(), getTestimonials()]);
+
   return (
     <>
       <Hero />
       <ProofStrip />
-      <FrameworkSection />
+      <FrameworkSection services={services} />
       <ClientsGrid />
       <RealitySection />
-      <TestimonialsSection />
+      <TestimonialsSection testimonials={testimonials} />
       <DifferentiatorsSection />
       <CTASection />
     </>
