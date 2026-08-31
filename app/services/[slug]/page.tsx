@@ -57,7 +57,7 @@ export default async function ServiceDetailPage({
           </div>
 
           <div className="rounded-[28px] bg-navy-900 p-8 text-cream-50 md:col-span-5 md:p-10">
-            <span className="text-[13px] text-gold-300/80">Deliverables</span>
+            <span className="text-[13px] text-cyan-300/80">Deliverables</span>
             <ul className="mt-6 space-y-3">
               {service.deliverables.map((d) => (
                 <li key={d} className="text-[14px] leading-relaxed text-cream-50/80">

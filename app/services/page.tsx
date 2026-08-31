@@ -5,7 +5,7 @@ import ServicesAccordion from "./ServicesAccordion";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Gap Analysis, Documentation, Training, and Managing & Monitoring — the four-stage Perpex transformation framework.",
+    "Gap Analysis, Documentation, Training, and Managing & Monitoring — the four-stage PerpeX transformation framework.",
 };
 
 export default function ServicesPage() {

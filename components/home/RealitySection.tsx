@@ -38,7 +38,7 @@ export default function RealitySection() {
             </ul>
           </div>
           <div className="rounded-[28px] bg-navy-900 p-8 text-cream-50 md:p-10">
-            <span className="text-[13px] text-gold-300/80">What it costs the business</span>
+            <span className="text-[13px] text-cyan-300/80">What it costs the business</span>
             <ul className="mt-5 space-y-3.5">
               {consequences.map((c) => (
                 <li key={c} className="text-[15px] leading-relaxed text-cream-50/75">

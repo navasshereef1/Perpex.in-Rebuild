@@ -31,6 +31,9 @@ export default function Footer() {
               <div>
                 <span className="text-[13px] text-cream-50/40">Contact</span>
                 <div className="mt-2 flex flex-col gap-1 text-[14px]">
+                  <a href="tel:+919745100036" className="text-cream-50/75 hover:text-white">
+                    +91 97451 00036
+                  </a>
                   <a href="tel:+919745100046" className="text-cream-50/75 hover:text-white">
                     +91 97451 00046
                   </a>
@@ -42,9 +45,11 @@ export default function Footer() {
               <div>
                 <span className="text-[13px] text-cream-50/40">Headquarters</span>
                 <p className="mt-2 text-[14px] leading-relaxed text-cream-50/75">
-                  Kozhikode, Kerala
+                  PerpeX Insights LLP
                   <br />
-                  Pan-India
+                  T 1, Hilite Business Park
+                  <br />
+                  Calicut, Kerala
                 </p>
               </div>
             </div>
@@ -69,7 +74,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-20 flex items-center justify-between border-t border-white/10 pt-6 text-[13px] text-cream-50/35">
-          <span>© {new Date().getFullYear()} Perpex Insights LLP</span>
+          <span>© {new Date().getFullYear()} PerpeX Insights LLP</span>
           <span>All rights reserved</span>
         </div>
 

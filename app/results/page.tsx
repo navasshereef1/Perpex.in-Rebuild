@@ -12,7 +12,7 @@ export default function ResultsPage() {
   return (
     <>
       <PageHero
-        eyebrow="Why Perpex Insights"
+        eyebrow="Why PerpeX Insights"
         title="Their words, not ours."
         description="Case studies are being compiled into the CMS — this page will surface tagged results by sector and service as they're added."
       />

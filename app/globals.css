@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
   --font-sans: "Manrope", system-ui, sans-serif;
 }
@@ -19,8 +19,8 @@ body {
 }
 
 ::selection {
-  background: #e0ac4c;
-  color: #031126;
+  background: #00b2ff;
+  color: #001b4a;
 }
 
 .text-balance {

@@ -12,7 +12,7 @@ export default function ProofStrip() {
         <div className="grid grid-cols-2 gap-10 md:grid-cols-4">
           {stats.map((s) => (
             <div key={s.label}>
-              <div className="font-display text-4xl text-gold-300 md:text-5xl">{s.value}</div>
+              <div className="font-display text-4xl text-cyan-300 md:text-5xl">{s.value}</div>
               <div className="mt-2 text-[14px] text-cream-50/50">{s.label}</div>
             </div>
           ))}

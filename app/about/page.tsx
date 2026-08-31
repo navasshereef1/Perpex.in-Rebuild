@@ -3,7 +3,7 @@ import PageHero from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Perpex Insights is a hybrid B2B consulting, training, and execution firm headquartered in Kozhikode, Kerala.",
+  description: "PerpeX Insights is a hybrid B2B consulting, training, and execution firm headquartered in Kozhikode, Kerala.",
 };
 
 const onboarding = [
@@ -27,13 +27,32 @@ export default function AboutPage() {
       <section className="px-6 py-10 md:px-10 md:py-14">
         <div className="mx-auto max-w-[1440px] rounded-[28px] bg-cream-100 p-8 md:p-12">
           <p className="max-w-2xl text-[16px] leading-relaxed text-navy-900/65">
-            Perpex Insights is a hybrid B2B consulting, training, and execution firm
+            PerpeX Insights is a hybrid B2B consulting, training, and execution firm
             headquartered in Kozhikode, Kerala. We specialize in operational transformation for
             growing businesses — helping organizations move from informal, reactive operations
             to structured, system-driven, high-performing enterprises. We&rsquo;ve served 140+
             B2B clients across healthcare, F&amp;B, construction, EdTech, SaaS, marketing, AI and
             recruitment — yet our methods are designed to be accessible to MSMEs and startups who
             need the same quality of transformation without enterprise budgets.
+          </p>
+        </div>
+      </section>
+
+      <section className="px-6 py-10 md:px-10 md:py-14">
+        <div className="mx-auto max-w-[1440px] rounded-[28px] border border-navy-900/[0.06] bg-white p-8 md:p-12">
+          <span className="text-[13px] text-navy-900/45">Founder-Led Engagement</span>
+          <div className="mt-6 flex items-center gap-5">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-navy-900 font-display text-xl text-cyan-300">
+              RM
+            </div>
+            <div>
+              <h3 className="font-display text-2xl text-navy-900">Rafi Mohammed</h3>
+              <p className="text-[14px] text-navy-900/50">Founder &amp; Sales Head, PerpeX Insights LLP</p>
+            </div>
+          </div>
+          <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-navy-900/60">
+            Senior leadership is personally involved in every significant project — not just in
+            kickoff calls.
           </p>
         </div>
       </section>

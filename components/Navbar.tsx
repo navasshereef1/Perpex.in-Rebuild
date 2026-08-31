@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const links = [
   { label: "Services", href: "/services" },
   { label: "Engagement", href: "/engagement" },
@@ -11,12 +13,12 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-[1440px] items-center justify-between">
         <a
           href="/"
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-navy-900/10 bg-cream-50 font-display text-sm text-navy-900 shadow-sm"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-navy-900/10 bg-cream-50 shadow-sm"
         >
-          PX
+          <Image src="/brand/icon-cyan.svg" alt="PerpeX" width={20} height={16} />
         </a>
 
-        <nav className="hidden items-center gap-1 rounded-full border border-navy-900/[0.06] bg-white/90 px-2 py-2 shadow-[0_10px_30px_rgba(3,17,38,0.06)] backdrop-blur md:flex">
+        <nav className="hidden items-center gap-1 rounded-full border border-navy-900/[0.06] bg-white/90 px-2 py-2 shadow-[0_10px_30px_rgba(0,27,74,0.06)] backdrop-blur md:flex">
           {links.map((l) => (
             <a
               key={l.href}

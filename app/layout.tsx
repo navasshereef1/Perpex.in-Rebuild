@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, JetBrains_Mono, Manrope } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono, Manrope } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 
-const bricolage = Bricolage_Grotesque({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
@@ -25,11 +25,11 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   title: {
-    default: "Perpex Insights — B2B Transformation & Execution Services",
-    template: "%s // Perpex Insights",
+    default: "PerpeX Insights — B2B Transformation & Execution Services",
+    template: "%s // PerpeX Insights",
   },
   description:
-    "Organising the Un-organised. Perpex Insights helps businesses diagnose what's broken, build the systems needed to operate well, train teams to execute, and monitor performance daily.",
+    "Organising the Un-organised. PerpeX Insights helps businesses diagnose what's broken, build the systems needed to operate well, train teams to execute, and monitor performance daily.",
 };
 
 export default function RootLayout({
@@ -38,8 +38,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${bricolage.variable} ${jetbrainsMono.variable} ${manrope.variable}`}>
-      <body className="font-sans antialiased bg-cream-50 text-navy-900 selection:bg-gold-400">
+    <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${manrope.variable}`}>
+      <body className="font-sans antialiased bg-cream-50 text-navy-900 selection:bg-cyan-400">
         <SmoothScroll />
         <Navbar />
         {children}

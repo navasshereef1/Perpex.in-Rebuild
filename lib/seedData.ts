@@ -37,7 +37,7 @@ export const services = [
     title: "Documentation",
     tagline: "Build the operating system your business needs to run properly.",
     description:
-      "Perpex builds all required business documents based on findings from Gap Analysis — each one designed to be used, not just filed. Documentation is the formal system layer of your business.",
+      "PerpeX builds all required business documents based on findings from Gap Analysis — each one designed to be used, not just filed. Documentation is the formal system layer of your business.",
     whatWeAnalyze: [
       { title: "Process Documents", description: "SOPs, process flowcharts, approval matrices, escalation structures, handoff protocols." },
       { title: "People Documents", description: "Job descriptions, KRA/KPI frameworks, onboarding packs, appraisal formats, training handbooks." },
@@ -83,7 +83,7 @@ export const services = [
     title: "Managing & Monitoring",
     tagline: "Control daily execution, drive KPIs, enforce accountability.",
     description:
-      "Perpex's most operationally intensive service — we embed ourselves as an external performance control layer, actively managing your assigned team on a daily basis across morning planning, midday follow-up, and evening review cadences.",
+      "PerpeX's most operationally intensive service — we embed ourselves as an external performance control layer, actively managing your assigned team on a daily basis across morning planning, midday follow-up, and evening review cadences.",
     whatWeAnalyze: [
       { title: "Input KPIs", description: "Calls & follow-ups, prospects contacted, meetings fixed, demos & proposals sent." },
       { title: "Process KPIs", description: "Response time, follow-up adherence, lead stage progression, aging/CRM update rate." },

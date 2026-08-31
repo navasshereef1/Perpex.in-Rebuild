@@ -44,7 +44,7 @@ export default function Hero() {
 
         <div className="hero-reveal mt-14 flex flex-col justify-between gap-8 border-t border-navy-900/10 pt-8 md:flex-row md:items-center">
           <p className="max-w-md text-[15px] leading-relaxed text-navy-900/55">
-            Perpex Insights — B2B Transformation &amp; Execution Services. Big-firm quality.
+            PerpeX Insights — B2B Transformation &amp; Execution Services. Big-firm quality.
             Scale-appropriate cost.
           </p>
           <a

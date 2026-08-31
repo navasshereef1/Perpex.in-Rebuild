@@ -22,8 +22,11 @@ export default function ConsultationPage() {
           </div>
           <div className="flex flex-col gap-4 md:col-span-5">
             <div className="rounded-[28px] bg-navy-900 p-8 text-cream-50">
-              <span className="text-[13px] text-gold-300/80">Direct</span>
+              <span className="text-[13px] text-cyan-300/80">Direct</span>
               <div className="mt-4 space-y-2 text-[15px]">
+                <a href="tel:+919745100036" className="block text-cream-50/85 hover:text-white">
+                  +91 97451 00036
+                </a>
                 <a href="tel:+919745100046" className="block text-cream-50/85 hover:text-white">
                   +91 97451 00046
                 </a>
@@ -35,7 +38,9 @@ export default function ConsultationPage() {
             <div className="rounded-[28px] border border-navy-900/[0.06] bg-white p-8">
               <span className="text-[13px] text-navy-900/45">Headquarters</span>
               <p className="mt-4 text-[15px] leading-relaxed text-navy-900/70">
-                Kozhikode, Kerala — serving clients Pan-India.
+                PerpeX Insights LLP
+                <br />
+                T 1, Hilite Business Park, Calicut, Kerala
               </p>
             </div>
           </div>
