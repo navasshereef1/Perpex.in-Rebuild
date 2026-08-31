@@ -10,7 +10,7 @@ type Service = {
   stage: string | null;
   title: string;
   description: string;
-  deliverables: string[];
+  deliverables: string[] | null;
 };
 
 export default function ServicesAccordion({ services }: { services: Service[] }) {
@@ -71,7 +71,7 @@ export default function ServicesAccordion({ services }: { services: Service[] })
                       {service.description}
                     </p>
                     <ul className="mt-6 space-y-2.5">
-                      {service.deliverables.slice(0, 5).map((d) => (
+                      {(service.deliverables ?? []).slice(0, 5).map((d) => (
                         <li key={d} className="text-[14px] opacity-70">
                           — {d}
                         </li>

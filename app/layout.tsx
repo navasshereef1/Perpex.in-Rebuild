@@ -24,6 +24,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://perpex.in"),
   title: {
     default: "PerpeX Insights — B2B Transformation & Execution Services",
     template: "%s // PerpeX Insights",

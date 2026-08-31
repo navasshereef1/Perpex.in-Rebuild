@@ -19,9 +19,9 @@ export const services = pgTable("services", {
   title: varchar("title").notNull(),
   tagline: text("tagline"),
   description: text("description").notNull(),
-  whatWeAnalyze: json("what_we_analyze"), // array of {title, description}
-  deliverables: json("deliverables"), // array of strings
-  processSteps: json("process_steps"), // array of {step, title, description}
+  whatWeAnalyze: json("what_we_analyze").$type<{ title: string; description?: string }[]>(),
+  deliverables: json("deliverables").$type<string[]>(),
+  processSteps: json("process_steps").$type<{ step?: string; title: string; description?: string }[]>(),
   icon: text("icon"),
   displayOrder: integer("display_order").default(0),
   isActive: boolean("is_active").notNull().default(true),
@@ -79,7 +79,7 @@ export const caseStudies = pgTable("case_studies", {
   servicesUsed: integer("services_used").array(),
   summary: text("summary"),
   content: text("content"),
-  results: json("results"), // array of {metric, value}
+  results: json("results").$type<{ metric: string; value: string }[]>(),
   featuredImage: text("featured_image"),
   isFeatured: boolean("is_featured").notNull().default(false),
   isPublished: boolean("is_published").notNull().default(false),
