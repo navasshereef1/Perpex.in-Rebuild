@@ -8,14 +8,16 @@ export default function PageHero({
   description?: string;
 }) {
   return (
-    <section className="px-6 pb-16 pt-8 md:px-10 md:pb-24 md:pt-12">
+    <section className="px-6 pb-10 pt-6 md:px-10 md:pb-14">
       <div className="mx-auto max-w-[1440px]">
-        <span className="mb-8 block text-[15px] text-navy-900/50">{eyebrow}</span>
-        <h1 className="max-w-4xl font-display text-5xl leading-[1.02] tracking-tight text-navy-900 md:text-7xl">
+        <span className="mb-6 inline-block rounded-full bg-navy-900/[0.06] px-4 py-2 text-[13px] text-navy-900/60">
+          {eyebrow}
+        </span>
+        <h1 className="max-w-3xl font-display text-5xl leading-[1.05] tracking-tight text-navy-900 md:text-7xl">
           {title}
         </h1>
         {description && (
-          <p className="mt-8 max-w-lg border-t border-navy-900/10 pt-8 text-lg leading-relaxed text-navy-900/60">
+          <p className="mt-6 max-w-md text-[16px] leading-relaxed text-navy-900/55">
             {description}
           </p>
         )}

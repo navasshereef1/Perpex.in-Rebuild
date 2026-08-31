@@ -1,52 +1,36 @@
-"use client";
-
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { testimonials } from "@/lib/seedData";
 
 export default function TestimonialsSection() {
-  const [active, setActive] = useState(0);
-  const current = testimonials[active];
-
   return (
-    <section className="bg-navy-900 px-6 py-24 text-cream-50 md:px-10 md:py-32">
-      <div className="mx-auto max-w-[1440px]">
-        <div className="mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-          <h2 className="max-w-xl font-display text-4xl leading-[1.05] md:text-5xl">
-            Their words, not ours.
-          </h2>
-          <div className="flex flex-wrap gap-x-6 gap-y-2">
-            {testimonials.map((t, i) => (
-              <button
-                key={t.name}
-                onClick={() => setActive(i)}
-                className={`text-[14px] transition-colors ${
-                  active === i ? "text-gold-300" : "text-cream-50/40 hover:text-cream-50/70"
-                }`}
-              >
-                {t.name}
-              </button>
-            ))}
-          </div>
-        </div>
+    <section className="py-16 md:py-20">
+      <div className="mx-auto max-w-[1440px] px-6 md:px-10">
+        <h2 className="font-display text-4xl leading-[1.1] tracking-tight text-navy-900 md:text-5xl">
+          Their words, not ours.
+        </h2>
+      </div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.4 }}
-            className="border-t border-white/10 pt-10"
+      <div className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 md:px-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {testimonials.map((t) => (
+          <div
+            key={t.name}
+            className="w-[85vw] shrink-0 snap-start rounded-[28px] bg-cream-100 p-8 sm:w-[420px] md:p-10"
           >
-            <p className="max-w-3xl font-display text-2xl leading-relaxed text-cream-50 md:text-3xl">
-              &ldquo;{current.description}&rdquo;
+            <p className="font-display text-xl leading-snug text-navy-900 md:text-2xl">
+              &ldquo;{t.description}&rdquo;
             </p>
-            <div className="mt-8 text-[14px] text-cream-50/50">
-              {current.name} — {current.designation}, {current.company}
+            <div className="mt-8 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold-400/25 font-display text-[13px] text-gold-500">
+                {t.name.charAt(0)}
+              </div>
+              <div>
+                <div className="text-[14px] text-navy-900">{t.name}</div>
+                <div className="text-[13px] text-navy-900/45">
+                  {t.designation}, {t.company}
+                </div>
+              </div>
             </div>
-          </motion.div>
-        </AnimatePresence>
+          </div>
+        ))}
       </div>
     </section>
   );

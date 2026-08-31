@@ -24,9 +24,9 @@ export default function AboutPage() {
         description="We are a transformation partner — we enter your business, understand what is broken, build what is missing, train who needs to improve, and stay to ensure execution actually happens."
       />
 
-      <section className="border-t border-navy-900/10 px-6 py-20 md:px-10 md:py-28">
-        <div className="mx-auto max-w-[1440px]">
-          <p className="max-w-2xl text-lg leading-relaxed text-navy-900/60">
+      <section className="px-6 py-10 md:px-10 md:py-14">
+        <div className="mx-auto max-w-[1440px] rounded-[28px] bg-cream-100 p-8 md:p-12">
+          <p className="max-w-2xl text-[16px] leading-relaxed text-navy-900/65">
             Perpex Insights is a hybrid B2B consulting, training, and execution firm
             headquartered in Kozhikode, Kerala. We specialize in operational transformation for
             growing businesses — helping organizations move from informal, reactive operations
@@ -38,25 +38,20 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-navy-900/10 px-6 py-24 md:px-10 md:py-32">
+      <section className="px-6 py-16 md:px-10 md:py-20">
         <div className="mx-auto max-w-[1440px]">
-          <h2 className="max-w-xl font-display text-4xl leading-[1.05] text-navy-900 md:text-5xl">
-            How transformation begins.
+          <h2 className="max-w-xl font-display text-4xl leading-[1.1] tracking-tight text-navy-900 md:text-5xl">
+            How transformation begins
           </h2>
 
-          <div className="mt-16 border-t border-navy-900/10">
+          <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
             {onboarding.map((step, i) => (
-              <div
-                key={step.title}
-                className="grid grid-cols-1 gap-3 border-b border-navy-900/10 py-8 md:grid-cols-12 md:items-baseline md:gap-8"
-              >
-                <span className="text-[15px] text-navy-900/35 md:col-span-1">
+              <div key={step.title} className="rounded-[28px] border border-navy-900/[0.06] bg-white p-8">
+                <span className="rounded-full bg-navy-900/[0.06] px-3.5 py-1.5 text-[13px] text-navy-900/60">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="font-display text-2xl text-navy-900 md:col-span-3">
-                  {step.title}
-                </span>
-                <p className="text-[15px] leading-relaxed text-navy-900/55 md:col-span-8">
+                <h3 className="mt-5 font-display text-xl text-navy-900">{step.title}</h3>
+                <p className="mt-2 text-[14px] leading-relaxed text-navy-900/55">
                   {step.description}
                 </p>
               </div>

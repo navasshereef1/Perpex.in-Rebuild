@@ -1,6 +1,7 @@
 import Hero from "@/components/home/Hero";
 import ProofStrip from "@/components/home/ProofStrip";
 import FrameworkSection from "@/components/home/FrameworkSection";
+import ClientsGrid from "@/components/home/ClientsGrid";
 import RealitySection from "@/components/home/RealitySection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import DifferentiatorsSection from "@/components/home/DifferentiatorsSection";
@@ -12,6 +13,7 @@ export default function Home() {
       <Hero />
       <ProofStrip />
       <FrameworkSection />
+      <ClientsGrid />
       <RealitySection />
       <TestimonialsSection />
       <DifferentiatorsSection />

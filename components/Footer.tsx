@@ -16,42 +16,49 @@ const columns = [
       { label: "Engagement Models", href: "/engagement" },
     ],
   },
-  {
-    title: "Contact",
-    links: [
-      { label: "+91 97451 00046", href: "tel:+919745100046" },
-      { label: "info@perpex.in", href: "mailto:info@perpex.in" },
-      { label: "Kozhikode, Kerala", href: "/about" },
-    ],
-  },
 ];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-navy-900/10 px-6 py-16 md:px-10 md:py-20">
-      <div className="mx-auto max-w-[1440px]">
+    <footer className="px-6 pb-6 pt-6 md:px-10">
+      <div className="relative mx-auto max-w-[1440px] overflow-hidden rounded-[32px] bg-navy-950 px-8 pb-4 pt-16 text-cream-50 md:px-14 md:pt-20">
         <div className="grid grid-cols-1 gap-14 md:grid-cols-12">
           <div className="md:col-span-5">
-            <span className="font-display text-3xl tracking-tight text-navy-900">
-              Organising the Un-organised.
+            <span className="font-display text-3xl tracking-tight text-white">
+              Let&rsquo;s meet.
             </span>
-            <a
-              href="/consultation"
-              className="mt-6 inline-block text-[15px] text-navy-900/60 underline decoration-navy-900/20 underline-offset-4 hover:decoration-gold-500"
-            >
-              Start a Discovery Conversation →
-            </a>
+            <div className="mt-8 grid grid-cols-2 gap-8">
+              <div>
+                <span className="text-[13px] text-cream-50/40">Contact</span>
+                <div className="mt-2 flex flex-col gap-1 text-[14px]">
+                  <a href="tel:+919745100046" className="text-cream-50/75 hover:text-white">
+                    +91 97451 00046
+                  </a>
+                  <a href="mailto:info@perpex.in" className="text-cream-50/75 hover:text-white">
+                    info@perpex.in
+                  </a>
+                </div>
+              </div>
+              <div>
+                <span className="text-[13px] text-cream-50/40">Headquarters</span>
+                <p className="mt-2 text-[14px] leading-relaxed text-cream-50/75">
+                  Kozhikode, Kerala
+                  <br />
+                  Pan-India
+                </p>
+              </div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 md:col-span-7">
+          <div className="grid grid-cols-2 gap-10 md:col-span-7">
             {columns.map((col) => (
               <div key={col.title} className="flex flex-col gap-3">
-                <span className="text-[13px] text-navy-900/40">{col.title}</span>
+                <span className="text-[13px] text-cream-50/40">{col.title}</span>
                 {col.links.map((l) => (
                   <a
                     key={l.label}
                     href={l.href}
-                    className="text-[14px] text-navy-900/70 hover:text-navy-900"
+                    className="text-[14px] text-cream-50/75 hover:text-white"
                   >
                     {l.label}
                   </a>
@@ -61,9 +68,16 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-20 flex flex-col justify-between gap-3 border-t border-navy-900/10 pt-6 text-[13px] text-navy-900/40 md:flex-row">
-          <span>© {new Date().getFullYear()} Perpex Insights LLP. All rights reserved.</span>
-          <span>Kozhikode, Kerala — Pan-India</span>
+        <div className="mt-20 flex items-center justify-between border-t border-white/10 pt-6 text-[13px] text-cream-50/35">
+          <span>© {new Date().getFullYear()} Perpex Insights LLP</span>
+          <span>All rights reserved</span>
+        </div>
+
+        <div
+          aria-hidden
+          className="pointer-events-none -mx-8 -mb-6 select-none overflow-hidden font-display text-[22vw] font-medium leading-none text-white/[0.04] md:-mx-14"
+        >
+          PERPEX
         </div>
       </div>
     </footer>
