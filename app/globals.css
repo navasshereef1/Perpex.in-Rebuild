@@ -3,11 +3,26 @@
 @tailwind utilities;
 
 :root {
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --font-sans: "Inter", system-ui, sans-serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background-color: #050b14;
-  color: #f5f7fa;
+  background-color: #fdfcfa;
+  color: #031126;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #e0ac4c;
+  color: #031126;
+}
+
+.text-balance {
+  text-wrap: balance;
 }
