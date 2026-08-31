@@ -14,6 +14,15 @@ const columns = [
       { label: "About", href: "/about" },
       { label: "Client Results", href: "/results" },
       { label: "Engagement Models", href: "/engagement" },
+      { label: "Insights", href: "/blog" },
+      { label: "Careers", href: "/careers" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Terms of Service", href: "/terms-of-service" },
     ],
   },
 ];
@@ -55,7 +64,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-10 md:col-span-7">
+          <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 md:col-span-7">
             {columns.map((col) => (
               <div key={col.title} className="flex flex-col gap-3">
                 <span className="text-[13px] text-cream-50/40">{col.title}</span>
