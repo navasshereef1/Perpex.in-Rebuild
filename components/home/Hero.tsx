@@ -13,31 +13,34 @@ export default function Hero() {
     reduced
       ? {}
       : {
-          initial: { opacity: 0, y: 24 },
+          initial: { opacity: 0, y: 20 },
           animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.9, delay: 0.1 + i * 0.1, ease },
+          transition: { duration: 0.8, delay: 0.1 + i * 0.12, ease },
         };
 
   return (
     <section className="pb-20 pt-10 md:pb-28 md:pt-16">
       <Container>
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-7">
-            <motion.h1
-              {...item(0)}
-              className="max-w-[12ch] font-display text-5xl font-bold leading-[1.1] tracking-[-0.03em] text-navy-900 md:text-6xl lg:text-7xl"
-            >
-              Organising the <em className="not-italic font-bold text-cyan-500 md:italic md:font-semibold">un-organised.</em>
-            </motion.h1>
+          <div className="lg:col-span-9">
+            <h1 className="font-display text-3xl font-bold leading-[1.2] tracking-[-0.02em] text-navy-900 sm:text-4xl lg:text-4xl">
+              <motion.span {...item(0)} className="block">
+                We find what&rsquo;s broken in your business.
+              </motion.span>
+              <motion.span {...item(1)} className="block">
+                We build what fixes it.
+              </motion.span>
+              <motion.span {...item(2)} className="block text-cyan-500">
+                We stay until it holds.
+              </motion.span>
+            </h1>
             <motion.p
-              {...item(1)}
+              {...item(3)}
               className="mt-7 max-w-[48ch] text-lg leading-relaxed text-navy-600 md:text-xl"
             >
-              PerpeX Insights is a B2B consulting team for growing businesses. We diagnose
-              what is broken in how you operate, document the fix, train your people to run
-              it, and stay to make sure it holds.
+              PerpeX Insights is a B2B consulting team for growing businesses across India.
             </motion.p>
-            <motion.div {...item(2)} className="mt-10 flex flex-wrap items-center gap-4">
+            <motion.div {...item(4)} className="mt-10 flex flex-wrap items-center gap-4">
               <Button href="/consultation">Book a discovery call</Button>
               <Button href="/services" variant="secondary">
                 See the four services
@@ -51,9 +54,9 @@ export default function Hero() {
               : {
                   initial: { opacity: 0, y: 32, scale: 0.98 },
                   animate: { opacity: 1, y: 0, scale: 1 },
-                  transition: { duration: 1.1, delay: 0.3, ease },
+                  transition: { duration: 1.1, delay: 0.4, ease },
                 })}
-            className="lg:col-span-5"
+            className="lg:col-span-3"
           >
             <Photo
               seed="1"
