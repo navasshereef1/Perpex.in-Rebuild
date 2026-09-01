@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import ImageUploadField from "./ImageUploadField";
 
 export type FieldConfig = {
   key: string;
   label: string;
-  type?: "text" | "textarea" | "number" | "checkbox";
+  type?: "text" | "textarea" | "number" | "checkbox" | "image";
   span?: 1 | 2;
 };
 
@@ -129,6 +130,17 @@ export default function EntityManager({
                     />
                     {field.label}
                   </label>
+                );
+              }
+              if (field.type === "image") {
+                return (
+                  <div key={field.key} className={spanClass}>
+                    <ImageUploadField
+                      label={field.label}
+                      value={form[field.key] ?? ""}
+                      onChange={(url) => setForm({ ...form, [field.key]: url })}
+                    />
+                  </div>
                 );
               }
               if (field.type === "textarea") {

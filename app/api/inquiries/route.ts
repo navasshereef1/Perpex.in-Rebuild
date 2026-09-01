@@ -34,6 +34,10 @@ export async function POST(request: NextRequest) {
     const { db } = await import("@/lib/db");
     const { inquiries } = await import("@/lib/db/schema");
     await db.insert(inquiries).values(parsed.data);
+
+    const { sendInquiryNotification } = await import("@/lib/email");
+    await sendInquiryNotification(parsed.data);
+
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("[inquiries] insert failed:", err);

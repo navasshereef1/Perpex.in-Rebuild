@@ -6,6 +6,7 @@ type Testimonial = {
   designation: string | null;
   company: string;
   description: string;
+  img?: string | null;
 };
 
 export default function TestimonialsSection({ testimonials }: { testimonials: Testimonial[] }) {
@@ -32,9 +33,14 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
               &ldquo;{t.description}&rdquo;
             </p>
             <div className="mt-8 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-400/20 font-display text-[13px] text-cyan-500">
-                {t.name.charAt(0)}
-              </div>
+              {t.img ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={t.img} alt={t.name} className="h-10 w-10 rounded-full object-cover" />
+              ) : (
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-400/20 font-display text-[13px] text-cyan-500">
+                  {t.name.charAt(0)}
+                </div>
+              )}
               <div>
                 <div className="text-[14px] text-navy-900">{t.name}</div>
                 <div className="text-[13px] text-navy-900/45">

@@ -11,7 +11,7 @@ export default function TeamMembersManager() {
         { key: "name", label: "Name" },
         { key: "role", label: "Role" },
         { key: "bio", label: "Bio", type: "textarea", span: 2 },
-        { key: "photo", label: "Photo URL", span: 2 },
+        { key: "photo", label: "Photo", type: "image", span: 2 },
       ]}
     />
   );

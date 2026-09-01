@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
+import { Analytics } from "@vercel/analytics/react";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -39,14 +40,39 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "PerpeX Insights",
+    legalName: "PerpeX Insights LLP",
+    url: "https://perpex.in",
+    description:
+      "B2B transformation and execution firm — Gap Analysis, Documentation, Training, and Managing & Monitoring for growing businesses.",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "T 1, Hilite Business Park",
+      addressLocality: "Calicut",
+      addressRegion: "Kerala",
+      addressCountry: "IN",
+    },
+    telephone: "+91-97451-00036",
+    email: "info@perpex.in",
+    areaServed: "IN",
+  };
+
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${manrope.variable}`}>
       <body className="font-sans antialiased bg-cream-50 text-navy-900 selection:bg-cyan-400">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
         <SmoothScroll />
         <CustomCursor />
         <Navbar />
         {children}
         <Footer />
+        <Analytics />
       </body>
     </html>
   );

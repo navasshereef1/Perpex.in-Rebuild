@@ -10,6 +10,8 @@ export default function CaseStudiesManager() {
       fields={[
         { key: "slug", label: "Slug" },
         { key: "clientName", label: "Client Name" },
+        { key: "clientLogo", label: "Client Logo", type: "image" },
+        { key: "featuredImage", label: "Featured Image", type: "image" },
         { key: "summary", label: "Summary", type: "textarea", span: 2 },
         { key: "content", label: "Content", type: "textarea", span: 2 },
         { key: "isPublished", label: "Published", type: "checkbox" },

@@ -64,10 +64,16 @@ export const services = [
     description:
       "Sales and operational programs built on activity-based learning, real-time execution, and immediate application — so every session produces behavioral change, not just awareness.",
     whatWeAnalyze: [
-      { title: "Phase 1 — Onboarding & Alignment", description: "" },
-      { title: "Phase 2 — Product Knowledge", description: "" },
-      { title: "Phase 3 — Gap & Assessment", description: "" },
-      { title: "Phase 4 — Training Implementation", description: "" },
+      { title: "Activity-Based Learning", description: "Every session requires real tasks tied to actual job functions — not passive lecture." },
+      { title: "Immediate Implementation", description: "Participants apply what they learn the same day, against real accounts and real conversations." },
+      { title: "Role-Segmented Delivery", description: "Separate tracks for founders, managers, leaders, and individual contributors." },
+      { title: "Measurable Outcomes", description: "Adoption checks confirm the training stuck — not just that people attended." },
+    ],
+    processSteps: [
+      { step: "Phase 1", title: "Onboarding & Alignment", description: "POC alignment on goals, current gaps, and what success looks like for this team." },
+      { step: "Phase 2", title: "Product Knowledge", description: "Deep grounding in what's being sold or executed, so confidence isn't the bottleneck." },
+      { step: "Phase 3", title: "Gap & Assessment", description: "Live roleplays and simulations surface exactly where each person breaks down." },
+      { step: "Phase 4", title: "Training Implementation", description: "Daily activity execution against real targets, with adoption tracked, not assumed." },
     ],
     deliverables: [
       "Activity-Based Learning",
@@ -89,6 +95,12 @@ export const services = [
       { title: "Process KPIs", description: "Response time, follow-up adherence, lead stage progression, aging/CRM update rate." },
       { title: "Output KPIs", description: "Conversions, revenue booked, collections, target achievement %." },
       { title: "Discipline KPIs", description: "Meeting attendance, reporting timeliness, commitment vs completion, data accuracy." },
+    ],
+    processSteps: [
+      { step: "09:00", title: "Morning Planning Meeting", description: "Review yesterday, set today's targets, confirm activity commitments, capture blockers." },
+      { step: "13:30", title: "Midday Follow-Up", description: "Check tracker updates, follow up with non-reporting members, intervene on stuck accounts." },
+      { step: "18:00", title: "Evening Review Meeting", description: "Target vs actual review, member-wise accountability, gap questioning, next-day prep." },
+      { step: "Weekly / Monthly", title: "Structured Reviews", description: "Performance trends, conversion ratios, corrective action plans, escalations." },
     ],
     deliverables: [
       "Daily Morning Planning Meeting (09:00)",
