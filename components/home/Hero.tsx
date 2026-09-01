@@ -53,7 +53,7 @@ export default function Hero() {
 
       <div className="relative z-10 grid flex-1 grid-cols-1 items-center gap-10 py-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-6">
         <div>
-          <h1 className="max-w-3xl font-display text-[13vw] font-medium leading-[0.94] tracking-tight text-navy-900 sm:text-[9vw] md:text-[5.4vw]">
+          <h1 className="max-w-3xl font-display text-[13vw] font-medium leading-[1.05] tracking-tight text-navy-900 sm:text-[9vw] md:text-[5.4vw]">
             <span className="hero-mask block overflow-hidden">
               <span className="block font-light">Organising the</span>
             </span>

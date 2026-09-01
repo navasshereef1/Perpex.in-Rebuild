@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --font-sans: "Manrope", system-ui, sans-serif;
+  --font-sans: "Hanken Grotesk", system-ui, sans-serif;
 }
 
 * {

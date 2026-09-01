@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, JetBrains_Mono, Manrope } from "next/font/google";
+import { Fraunces, JetBrains_Mono, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -8,10 +8,13 @@ import CustomCursor from "@/components/CustomCursor";
 import PageTransition from "@/components/PageTransition";
 import { Analytics } from "@vercel/analytics/react";
 
-const spaceGrotesk = Space_Grotesk({
+const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
+  weight: "variable",
+  style: ["normal", "italic"],
+  axes: ["opsz", "SOFT", "WONK"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -20,7 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const manrope = Manrope({
+const hankenGrotesk = Hanken_Grotesk({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
@@ -62,7 +65,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${manrope.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${jetbrainsMono.variable} ${hankenGrotesk.variable}`}>
       <body className="font-sans antialiased bg-cream-50 text-navy-900 selection:bg-cyan-400">
         <script
           type="application/ld+json"
