@@ -1,10 +1,13 @@
 import { accentColors } from "@/lib/accentColors";
 import Reveal from "../ui/Reveal";
 
-const clients = ["Elance", "Interval", "Platinum Group", "COVO"];
-const marqueeItems = [...clients, ...clients, ...clients];
+type Testimonial = { company: string };
 
-export default function ClientsGrid() {
+export default function ClientsGrid({ testimonials }: { testimonials: Testimonial[] }) {
+  const clients = Array.from(new Set(testimonials.map((t) => t.company)));
+  const marqueeItems = clients.length > 0 ? [...clients, ...clients, ...clients] : [];
+  if (marqueeItems.length === 0) return null;
+
   return (
     <section className="py-16 md:py-24">
       <div className="mx-auto max-w-[1440px] px-6 md:px-10">
@@ -27,9 +30,9 @@ export default function ClientsGrid() {
               <div
                 key={`${name}-${i}`}
                 style={{ backgroundColor: accent.bg, color: accent.text }}
-                className="flex h-40 w-64 shrink-0 items-center justify-center rounded-[28px] text-center"
+                className="flex h-40 w-64 shrink-0 items-center justify-center rounded-[28px] px-6 text-center"
               >
-                <span className="font-display text-2xl">{name}</span>
+                <span className="font-display text-xl leading-snug md:text-2xl">{name}</span>
               </div>
             );
           })}

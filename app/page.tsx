@@ -18,7 +18,7 @@ export default async function Home() {
       <Hero />
       <ProofStrip />
       <FrameworkSection services={services} />
-      <ClientsGrid />
+      <ClientsGrid testimonials={testimonials} />
       <RealitySection />
       <TestimonialsSection testimonials={testimonials} />
       <DifferentiatorsSection />
