@@ -33,7 +33,7 @@ export default function FAQSection() {
     <section className="px-6 py-16 md:px-10 md:py-20">
       <div className="mx-auto max-w-[1000px]">
         <Reveal>
-          <span className="text-[13px] text-navy-900/45">Before You Reach Out</span>
+          <span className="text-[13px] text-navy-900/65">Before You Reach Out</span>
           <h2 className="mt-3 font-display text-4xl leading-[1.1] tracking-tight text-navy-900 md:text-5xl">
             Common questions.
           </h2>
@@ -50,7 +50,7 @@ export default function FAQSection() {
                 >
                   <span className="font-display text-lg text-navy-900 md:text-xl">{faq.q}</span>
                   <span
-                    className={`shrink-0 text-2xl text-navy-900/40 transition-transform duration-300 ${
+                    className={`shrink-0 text-2xl text-navy-900/65 transition-transform duration-300 ${
                       isOpen ? "rotate-45" : ""
                     }`}
                   >
@@ -58,7 +58,7 @@ export default function FAQSection() {
                   </span>
                 </button>
                 {isOpen && (
-                  <p className="max-w-2xl pb-6 text-[15px] leading-relaxed text-navy-900/60">
+                  <p className="max-w-2xl pb-6 text-[15px] leading-relaxed text-navy-900/70">
                     {faq.a}
                   </p>
                 )}

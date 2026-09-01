@@ -26,7 +26,7 @@ export default function PullQuote({
             {quote}
           </p>
           <div className="mt-8 flex items-center gap-3 border-l-2 border-cyan-400/40 pl-4">
-            <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-navy-900/45">
+            <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-navy-900/65">
               {name}
               {designation ? `, ${designation}` : ""} — {company}
             </span>

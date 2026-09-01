@@ -35,7 +35,7 @@ export default function AdminTabs() {
             key={tab.key}
             onClick={() => setActive(tab.key)}
             className={`rounded-full px-4 py-2 text-[13px] transition-colors ${
-              active === tab.key ? "bg-navy-900 text-cream-50" : "text-navy-900/60 hover:text-navy-900"
+              active === tab.key ? "bg-navy-900 text-cream-50" : "text-navy-900/70 hover:text-navy-900"
             }`}
           >
             {tab.label}

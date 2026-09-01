@@ -37,7 +37,7 @@ export default function ImageUploadField({
 
   return (
     <div className="flex flex-col gap-2">
-      <label className="text-[13px] text-navy-900/45">{label}</label>
+      <label className="text-[13px] text-navy-900/65">{label}</label>
       <div className="flex items-center gap-3">
         {value && (
           // eslint-disable-next-line @next/next/no-img-element

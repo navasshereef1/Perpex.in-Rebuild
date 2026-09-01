@@ -43,7 +43,7 @@ export default function AdminLoginPage() {
         <span className="font-display text-2xl text-navy-900">PerpeX Admin</span>
         <div className="mt-8 flex flex-col gap-4">
           <div className="flex flex-col gap-2">
-            <label className="text-[13px] text-navy-900/45">Email</label>
+            <label className="text-[13px] text-navy-900/65">Email</label>
             <input
               name="email"
               type="email"
@@ -52,7 +52,7 @@ export default function AdminLoginPage() {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <label className="text-[13px] text-navy-900/45">Password</label>
+            <label className="text-[13px] text-navy-900/65">Password</label>
             <input
               name="password"
               type="password"

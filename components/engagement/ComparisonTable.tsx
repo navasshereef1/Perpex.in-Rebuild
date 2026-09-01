@@ -11,7 +11,7 @@ export default function ComparisonTable({ models }: { models: EngagementModel[] 
         <table className="w-full min-w-[720px] border-collapse text-left">
           <thead>
             <tr className="border-b border-navy-900/10">
-              <th className="w-[220px] p-6 text-[13px] font-normal text-navy-900/45">
+              <th className="w-[220px] p-6 text-[13px] font-normal text-navy-900/65">
                 At a glance
               </th>
               {models.map((m) => (
@@ -39,7 +39,7 @@ export default function ComparisonTable({ models }: { models: EngagementModel[] 
                     <td key={m.name} className="p-6">
                       {isAnyOne ? (
                         <span
-                          className="flex h-6 w-6 items-center justify-center rounded-full border border-navy-900/15 text-[11px] text-navy-900/40"
+                          className="flex h-6 w-6 items-center justify-center rounded-full border border-navy-900/15 text-[11px] text-navy-900/65"
                           title="Available as a standalone engagement"
                         >
                           ○
@@ -61,7 +61,7 @@ export default function ComparisonTable({ models }: { models: EngagementModel[] 
                 Best for
               </th>
               {models.map((m) => (
-                <td key={m.name} className="max-w-[220px] p-6 text-[13px] leading-relaxed text-navy-900/50">
+                <td key={m.name} className="max-w-[220px] p-6 text-[13px] leading-relaxed text-navy-900/65">
                   {m.bestFor}
                 </td>
               ))}
@@ -69,7 +69,7 @@ export default function ComparisonTable({ models }: { models: EngagementModel[] 
           </tbody>
         </table>
       </div>
-      <div className="flex flex-wrap items-center gap-5 border-t border-navy-900/[0.06] px-6 py-4 text-[12px] text-navy-900/40">
+      <div className="flex flex-wrap items-center gap-5 border-t border-navy-900/[0.06] px-6 py-4 text-[12px] text-navy-900/65">
         <span className="flex items-center gap-2">
           <span className="flex h-5 w-5 items-center justify-center rounded-full bg-cyan-400/15 text-cyan-600">
             ✓

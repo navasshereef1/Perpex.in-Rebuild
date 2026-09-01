@@ -12,7 +12,7 @@ export default function PageHero({
       <div className="mx-auto max-w-[1440px]">
         <div className="mb-6 flex items-center gap-2.5">
           <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-500" />
-          <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-navy-900/45">
+          <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-navy-900/65">
             {eyebrow}
           </span>
         </div>
@@ -20,7 +20,7 @@ export default function PageHero({
           {title}
         </h1>
         {description && (
-          <p className="mt-6 max-w-md text-[16px] leading-relaxed text-navy-900/55">
+          <p className="mt-6 max-w-md text-[16px] leading-relaxed text-navy-900/70">
             {description}
           </p>
         )}

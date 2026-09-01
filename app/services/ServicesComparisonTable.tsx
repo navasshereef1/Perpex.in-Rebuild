@@ -16,12 +16,12 @@ export default function ServicesComparisonTable({ services }: { services: Servic
           <table className="w-full min-w-[720px] border-collapse text-left">
             <thead>
               <tr className="border-b border-navy-900/10">
-                <th className="w-[160px] p-6 text-[13px] font-normal text-navy-900/45">
+                <th className="w-[160px] p-6 text-[13px] font-normal text-navy-900/65">
                   At a glance
                 </th>
                 {services.map((s) => (
                   <th key={s.slug} className="p-6 align-bottom">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-navy-900/[0.06] text-navy-900/60">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-navy-900/[0.06] text-navy-900/70">
                       <ServiceIcon slug={s.slug} />
                     </span>
                     <span className="mt-3 block font-display text-lg text-navy-900">
@@ -37,7 +37,7 @@ export default function ServicesComparisonTable({ services }: { services: Servic
                   Framework stage
                 </th>
                 {services.map((s) => (
-                  <td key={s.slug} className="p-6 text-[14px] text-navy-900/60">
+                  <td key={s.slug} className="p-6 text-[14px] text-navy-900/70">
                     {s.stage}
                   </td>
                 ))}
@@ -47,7 +47,7 @@ export default function ServicesComparisonTable({ services }: { services: Servic
                   Primary output
                 </th>
                 {services.map((s) => (
-                  <td key={s.slug} className="max-w-[220px] p-6 text-[13px] leading-relaxed text-navy-900/50">
+                  <td key={s.slug} className="max-w-[220px] p-6 text-[13px] leading-relaxed text-navy-900/65">
                     {s.deliverables?.[0] ?? "—"}
                   </td>
                 ))}
@@ -57,7 +57,7 @@ export default function ServicesComparisonTable({ services }: { services: Servic
                   Deliverables
                 </th>
                 {services.map((s) => (
-                  <td key={s.slug} className="p-6 text-[14px] text-navy-900/60">
+                  <td key={s.slug} className="p-6 text-[14px] text-navy-900/70">
                     {s.deliverables?.length ?? 0}
                   </td>
                 ))}

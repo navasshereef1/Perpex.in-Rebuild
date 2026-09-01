@@ -45,17 +45,17 @@ export default function AboutPage() {
 
       <section className="px-6 py-10 md:px-10 md:py-14">
         <Reveal className="mx-auto max-w-[1440px] rounded-[28px] border border-navy-900/[0.06] bg-white p-8 md:p-12">
-          <span className="text-[13px] text-navy-900/45">Founder-Led Engagement</span>
+          <span className="text-[13px] text-navy-900/65">Founder-Led Engagement</span>
           <div className="mt-6 flex items-center gap-5">
             <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-navy-900 font-display text-xl text-cyan-300">
               RM
             </div>
             <div>
               <h3 className="font-display text-2xl text-navy-900">Rafi Mohammed</h3>
-              <p className="text-[14px] text-navy-900/50">Founder &amp; Sales Head, PerpeX Insights LLP</p>
+              <p className="text-[14px] text-navy-900/65">Founder &amp; Sales Head, PerpeX Insights LLP</p>
             </div>
           </div>
-          <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-navy-900/60">
+          <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-navy-900/70">
             Senior leadership is personally involved in every significant project — not just in
             kickoff calls.
           </p>
@@ -65,7 +65,7 @@ export default function AboutPage() {
       <section className="px-6 py-16 md:px-10 md:py-20">
         <div className="mx-auto max-w-[1440px]">
           <Reveal>
-            <span className="text-[13px] text-navy-900/45">Six-Step Onboarding</span>
+            <span className="text-[13px] text-navy-900/65">Six-Step Onboarding</span>
             <h2 className="mt-3 max-w-xl font-display text-4xl leading-[1.1] tracking-tight text-navy-900 md:text-5xl">
               How transformation begins.
             </h2>
@@ -75,11 +75,11 @@ export default function AboutPage() {
             {onboarding.map((step, i) => (
               <Reveal key={step.title} delay={(i % 2) * 0.06}>
                 <TiltCard className="rounded-[28px] border border-navy-900/[0.06] bg-white p-8">
-                  <span className="rounded-full bg-navy-900/[0.06] px-3.5 py-1.5 text-[13px] text-navy-900/60">
+                  <span className="rounded-full bg-navy-900/[0.06] px-3.5 py-1.5 text-[13px] text-navy-900/70">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 className="mt-5 font-display text-xl text-navy-900">{step.title}</h3>
-                  <p className="mt-2 text-[14px] leading-relaxed text-navy-900/55">
+                  <p className="mt-2 text-[14px] leading-relaxed text-navy-900/70">
                     {step.description}
                   </p>
                 </TiltCard>

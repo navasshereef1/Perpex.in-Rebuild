@@ -21,11 +21,11 @@ export default function FrameworkSection({ services }: { services: Service[] }) 
     <section className="px-6 py-16 md:px-10 md:py-24">
       <div className="mx-auto max-w-[1440px]">
         <Reveal>
-          <span className="text-[13px] text-navy-900/45">The Transformation Framework</span>
+          <span className="text-[13px] text-navy-900/65">The Transformation Framework</span>
           <h2 className="mt-3 max-w-2xl font-display text-4xl leading-[1.1] tracking-tight text-navy-900 md:text-5xl">
             One system. Four moving parts.
           </h2>
-          <p className="mt-4 max-w-lg text-[15px] leading-relaxed text-navy-900/50">
+          <p className="mt-4 max-w-lg text-[15px] leading-relaxed text-navy-900/65">
             Each service works on its own. Run in sequence, they compound — findings feed
             documentation, documentation drives training, training makes monitoring meaningful.
           </p>
@@ -83,16 +83,16 @@ export default function FrameworkSection({ services }: { services: Service[] }) 
                     <div className="flex items-start justify-between gap-6">
                       <div>
                         <div className="mt-4 flex items-center gap-3 md:mt-0">
-                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-navy-900/[0.06] text-navy-900/60">
+                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-navy-900/[0.06] text-navy-900/70">
                             <ServiceIcon slug={service.slug} />
                           </span>
                           <h3 className="font-display text-2xl text-navy-900">{service.title}</h3>
                         </div>
-                        <p className="mt-2.5 max-w-md text-[15px] leading-relaxed text-navy-900/55">
+                        <p className="mt-2.5 max-w-md text-[15px] leading-relaxed text-navy-900/70">
                           {service.description}
                         </p>
                       </div>
-                      <span className="mt-1 shrink-0 text-xl text-navy-900/30 transition-transform group-hover:translate-x-1 group-hover:text-navy-900">
+                      <span className="mt-1 shrink-0 text-xl text-navy-900/65 transition-transform group-hover:translate-x-1 group-hover:text-navy-900">
                         →
                       </span>
                     </div>

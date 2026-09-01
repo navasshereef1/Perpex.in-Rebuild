@@ -40,10 +40,10 @@ export default async function EngagementPage() {
             <Reveal key={m.name} delay={(i % 2) * 0.06}>
               <TiltCard className="rounded-[28px] border border-navy-900/[0.06] bg-white p-8">
                 <h3 className="font-display text-2xl text-navy-900">{m.name}</h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-navy-900/60">
+                <p className="mt-3 text-[15px] leading-relaxed text-navy-900/70">
                   {m.servicesIncluded}
                 </p>
-                <p className="mt-4 text-[13px] text-navy-900/40">Best for: {m.bestFor}</p>
+                <p className="mt-4 text-[13px] text-navy-900/65">Best for: {m.bestFor}</p>
               </TiltCard>
             </Reveal>
           ))}
@@ -53,7 +53,7 @@ export default async function EngagementPage() {
       <section className="px-6 py-16 md:px-10 md:py-24">
         <div className="mx-auto max-w-[1440px]">
           <Reveal>
-            <span className="text-[13px] text-navy-900/45">Under the Training Service</span>
+            <span className="text-[13px] text-navy-900/65">Under the Training Service</span>
             <h2 className="mt-3 max-w-xl font-display text-4xl leading-[1.1] tracking-tight text-navy-900 md:text-5xl">
               Three ways to build capability.
             </h2>
@@ -66,19 +66,19 @@ export default async function EngagementPage() {
                   <Tag>{t.name}</Tag>
                   <dl className="mt-6 space-y-4 text-[14px]">
                     <div>
-                      <dt className="text-navy-900/40">Target audience</dt>
+                      <dt className="text-navy-900/65">Target audience</dt>
                       <dd className="mt-1 text-navy-900/70">{t.targetAudience}</dd>
                     </div>
                     <div>
-                      <dt className="text-navy-900/40">Format</dt>
+                      <dt className="text-navy-900/65">Format</dt>
                       <dd className="mt-1 text-navy-900/70">{t.format}</dd>
                     </div>
                     <div>
-                      <dt className="text-navy-900/40">Hours</dt>
+                      <dt className="text-navy-900/65">Hours</dt>
                       <dd className="mt-1 text-navy-900/70">{t.trainingHours}</dd>
                     </div>
                     <div>
-                      <dt className="text-navy-900/40">What&rsquo;s included</dt>
+                      <dt className="text-navy-900/65">What&rsquo;s included</dt>
                       <dd className="mt-1 leading-relaxed text-navy-900/70">{t.whatsIncluded}</dd>
                     </div>
                   </dl>

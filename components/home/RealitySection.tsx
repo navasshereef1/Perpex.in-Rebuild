@@ -37,7 +37,7 @@ export default function RealitySection() {
     <section className="px-6 py-16 md:px-10 md:py-24">
       <div className="mx-auto max-w-[1440px]">
         <Reveal>
-          <span className="text-[13px] text-navy-900/45">The Business Reality We Solve</span>
+          <span className="text-[13px] text-navy-900/65">The Business Reality We Solve</span>
           <h2 className="mt-3 max-w-xl font-display text-4xl leading-[1.1] tracking-tight text-navy-900 md:text-5xl">
             Different business. Same broken pattern.
           </h2>
@@ -45,7 +45,7 @@ export default function RealitySection() {
 
         <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
           <Reveal delay={0.05} className="rounded-[28px] bg-cream-100 p-8 md:p-10">
-            <span className="text-[13px] text-navy-900/45">What we observe</span>
+            <span className="text-[13px] text-navy-900/65">What we observe</span>
             <motion.ul
               initial="hidden"
               whileInView="show"

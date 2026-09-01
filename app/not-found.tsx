@@ -1,11 +1,11 @@
 export default function NotFound() {
   return (
     <main className="flex min-h-[70vh] flex-col items-center justify-center px-6 text-center">
-      <span className="text-[13px] text-navy-900/45">404</span>
+      <span className="text-[13px] text-navy-900/65">404</span>
       <h1 className="mt-4 max-w-md font-display text-4xl leading-[1.1] tracking-tight text-navy-900 md:text-5xl">
         This page isn&rsquo;t organised yet.
       </h1>
-      <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-navy-900/55">
+      <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-navy-900/70">
         The page you&rsquo;re looking for doesn&rsquo;t exist, or has moved.
       </p>
       <a

@@ -14,7 +14,7 @@ export default function ProcessTimeline({ steps }: { steps: Step[] }) {
             </div>
             <h3 className="mt-4 font-display text-lg text-navy-900">{s.title}</h3>
             {s.description && (
-              <p className="mt-1.5 text-[14px] leading-relaxed text-navy-900/55">
+              <p className="mt-1.5 text-[14px] leading-relaxed text-navy-900/70">
                 {s.description}
               </p>
             )}

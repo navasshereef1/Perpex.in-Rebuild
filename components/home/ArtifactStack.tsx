@@ -86,7 +86,7 @@ export default function ArtifactStack() {
             </div>
             <span
               className={`mt-1 block font-mono text-[10px] uppercase tracking-wide ${
-                a.accent ? "text-cream-50/50" : "text-navy-900/40"
+                a.accent ? "text-cream-50/50" : "text-navy-900/65"
               }`}
             >
               {a.meta}
@@ -99,7 +99,7 @@ export default function ArtifactStack() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.6, duration: 0.6 }}
-        className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.15em] text-navy-900/35"
+        className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.15em] text-navy-900/65"
       >
         6 documents · 1 system
       </motion.span>

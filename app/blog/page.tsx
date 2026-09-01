@@ -40,7 +40,7 @@ export default async function BlogPage() {
         <div className="mx-auto max-w-[1440px]">
           {posts.length === 0 ? (
             <div className="rounded-[28px] bg-cream-100 p-10 text-center md:p-14">
-              <p className="text-[15px] text-navy-900/50">
+              <p className="text-[15px] text-navy-900/65">
                 No posts published yet — check back soon, or manage content once the admin CMS
                 is connected.
               </p>
@@ -55,7 +55,7 @@ export default async function BlogPage() {
                 >
                   <h2 className="font-display text-2xl text-navy-900">{post.title}</h2>
                   {post.excerpt && (
-                    <p className="mt-3 text-[15px] leading-relaxed text-navy-900/55">
+                    <p className="mt-3 text-[15px] leading-relaxed text-navy-900/70">
                       {post.excerpt}
                     </p>
                   )}

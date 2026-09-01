@@ -35,14 +35,14 @@ export default function ServicesAccordion({ services }: { services: Service[] })
                 <div className="flex items-center gap-4">
                   <span
                     className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${
-                      isOpen ? "bg-white/15" : "bg-navy-900/[0.06] text-navy-900/60"
+                      isOpen ? "bg-white/15" : "bg-navy-900/[0.06] text-navy-900/70"
                     }`}
                   >
                     <ServiceIcon slug={service.slug} />
                   </span>
                   <span
                     className={`hidden rounded-full px-3.5 py-1.5 text-[13px] sm:inline-flex ${
-                      isOpen ? "bg-white/15" : "bg-navy-900/[0.06] text-navy-900/60"
+                      isOpen ? "bg-white/15" : "bg-navy-900/[0.06] text-navy-900/70"
                     }`}
                   >
                     {service.stage}
@@ -55,7 +55,7 @@ export default function ServicesAccordion({ services }: { services: Service[] })
                 </div>
                 <span
                   className={`text-2xl transition-transform duration-300 ${
-                    isOpen ? "rotate-45" : "text-navy-900/40"
+                    isOpen ? "rotate-45" : "text-navy-900/65"
                   }`}
                 >
                   +

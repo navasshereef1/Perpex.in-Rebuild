@@ -11,7 +11,7 @@ export default async function AdminDashboard() {
         <div className="flex items-center justify-between">
           <div>
             <span className="font-display text-3xl text-navy-900">PerpeX Admin</span>
-            {session && <p className="mt-1 text-[13px] text-navy-900/40">Signed in as {session.email}</p>}
+            {session && <p className="mt-1 text-[13px] text-navy-900/65">Signed in as {session.email}</p>}
           </div>
           <LogoutButton />
         </div>

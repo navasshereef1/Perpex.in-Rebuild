@@ -12,11 +12,11 @@ export default function CTASection() {
           lineColor="0, 27, 74"
         />
         <div className="relative z-10">
-          <span className="text-[14px] text-navy-900/60">The Next Step</span>
+          <span className="text-[14px] text-navy-900/70">The Next Step</span>
           <h2 className="mx-auto mt-6 max-w-3xl font-display text-4xl leading-[1.1] tracking-tight text-navy-900 md:text-6xl">
             Ready to get organised?
           </h2>
-          <p className="mx-auto mt-6 max-w-lg text-[15px] leading-relaxed text-navy-900/60">
+          <p className="mx-auto mt-6 max-w-lg text-[15px] leading-relaxed text-navy-900/70">
             Tell us where it&rsquo;s breaking. In one conversation, you&rsquo;ll know exactly
             what needs to change — and whether we&rsquo;re the ones to help you change it.
           </p>

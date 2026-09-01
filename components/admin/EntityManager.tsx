@@ -183,21 +183,21 @@ export default function EntityManager({
 
       <div className="mt-6">
         {loading ? (
-          <p className="text-[14px] text-navy-900/40">Loading…</p>
+          <p className="text-[14px] text-navy-900/65">Loading…</p>
         ) : rows.length === 0 ? (
-          <p className="text-[14px] text-navy-900/40">Nothing here yet.</p>
+          <p className="text-[14px] text-navy-900/65">Nothing here yet.</p>
         ) : (
           <div className="divide-y divide-navy-900/[0.06]">
             {rows.map((row) => (
               <div key={row.id} className="flex items-center justify-between py-4">
                 <div>
                   {subtitleField && (
-                    <span className="text-[13px] text-navy-900/40">{row[subtitleField]}</span>
+                    <span className="text-[13px] text-navy-900/65">{row[subtitleField]}</span>
                   )}
                   <div className="font-display text-lg text-navy-900">{row[titleField]}</div>
                 </div>
                 <div className="flex gap-3">
-                  <button onClick={() => startEdit(row)} className="text-[13px] text-navy-900/60 hover:text-navy-900">
+                  <button onClick={() => startEdit(row)} className="text-[13px] text-navy-900/70 hover:text-navy-900">
                     Edit
                   </button>
                   <button onClick={() => remove(row.id)} className="text-[13px] text-red-500 hover:text-red-700">

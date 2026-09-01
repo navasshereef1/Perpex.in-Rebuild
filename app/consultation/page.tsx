@@ -44,7 +44,7 @@ export default async function ConsultationPage() {
               </div>
             </div>
             <div className="rounded-[28px] border border-navy-900/[0.06] bg-white p-8">
-              <span className="text-[13px] text-navy-900/45">Headquarters</span>
+              <span className="text-[13px] text-navy-900/65">Headquarters</span>
               <p className="mt-4 text-[15px] leading-relaxed text-navy-900/70">
                 PerpeX Insights LLP
                 <br />

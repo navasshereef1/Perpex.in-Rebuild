@@ -27,7 +27,7 @@ export default function SystemPattern({
       />
       <span
         className={`absolute bottom-5 left-5 rounded-full px-3.5 py-1.5 text-[11px] backdrop-blur-sm ${
-          dark ? "bg-white/10 text-white/60" : "bg-navy-900/10 text-navy-900/50"
+          dark ? "bg-white/10 text-white/60" : "bg-navy-900/10 text-navy-900/65"
         }`}
       >
         {label}

@@ -80,7 +80,7 @@ export default function ConsultationForm({ services }: { services: Service[] }) 
       </div>
 
       <div className="mt-4 flex flex-col gap-2">
-        <label className="text-[13px] text-navy-900/45">Which service interests you?</label>
+        <label className="text-[13px] text-navy-900/65">Which service interests you?</label>
         <select name="serviceInterest" className={inputClass}>
           <option value="">Not sure yet</option>
           {services.map((s) => (
@@ -92,7 +92,7 @@ export default function ConsultationForm({ services }: { services: Service[] }) 
       </div>
 
       <div className="mt-4 flex flex-col gap-2">
-        <label className="text-[13px] text-navy-900/45">Tell us about your business</label>
+        <label className="text-[13px] text-navy-900/65">Tell us about your business</label>
         <textarea name="message" rows={4} className={`${inputClass} resize-none`} />
       </div>
 
@@ -127,7 +127,7 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={name} className="text-[13px] text-navy-900/45">
+      <label htmlFor={name} className="text-[13px] text-navy-900/65">
         {label}
         {required && " *"}
       </label>

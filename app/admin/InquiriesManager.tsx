@@ -60,9 +60,9 @@ export default function InquiriesManager() {
 
       <div className="mt-6">
         {loading ? (
-          <p className="text-[14px] text-navy-900/40">Loading…</p>
+          <p className="text-[14px] text-navy-900/65">Loading…</p>
         ) : rows.length === 0 ? (
-          <p className="text-[14px] text-navy-900/40">No inquiries yet.</p>
+          <p className="text-[14px] text-navy-900/65">No inquiries yet.</p>
         ) : (
           <div className="divide-y divide-navy-900/[0.06]">
             {rows.map((r) => (
@@ -72,11 +72,11 @@ export default function InquiriesManager() {
                     <div className="font-display text-lg text-navy-900">
                       {r.name} {r.company && `— ${r.company}`}
                     </div>
-                    <div className="text-[13px] text-navy-900/50">
+                    <div className="text-[13px] text-navy-900/65">
                       {r.email} {r.phone && `· ${r.phone}`}
                     </div>
                     {r.serviceInterest && (
-                      <div className="mt-1 text-[13px] text-navy-900/50">
+                      <div className="mt-1 text-[13px] text-navy-900/65">
                         Interested in: {r.serviceInterest}
                       </div>
                     )}

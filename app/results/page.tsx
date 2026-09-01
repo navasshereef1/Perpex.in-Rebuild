@@ -43,7 +43,7 @@ export default async function ResultsPage() {
         <section className="px-6 pb-16 md:px-10 md:pb-20">
           <div className="mx-auto max-w-[1440px]">
             <Reveal>
-              <span className="text-[13px] text-navy-900/45">Case Studies</span>
+              <span className="text-[13px] text-navy-900/65">Case Studies</span>
             </Reveal>
             <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
               {caseStudies.map((c: any, i: number) => (
@@ -55,11 +55,11 @@ export default async function ResultsPage() {
                   >
                     <h3 className="font-display text-2xl text-navy-900">{c.clientName}</h3>
                     {c.summary && (
-                      <p className="mt-2 text-[15px] leading-relaxed text-navy-900/55">
+                      <p className="mt-2 text-[15px] leading-relaxed text-navy-900/70">
                         {c.summary}
                       </p>
                     )}
-                    <span className="mt-4 inline-flex items-center gap-2 text-[13px] text-navy-900/50 group-hover:text-navy-900">
+                    <span className="mt-4 inline-flex items-center gap-2 text-[13px] text-navy-900/65 group-hover:text-navy-900">
                       Read the case study
                       <span className="transition-transform group-hover:translate-x-1">→</span>
                     </span>
@@ -74,7 +74,7 @@ export default async function ResultsPage() {
       <section className="px-6 pb-16 md:px-10 md:pb-20">
         <div className="mx-auto max-w-[1440px]">
           <Reveal>
-            <span className="text-[13px] text-navy-900/45">Testimonials</span>
+            <span className="text-[13px] text-navy-900/65">Testimonials</span>
           </Reveal>
           <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
             {testimonials.map((t: any, i: number) => (
@@ -83,7 +83,7 @@ export default async function ResultsPage() {
                   <p className="font-display text-xl leading-snug text-navy-900">
                     &ldquo;{t.description}&rdquo;
                   </p>
-                  <div className="mt-6 text-[13px] text-navy-900/45">
+                  <div className="mt-6 text-[13px] text-navy-900/65">
                     {t.name} — {t.designation}, {t.company}
                   </div>
                 </TiltCard>
@@ -130,7 +130,7 @@ export default async function ResultsPage() {
               <Reveal key={d.title} delay={(i % 3) * 0.06}>
                 <TiltCard className="rounded-[28px] border border-navy-900/[0.06] bg-white p-7">
                   <h3 className="font-display text-lg text-navy-900">{d.title}</h3>
-                  <p className="mt-2 text-[14px] leading-relaxed text-navy-900/55">
+                  <p className="mt-2 text-[14px] leading-relaxed text-navy-900/70">
                     {d.description}
                   </p>
                 </TiltCard>

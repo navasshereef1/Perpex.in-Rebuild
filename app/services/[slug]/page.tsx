@@ -70,7 +70,7 @@ export default async function ServiceDetailPage({
       <section className="px-6 pb-16 md:px-10 md:pb-20">
         <div className="mx-auto max-w-[1440px]">
           <Reveal>
-            <span className="text-[13px] text-navy-900/45">What This Covers</span>
+            <span className="text-[13px] text-navy-900/65">What This Covers</span>
           </Reveal>
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {whatWeAnalyze.map((item, i) => (
@@ -81,7 +81,7 @@ export default async function ServiceDetailPage({
                   </span>
                   <h3 className="mt-3 font-display text-lg text-navy-900">{item.title}</h3>
                   {item.description && (
-                    <p className="mt-1.5 text-[13px] leading-relaxed text-navy-900/55">
+                    <p className="mt-1.5 text-[13px] leading-relaxed text-navy-900/70">
                       {item.description}
                     </p>
                   )}
@@ -96,7 +96,7 @@ export default async function ServiceDetailPage({
         <section className="px-6 pb-16 md:px-10 md:pb-20">
           <div className="mx-auto max-w-[1440px] rounded-[28px] bg-cream-100 p-8 md:p-12">
             <Reveal>
-              <span className="text-[13px] text-navy-900/45">How It Runs</span>
+              <span className="text-[13px] text-navy-900/65">How It Runs</span>
             </Reveal>
             <div className="mt-8">
               <ProcessTimeline steps={processSteps} />
@@ -136,7 +136,7 @@ export default async function ServiceDetailPage({
                 See if {service.title} fits your business →
               </a>
             </Magnetic>
-            <a href={`/services/${next.slug}`} className="text-[14px] text-navy-900/55 hover:text-navy-900">
+            <a href={`/services/${next.slug}`} className="text-[14px] text-navy-900/70 hover:text-navy-900">
               Next: {next.title} →
             </a>
           </div>

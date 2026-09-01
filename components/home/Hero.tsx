@@ -38,10 +38,10 @@ export default function Hero() {
       />
 
       <div className="hero-fade relative z-10 flex items-center justify-between gap-4 border-b border-navy-900/10 pb-5">
-        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-navy-900/45">
+        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-navy-900/65">
           Perpex Insights — B2B Transformation
         </span>
-        <div className="hidden items-center gap-1 font-mono text-[11px] uppercase tracking-[0.14em] text-navy-900/40 sm:flex">
+        <div className="hidden items-center gap-1 font-mono text-[11px] uppercase tracking-[0.14em] text-navy-900/65 sm:flex">
           {stages.map((s, i) => (
             <span key={s} className="flex items-center gap-1">
               <span className={i === 0 ? "text-cyan-500" : ""}>{s}</span>
@@ -62,7 +62,7 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className="hero-fade mt-7 max-w-md text-[16px] leading-relaxed text-navy-900/60 md:text-[17px]">
+          <p className="hero-fade mt-7 max-w-md text-[16px] leading-relaxed text-navy-900/70 md:text-[17px]">
             Most growing businesses run on tribal knowledge and founder heroics — until
             that stops scaling. We diagnose what&rsquo;s actually broken, document the
             system that replaces it, train your team to run it, and stay on to make sure
@@ -79,13 +79,13 @@ export default function Hero() {
                 <span className="transition-transform group-hover:translate-x-1">→</span>
               </a>
             </Magnetic>
-            <span className="text-[12px] text-navy-900/40">Free · No obligation · 30 minutes</span>
+            <span className="text-[12px] text-navy-900/65">Free · No obligation · 30 minutes</span>
           </div>
 
-          <p className="hero-fade mt-8 max-w-sm border-l-2 border-cyan-400/40 pl-4 text-[13px] italic leading-relaxed text-navy-900/45">
+          <p className="hero-fade mt-8 max-w-sm border-l-2 border-cyan-400/40 pl-4 text-[13px] italic leading-relaxed text-navy-900/65">
             &ldquo;We don&rsquo;t hand over a report and leave. Senior leadership stays
             personally involved until the system actually runs.&rdquo;
-            <span className="mt-1.5 block font-mono not-italic text-[11px] uppercase tracking-wide text-navy-900/35">
+            <span className="mt-1.5 block font-mono not-italic text-[11px] uppercase tracking-wide text-navy-900/65">
               — Rafi Mohammed, Founder
             </span>
           </p>
@@ -96,7 +96,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hero-fade relative z-10 flex flex-wrap items-center justify-between gap-4 border-t border-navy-900/10 pt-5 text-[12px] text-navy-900/40">
+      <div className="hero-fade relative z-10 flex flex-wrap items-center justify-between gap-4 border-t border-navy-900/10 pt-5 text-[12px] text-navy-900/65">
         <span>140+ B2B clients served across 10+ sectors in India</span>
         <span className="font-mono uppercase tracking-[0.14em]">Calicut, Kerala</span>
       </div>
