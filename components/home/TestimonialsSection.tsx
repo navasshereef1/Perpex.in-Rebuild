@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Reveal from "../ui/Reveal";
 import TiltCard from "../ui/TiltCard";
 
@@ -34,8 +35,13 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
             </p>
             <div className="mt-8 flex items-center gap-3">
               {t.img ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={t.img} alt={t.name} className="h-10 w-10 rounded-full object-cover" />
+                <Image
+                  src={t.img}
+                  alt={t.name}
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 rounded-full object-cover"
+                />
               ) : (
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-400/20 font-display text-[13px] text-cyan-500">
                   {t.name.charAt(0)}

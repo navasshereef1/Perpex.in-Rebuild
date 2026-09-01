@@ -11,6 +11,8 @@ export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     const ctx = gsap.context(() => {
       gsap.set(".hero-mask span", { yPercent: 110 });
       gsap.set(".hero-fade", { opacity: 0, y: 16 });

@@ -8,18 +8,32 @@ const inputClass =
 
 type Service = { slug: string; title: string };
 
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export default function ConsultationForm({ services }: { services: Service[] }) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("submitting");
     const form = new FormData(e.currentTarget);
+    const name = String(form.get("name") ?? "").trim();
+    const email = String(form.get("email") ?? "").trim();
+
+    const errors: Record<string, string> = {};
+    if (!name) errors.name = "Please tell us your name.";
+    if (!email) errors.email = "Email is required.";
+    else if (!emailPattern.test(email)) errors.email = "That doesn't look like a valid email.";
+
+    setFieldErrors(errors);
+    if (Object.keys(errors).length > 0) return;
+
+    setStatus("submitting");
     const payload = {
-      name: form.get("name"),
+      name,
       company: form.get("company"),
-      email: form.get("email"),
+      email,
       phone: form.get("phone"),
       serviceInterest: form.get("serviceInterest"),
       message: form.get("message"),
@@ -57,11 +71,11 @@ export default function ConsultationForm({ services }: { services: Service[] }) 
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-[28px] bg-cream-100 p-8 md:p-10">
+    <form onSubmit={handleSubmit} noValidate className="rounded-[28px] bg-cream-100 p-8 md:p-10">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <Field label="Full name" name="name" required />
+        <Field label="Full name" name="name" required error={fieldErrors.name} />
         <Field label="Company" name="company" />
-        <Field label="Email" name="email" type="email" required />
+        <Field label="Email" name="email" type="email" required error={fieldErrors.email} />
         <Field label="Phone" name="phone" type="tel" />
       </div>
 
@@ -103,19 +117,33 @@ function Field({
   name,
   type = "text",
   required = false,
+  error,
 }: {
   label: string;
   name: string;
   type?: string;
   required?: boolean;
+  error?: string;
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <label className="text-[13px] text-navy-900/45">
+      <label htmlFor={name} className="text-[13px] text-navy-900/45">
         {label}
         {required && " *"}
       </label>
-      <input name={name} type={type} required={required} className={inputClass} />
+      <input
+        id={name}
+        name={name}
+        type={type}
+        aria-invalid={!!error}
+        aria-describedby={error ? `${name}-error` : undefined}
+        className={`${inputClass} ${error ? "border-red-400/60" : ""}`}
+      />
+      {error && (
+        <p id={`${name}-error`} className="text-[12px] text-red-600">
+          {error}
+        </p>
+      )}
     </div>
   );
 }

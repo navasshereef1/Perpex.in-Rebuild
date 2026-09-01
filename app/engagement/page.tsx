@@ -5,6 +5,7 @@ import Reveal from "@/components/ui/Reveal";
 import TiltCard from "@/components/ui/TiltCard";
 import Magnetic from "@/components/ui/Magnetic";
 import OrganizeCanvas from "@/components/ui/OrganizeCanvas";
+import ComparisonTable from "@/components/engagement/ComparisonTable";
 import { getEngagementModels, getTrainingTiers } from "@/lib/db/queries";
 
 export const metadata: Metadata = {
@@ -28,6 +29,10 @@ export default async function EngagementPage() {
         title="Pick your depth of commitment."
         description="Engage one service, or all four. Most clients start with a Diagnostic and scale up once they see what's actually broken."
       />
+
+      <section className="px-6 pb-10 md:px-10 md:pb-14">
+        <ComparisonTable models={engagementModels} />
+      </section>
 
       <section className="px-6 pb-16 md:px-10 md:pb-20">
         <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-4 md:grid-cols-2">
