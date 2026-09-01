@@ -10,9 +10,12 @@ export default function PageHero({
   return (
     <section className="px-6 pb-10 pt-6 md:px-10 md:pb-14">
       <div className="mx-auto max-w-[1440px]">
-        <span className="mb-6 inline-block rounded-full bg-navy-900/[0.06] px-4 py-2 text-[13px] text-navy-900/60">
-          {eyebrow}
-        </span>
+        <div className="mb-6 flex items-center gap-2.5">
+          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-500" />
+          <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-navy-900/45">
+            {eyebrow}
+          </span>
+        </div>
         <h1 className="max-w-3xl font-display text-5xl leading-[1.05] tracking-tight text-navy-900 md:text-7xl">
           {title}
         </h1>
