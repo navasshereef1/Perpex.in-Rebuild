@@ -76,6 +76,11 @@ export default async function ResultsPage() {
             <h2 className="font-display text-3xl font-bold tracking-[-0.02em] text-navy-900 md:text-4xl">
               What clients say
             </h2>
+            <p className="mt-4 max-w-[52ch] text-lg text-navy-600">
+              Some of this feedback names audits, tax audits, and monitoring: earlier names
+              for the same diagnostic and monitoring work we now run as Gap Analysis and
+              Managing &amp; Monitoring.
+            </p>
           </Reveal>
           <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
             {quotes.slice(1).map((t, i) => (

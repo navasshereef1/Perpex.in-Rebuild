@@ -38,7 +38,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-14 md:grid-cols-12">
           <div className="md:col-span-5">
             <Image src="/brand/icon-cyan.svg" alt="PerpeX" width={28} height={22} />
-            <p className="mt-6 max-w-[34ch] text-[15px] leading-relaxed text-navy-600">
+            <p className="mt-6 max-w-[38ch] text-lg leading-relaxed text-navy-900">
+              PerpeX Insights is a B2B consulting firm that fixes how growing businesses
+              operate.
+            </p>
+            <p className="mt-4 max-w-[34ch] text-[15px] leading-relaxed text-navy-600">
               PerpeX Insights LLP
               <br />
               T 1, Hilite Business Park

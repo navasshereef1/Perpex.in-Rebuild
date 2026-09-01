@@ -19,6 +19,11 @@ export default function TestimonialsSection({ testimonials }: { testimonials: Te
           <h2 className="font-display text-3xl font-bold leading-[1.08] tracking-[-0.02em] text-navy-900 md:text-5xl">
             Their words, not ours.
           </h2>
+          <p className="mt-4 max-w-[52ch] text-lg text-navy-600">
+            These clients describe the work as audits, training, and monitoring: earlier
+            names for what we now run as Gap Analysis, Training, and Managing &amp;
+            Monitoring.
+          </p>
         </Reveal>
       </Container>
 

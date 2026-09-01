@@ -95,8 +95,9 @@ export default function FrameworkSection({ services }: { services: Service[] }) 
             One system. Four moving parts.
           </h2>
           <p className="mt-5 max-w-[60ch] text-lg leading-relaxed text-navy-600">
-            Each service works on its own. Run in sequence, findings feed documentation,
-            documentation drives training, and training gives monitoring something to hold.
+            Each service works on its own. Run them in order and each stage builds on the
+            last: findings feed documentation, documentation drives training, training makes
+            monitoring possible.
           </p>
         </Reveal>
 

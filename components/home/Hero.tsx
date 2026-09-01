@@ -31,10 +31,11 @@ export default function Hero() {
             </motion.h1>
             <motion.p
               {...item(1)}
-              className="mt-7 max-w-[46ch] text-lg leading-relaxed text-navy-600 md:text-xl"
+              className="mt-7 max-w-[48ch] text-lg leading-relaxed text-navy-600 md:text-xl"
             >
-              We diagnose what is broken in your business, build the system that fixes it,
-              and stay until it runs.
+              PerpeX Insights is a B2B consulting team for growing businesses. We diagnose
+              what is broken in how you operate, document the fix, train your people to run
+              it, and stay to make sure it holds.
             </motion.p>
             <motion.div {...item(2)} className="mt-10 flex flex-wrap items-center gap-4">
               <Button href="/consultation">Book a discovery call</Button>
