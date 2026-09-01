@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import PageHero from "@/components/PageHero";
+import Button from "@/components/ui/Button";
+import Container from "@/components/ui/Container";
 import { getCaseStudyBySlug } from "@/lib/db/queries";
 
 export const dynamic = "force-dynamic";
@@ -29,42 +31,31 @@ export default async function CaseStudyPage({
 
   return (
     <>
-      <PageHero
-        eyebrow="Case Study"
-        title={caseStudy.clientName}
-        description={caseStudy.summary ?? undefined}
-      />
+      <PageHero title={caseStudy.clientName} description={caseStudy.summary ?? undefined} />
 
-      <section className="px-6 pb-24 md:px-10 md:pb-32">
-        <div className="mx-auto max-w-[1440px]">
+      <section className="pb-24 md:pb-32">
+        <Container>
           {results.length > 0 && (
-            <div className="mb-4 grid grid-cols-2 gap-4 md:grid-cols-4">
+            <dl className="mb-14 grid grid-cols-2 gap-y-8 border-y border-line py-10 md:grid-cols-4 md:divide-x md:divide-line">
               {results.map((r) => (
-                <div key={r.metric} className="rounded-[28px] bg-navy-900 p-6 text-cream-50">
-                  <div className="font-display text-3xl text-cyan-300">{r.value}</div>
-                  <div className="mt-1 text-[13px] text-cream-50/50">{r.metric}</div>
+                <div key={r.metric} className="md:px-8 md:first:pl-0">
+                  <dd className="font-display text-4xl font-bold tracking-[-0.03em] text-navy-900">{r.value}</dd>
+                  <dt className="mt-2 text-[15px] text-navy-600">{r.metric}</dt>
                 </div>
               ))}
-            </div>
+            </dl>
           )}
 
           {caseStudy.content && (
-            <div className="rounded-[28px] bg-cream-100 p-8 md:p-12">
-              <div className="max-w-2xl whitespace-pre-line text-[16px] leading-relaxed text-navy-900/70">
-                {caseStudy.content}
-              </div>
+            <div className="max-w-[68ch] whitespace-pre-line text-lg leading-relaxed text-navy-600">
+              {caseStudy.content}
             </div>
           )}
 
-          <div className="mt-6 rounded-[28px] bg-cream-100 px-8 py-8">
-            <a
-              href="/consultation"
-              className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-6 py-3 text-[14px] text-cream-50 hover:bg-navy-800"
-            >
-              Start your own Discovery Conversation →
-            </a>
+          <div className="mt-14">
+            <Button href="/consultation">Book a discovery call</Button>
           </div>
-        </div>
+        </Container>
       </section>
     </>
   );

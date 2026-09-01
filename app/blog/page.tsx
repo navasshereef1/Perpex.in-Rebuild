@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import PageHero from "@/components/PageHero";
+import Container from "@/components/ui/Container";
 
 export const metadata: Metadata = {
   title: "Insights",
-  description: "Thinking on operational transformation, from the PerpeX Insights team.",
+  description: "Writing on operational transformation from the PerpeX Insights team.",
 };
 
 export const dynamic = "force-dynamic";
@@ -31,39 +33,25 @@ export default async function BlogPage() {
   return (
     <>
       <PageHero
-        eyebrow="Insights"
         title="Notes on running a business that runs itself."
-        description="Thinking on gap analysis, documentation, training, and daily execution — published as engagements teach us something worth sharing."
+        description="Thinking on gap analysis, documentation, training, and daily execution, published when an engagement teaches us something worth sharing."
       />
 
-      <section className="px-6 pb-24 md:px-10 md:pb-32">
-        <div className="mx-auto max-w-[1440px]">
+      <section className="pb-24 md:pb-32">
+        <Container>
           {posts.length === 0 ? (
-            <div className="rounded-[28px] bg-cream-100 p-10 text-center md:p-14">
-              <p className="text-[15px] text-navy-900/65">
-                No posts published yet — check back soon, or manage content once the admin CMS
-                is connected.
-              </p>
-            </div>
+            <p className="max-w-[50ch] text-lg text-navy-600">No posts published yet. Check back soon.</p>
           ) : (
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-x-16 gap-y-10 md:grid-cols-2">
               {posts.map((post) => (
-                <a
-                  key={post.slug}
-                  href={`/blog/${post.slug}`}
-                  className="rounded-[28px] border border-navy-900/[0.06] bg-white p-8 transition-shadow hover:shadow-[0_20px_50px_rgba(0,27,74,0.08)]"
-                >
-                  <h2 className="font-display text-2xl text-navy-900">{post.title}</h2>
-                  {post.excerpt && (
-                    <p className="mt-3 text-[15px] leading-relaxed text-navy-900/70">
-                      {post.excerpt}
-                    </p>
-                  )}
-                </a>
+                <Link key={post.slug} href={`/blog/${post.slug}`} className="block border-t border-line pt-7">
+                  <h2 className="font-display text-2xl font-semibold tracking-[-0.02em] text-navy-900">{post.title}</h2>
+                  {post.excerpt && <p className="mt-3 text-[15px] leading-relaxed text-navy-600">{post.excerpt}</p>}
+                </Link>
               ))}
             </div>
           )}
-        </div>
+        </Container>
       </section>
     </>
   );

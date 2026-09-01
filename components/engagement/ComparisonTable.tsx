@@ -1,3 +1,4 @@
+import { Check, Circle } from "@phosphor-icons/react/dist/ssr";
 import Reveal from "../ui/Reveal";
 
 type EngagementModel = { name: string; servicesIncluded: string; bestFor: string | null };
@@ -6,50 +7,38 @@ const coreServices = ["Gap Analysis", "Documentation", "Training", "Managing & M
 
 export default function ComparisonTable({ models }: { models: EngagementModel[] }) {
   return (
-    <Reveal className="mx-auto max-w-[1440px] overflow-hidden rounded-[28px] border border-navy-900/[0.06] bg-white">
+    <Reveal className="overflow-hidden rounded-2xl bg-white ring-1 ring-navy-900/[0.06]">
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[720px] border-collapse text-left">
+        <table className="w-full min-w-[760px] border-collapse text-left">
           <thead>
-            <tr className="border-b border-navy-900/10">
-              <th className="w-[220px] p-6 text-[13px] font-normal text-navy-900/65">
-                At a glance
-              </th>
+            <tr className="border-b border-line">
+              <th className="w-[200px] p-6 text-[15px] font-normal text-navy-500">At a glance</th>
               {models.map((m) => (
-                <th key={m.name} className="p-6 text-left align-bottom">
-                  <span className="font-display text-lg text-navy-900">{m.name}</span>
+                <th key={m.name} className="p-6 align-bottom font-display text-lg font-semibold tracking-[-0.01em] text-navy-900">
+                  {m.name}
                 </th>
               ))}
             </tr>
           </thead>
           <tbody>
             {coreServices.map((service) => (
-              <tr key={service} className="border-b border-navy-900/[0.06]">
-                <th scope="row" className="p-6 text-[14px] font-normal text-navy-900/70">
-                  {service}
-                </th>
+              <tr key={service} className="border-b border-line">
+                <th scope="row" className="p-6 text-[15px] font-normal text-navy-600">{service}</th>
                 {models.map((m) => {
-                  const isAnyOne = /any single/i.test(m.servicesIncluded);
-                  const includesAll = /all four/i.test(m.servicesIncluded);
-                  const includes =
-                    includesAll ||
+                  const anyOne = /any single/i.test(m.servicesIncluded);
+                  const all = /all four/i.test(m.servicesIncluded);
+                  const included =
+                    all ||
                     m.servicesIncluded.includes(service) ||
                     (service === "Managing & Monitoring" && /monitoring retainer/i.test(m.name));
-
                   return (
                     <td key={m.name} className="p-6">
-                      {isAnyOne ? (
-                        <span
-                          className="flex h-6 w-6 items-center justify-center rounded-full border border-navy-900/15 text-[11px] text-navy-900/65"
-                          title="Available as a standalone engagement"
-                        >
-                          ○
-                        </span>
-                      ) : includes ? (
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-cyan-400/15 text-cyan-600">
-                          ✓
-                        </span>
+                      {anyOne ? (
+                        <Circle size={18} weight="light" className="text-navy-500" aria-label="Available on its own" />
+                      ) : included ? (
+                        <Check size={18} weight="bold" className="text-cyan-500" aria-label="Included" />
                       ) : (
-                        <span className="text-navy-900/20">—</span>
+                        <span className="text-navy-900/25">&minus;</span>
                       )}
                     </td>
                   );
@@ -57,11 +46,9 @@ export default function ComparisonTable({ models }: { models: EngagementModel[] 
               </tr>
             ))}
             <tr>
-              <th scope="row" className="p-6 text-[14px] font-normal text-navy-900/70">
-                Best for
-              </th>
+              <th scope="row" className="p-6 text-[15px] font-normal text-navy-600">Best for</th>
               {models.map((m) => (
-                <td key={m.name} className="max-w-[220px] p-6 text-[13px] leading-relaxed text-navy-900/65">
+                <td key={m.name} className="max-w-[220px] p-6 text-[14px] leading-relaxed text-navy-900">
                   {m.bestFor}
                 </td>
               ))}
@@ -69,18 +56,12 @@ export default function ComparisonTable({ models }: { models: EngagementModel[] 
           </tbody>
         </table>
       </div>
-      <div className="flex flex-wrap items-center gap-5 border-t border-navy-900/[0.06] px-6 py-4 text-[12px] text-navy-900/65">
+      <div className="flex flex-wrap gap-6 border-t border-line px-6 py-4 text-sm text-navy-600">
         <span className="flex items-center gap-2">
-          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-cyan-400/15 text-cyan-600">
-            ✓
-          </span>
-          Included in the package
+          <Check size={16} weight="bold" className="text-cyan-500" /> Included in the package
         </span>
         <span className="flex items-center gap-2">
-          <span className="flex h-5 w-5 items-center justify-center rounded-full border border-navy-900/15 text-[10px]">
-            ○
-          </span>
-          Available on its own
+          <Circle size={16} weight="light" className="text-navy-500" /> Available on its own
         </span>
       </div>
     </Reveal>

@@ -35,7 +35,7 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-cream-50 px-6">
+    <main className="flex min-h-screen items-center justify-center bg-base px-6">
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-sm rounded-[28px] border border-navy-900/[0.06] bg-white p-10"
@@ -48,7 +48,7 @@ export default function AdminLoginPage() {
               name="email"
               type="email"
               required
-              className="rounded-2xl border border-navy-900/10 bg-cream-50 px-4 py-3 text-[15px] text-navy-900 outline-none focus:border-navy-900/40"
+              className="rounded-2xl border border-navy-900/10 bg-base px-4 py-3 text-[15px] text-navy-900 outline-none focus:border-navy-900/40"
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -57,7 +57,7 @@ export default function AdminLoginPage() {
               name="password"
               type="password"
               required
-              className="rounded-2xl border border-navy-900/10 bg-cream-50 px-4 py-3 text-[15px] text-navy-900 outline-none focus:border-navy-900/40"
+              className="rounded-2xl border border-navy-900/10 bg-base px-4 py-3 text-[15px] text-navy-900 outline-none focus:border-navy-900/40"
             />
           </div>
         </div>
@@ -67,7 +67,7 @@ export default function AdminLoginPage() {
         <button
           type="submit"
           disabled={loading}
-          className="mt-6 w-full rounded-full bg-navy-900 px-6 py-3 text-[14px] text-cream-50 transition-colors hover:bg-navy-800 disabled:opacity-50"
+          className="mt-6 w-full rounded-full bg-navy-900 px-6 py-3 text-[14px] text-white transition-colors hover:bg-navy-800 disabled:opacity-50"
         >
           {loading ? "Signing in…" : "Sign in"}
         </button>

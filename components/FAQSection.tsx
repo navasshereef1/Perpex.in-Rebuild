@@ -1,72 +1,86 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { Plus } from "@phosphor-icons/react";
+import Container from "./ui/Container";
 import Reveal from "./ui/Reveal";
+import Section from "./ui/Section";
 
 const faqs = [
   {
     q: "How much does an engagement cost?",
-    a: "It depends entirely on scope — a single Gap Analysis costs far less than a Full Transformation. We don't quote before understanding your business, but every package is designed to be MSME-accessible, not enterprise-consulting priced. You'll have a clear number after the Discovery Conversation, not a generic rate card.",
+    a: "It depends on scope. A single Gap Analysis costs far less than a Full Transformation. We do not quote before understanding your business, and every package is priced for an MSME, not for an enterprise consulting budget. You will have a clear number after the discovery call.",
   },
   {
     q: "How long does a typical engagement take?",
-    a: "Gap Analysis alone usually runs 2–4 weeks. A System Build (Gap Analysis + Documentation + Training) typically takes 60–90 days. Managing & Monitoring is ongoing, billed monthly, for as long as you need the accountability layer in place.",
+    a: "Gap Analysis alone usually runs 2 to 4 weeks. A System Build (Gap Analysis, Documentation, Training) takes 60 to 90 days. Managing & Monitoring is ongoing and billed monthly for as long as you want the accountability layer in place.",
   },
   {
-    q: "We're a small team — is this really for us?",
-    a: "Yes. We've worked with MSMEs and startups as often as ₹100+ Cr enterprises. The Diagnostic and Essentials tiers exist specifically for smaller teams who need the same rigor without the enterprise price tag.",
+    q: "We are a small team. Is this really for us?",
+    a: "Yes. We have worked with startups as often as with ₹100+ Cr enterprises. The Diagnostic and Essentials tiers exist for smaller teams that need the same rigour without the enterprise price.",
   },
   {
-    q: "What happens after the Discovery Conversation?",
-    a: "We scope a tailored engagement — right services, clear deliverables, a real timeline, and a transparent investment overview. Nothing starts until you've seen exactly what's included and what isn't.",
+    q: "What happens after the discovery call?",
+    a: "We scope a tailored engagement: the right services, clear deliverables, a real timeline, and a transparent investment. Nothing starts until you have seen what is included and what is not.",
   },
   {
-    q: "Do you just hand over documents, or do you help implement them?",
-    a: "Every deliverable comes with an implementation path, not just a PDF. That's the entire reason Managing & Monitoring exists as a service — to make sure the system you paid for actually gets used.",
+    q: "Do you hand over documents, or help implement them?",
+    a: "Every deliverable comes with an implementation path, not just a PDF. Managing & Monitoring exists as a service to make sure the system you paid for gets used.",
   },
 ];
 
 export default function FAQSection() {
   const [open, setOpen] = useState<number | null>(0);
+  const reduced = useReducedMotion();
 
   return (
-    <section className="px-6 py-16 md:px-10 md:py-20">
-      <div className="mx-auto max-w-[1000px]">
+    <Section className="pt-0 md:pt-0">
+      <Container className="max-w-[900px]">
         <Reveal>
-          <span className="text-[13px] text-navy-900/65">Before You Reach Out</span>
-          <h2 className="mt-3 font-display text-4xl leading-[1.1] tracking-tight text-navy-900 md:text-5xl">
-            Common questions.
+          <h2 className="font-display text-3xl font-bold tracking-[-0.02em] text-navy-900 md:text-4xl">
+            Common questions
           </h2>
         </Reveal>
 
-        <div className="mt-10 border-t border-navy-900/10">
+        <div className="mt-10 border-t border-line">
           {faqs.map((faq, i) => {
             const isOpen = open === i;
             return (
-              <div key={faq.q} className="border-b border-navy-900/10">
+              <div key={faq.q} className="border-b border-line">
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
+                  aria-expanded={isOpen}
                   className="flex w-full items-center justify-between gap-6 py-6 text-left"
                 >
-                  <span className="font-display text-lg text-navy-900 md:text-xl">{faq.q}</span>
-                  <span
-                    className={`shrink-0 text-2xl text-navy-900/65 transition-transform duration-300 ${
+                  <span className="font-display text-lg font-semibold tracking-[-0.01em] text-navy-900 md:text-xl">
+                    {faq.q}
+                  </span>
+                  <Plus
+                    size={20}
+                    className={`shrink-0 text-navy-500 transition-transform duration-500 ease-soft ${
                       isOpen ? "rotate-45" : ""
                     }`}
-                  >
-                    +
-                  </span>
+                  />
                 </button>
-                {isOpen && (
-                  <p className="max-w-2xl pb-6 text-[15px] leading-relaxed text-navy-900/70">
-                    {faq.a}
-                  </p>
-                )}
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={reduced ? false : { height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={reduced ? undefined : { height: 0, opacity: 0 }}
+                      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <p className="max-w-[64ch] pb-6 text-[15px] leading-relaxed text-navy-600">{faq.a}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 }

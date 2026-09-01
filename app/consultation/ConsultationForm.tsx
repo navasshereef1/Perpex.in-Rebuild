@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Magnetic from "@/components/ui/Magnetic";
+import Button from "@/components/ui/Button";
 
 const inputClass =
-  "rounded-2xl border border-navy-900/10 bg-cream-50 px-5 py-3.5 text-[15px] text-navy-900 outline-none transition-colors focus:border-navy-900/40";
+  "w-full rounded-xl border border-line bg-white px-4 py-3.5 text-[15px] text-navy-900 outline-none transition-colors duration-300 placeholder:text-navy-500 focus:border-navy-900";
 
 type Service = { slug: string; title: string };
 
@@ -17,14 +17,15 @@ export default function ConsultationForm({ services }: { services: Service[] }) 
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const form = new FormData(e.currentTarget);
+    const formEl = e.currentTarget;
+    const form = new FormData(formEl);
     const name = String(form.get("name") ?? "").trim();
     const email = String(form.get("email") ?? "").trim();
 
     const errors: Record<string, string> = {};
     if (!name) errors.name = "Please tell us your name.";
     if (!email) errors.email = "Email is required.";
-    else if (!emailPattern.test(email)) errors.email = "That doesn't look like a valid email.";
+    else if (!emailPattern.test(email)) errors.email = "That does not look like a valid email.";
 
     setFieldErrors(errors);
     if (Object.keys(errors).length > 0) return;
@@ -53,7 +54,7 @@ export default function ConsultationForm({ services }: { services: Service[] }) 
         return;
       }
       setStatus("success");
-      e.currentTarget.reset();
+      formEl.reset();
     } catch {
       setErrorMessage("Something went wrong. Please try again.");
       setStatus("error");
@@ -62,26 +63,32 @@ export default function ConsultationForm({ services }: { services: Service[] }) 
 
   if (status === "success") {
     return (
-      <div className="rounded-[28px] bg-cream-100 p-10">
-        <p className="font-display text-2xl text-navy-900">
-          Thank you. We&rsquo;ll be in touch within one business day.
+      <div className="rounded-2xl bg-white p-10 ring-1 ring-navy-900/[0.06]">
+        <p className="font-display text-2xl font-semibold tracking-[-0.02em] text-navy-900">
+          Thank you. We will be in touch within one business day.
         </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="rounded-[28px] bg-cream-100 p-8 md:p-10">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      className="rounded-2xl bg-white p-8 ring-1 ring-navy-900/[0.06] md:p-10"
+    >
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         <Field label="Full name" name="name" required error={fieldErrors.name} />
         <Field label="Company" name="company" />
         <Field label="Email" name="email" type="email" required error={fieldErrors.email} />
         <Field label="Phone" name="phone" type="tel" />
       </div>
 
-      <div className="mt-4 flex flex-col gap-2">
-        <label className="text-[13px] text-navy-900/65">Which service interests you?</label>
-        <select name="serviceInterest" className={inputClass}>
+      <div className="mt-5 flex flex-col gap-2">
+        <label htmlFor="serviceInterest" className="text-[15px] text-navy-600">
+          Which service interests you?
+        </label>
+        <select id="serviceInterest" name="serviceInterest" className={inputClass}>
           <option value="">Not sure yet</option>
           {services.map((s) => (
             <option key={s.slug} value={s.title}>
@@ -91,23 +98,20 @@ export default function ConsultationForm({ services }: { services: Service[] }) 
         </select>
       </div>
 
-      <div className="mt-4 flex flex-col gap-2">
-        <label className="text-[13px] text-navy-900/65">Tell us about your business</label>
-        <textarea name="message" rows={4} className={`${inputClass} resize-none`} />
+      <div className="mt-5 flex flex-col gap-2">
+        <label htmlFor="message" className="text-[15px] text-navy-600">
+          Tell us about your business
+        </label>
+        <textarea id="message" name="message" rows={4} className={`${inputClass} resize-none`} />
       </div>
 
-      {status === "error" && <p className="mt-4 text-[14px] text-red-600">{errorMessage}</p>}
+      {status === "error" && <p className="mt-4 text-[15px] text-red-700">{errorMessage}</p>}
 
-      <Magnetic className="mt-6">
-        <button
-          type="submit"
-          disabled={status === "submitting"}
-          className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-7 py-3.5 text-[14px] text-cream-50 transition-colors hover:bg-navy-800 disabled:opacity-50"
-        >
-          {status === "submitting" ? "Sending…" : "Start the Conversation"}
-          <span aria-hidden>→</span>
-        </button>
-      </Magnetic>
+      <div className="mt-8">
+        <Button type="submit" disabled={status === "submitting"}>
+          {status === "submitting" ? "Sending" : "Book a discovery call"}
+        </Button>
+      </div>
     </form>
   );
 }
@@ -127,7 +131,7 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={name} className="text-[13px] text-navy-900/65">
+      <label htmlFor={name} className="text-[15px] text-navy-600">
         {label}
         {required && " *"}
       </label>
@@ -137,10 +141,10 @@ function Field({
         type={type}
         aria-invalid={!!error}
         aria-describedby={error ? `${name}-error` : undefined}
-        className={`${inputClass} ${error ? "border-red-400/60" : ""}`}
+        className={`${inputClass} ${error ? "border-red-600" : ""}`}
       />
       {error && (
-        <p id={`${name}-error`} className="text-[12px] text-red-600">
+        <p id={`${name}-error`} className="text-[13px] text-red-700">
           {error}
         </p>
       )}

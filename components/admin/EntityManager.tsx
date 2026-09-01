@@ -107,7 +107,7 @@ export default function EntityManager({
         <h2 className="font-display text-2xl text-navy-900">{title}</h2>
         <button
           onClick={startNew}
-          className="rounded-full bg-navy-900 px-5 py-2.5 text-[13px] text-cream-50 hover:bg-navy-800"
+          className="rounded-full bg-navy-900 px-5 py-2.5 text-[13px] text-white hover:bg-navy-800"
         >
           + Add
         </button>
@@ -116,7 +116,7 @@ export default function EntityManager({
       {error && <p className="mt-4 text-[14px] text-red-600">{error}</p>}
 
       {editingId !== null && (
-        <div className="mt-6 rounded-2xl bg-cream-50 p-6">
+        <div className="mt-6 rounded-2xl bg-base p-6">
           <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
             {fields.map((field) => {
               const spanClass = field.span === 2 ? "md:col-span-2" : "";
@@ -168,7 +168,7 @@ export default function EntityManager({
             })}
           </div>
           <div className="mt-4 flex gap-3">
-            <button onClick={save} className="rounded-full bg-navy-900 px-5 py-2.5 text-[13px] text-cream-50">
+            <button onClick={save} className="rounded-full bg-navy-900 px-5 py-2.5 text-[13px] text-white">
               Save
             </button>
             <button

@@ -88,7 +88,7 @@ export default function InquiriesManager() {
                     <select
                       value={r.status}
                       onChange={(e) => updateStatus(r.id, e.target.value)}
-                      className="rounded-full border border-navy-900/15 bg-cream-50 px-3 py-1.5 text-[13px] text-navy-900"
+                      className="rounded-full border border-navy-900/15 bg-base px-3 py-1.5 text-[13px] text-navy-900"
                     >
                       {statuses.map((s) => (
                         <option key={s} value={s}>

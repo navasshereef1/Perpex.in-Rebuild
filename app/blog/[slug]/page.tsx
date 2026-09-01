@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import PageHero from "@/components/PageHero";
+import Container from "@/components/ui/Container";
 
 export const dynamic = "force-dynamic";
 
@@ -40,15 +41,14 @@ export default async function BlogPostPage({
 
   return (
     <>
-      <PageHero
-        eyebrow={post.authorName ? `By ${post.authorName}` : "Insights"}
-        title={post.title}
-        description={post.excerpt ?? undefined}
-      />
-      <section className="px-6 pb-24 md:px-10 md:pb-32">
-        <div className="mx-auto max-w-2xl whitespace-pre-line text-[16px] leading-relaxed text-navy-900/70">
-          {post.content}
-        </div>
+      <PageHero title={post.title} description={post.excerpt ?? undefined} />
+      <section className="pb-24 md:pb-32">
+        <Container>
+          {post.authorName && <p className="mb-8 text-[15px] text-navy-500">By {post.authorName}</p>}
+          <div className="max-w-[68ch] whitespace-pre-line text-lg leading-relaxed text-navy-600">
+            {post.content}
+          </div>
+        </Container>
       </section>
     </>
   );

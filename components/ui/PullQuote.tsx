@@ -1,4 +1,6 @@
+import Container from "./Container";
 import Reveal from "./Reveal";
+import Section from "./Section";
 
 export default function PullQuote({
   quote,
@@ -12,27 +14,21 @@ export default function PullQuote({
   company: string;
 }) {
   return (
-    <section className="px-6 py-16 md:px-10 md:py-24">
-      <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-6 md:grid-cols-12">
-        <div className="hidden md:col-span-2 md:block" />
-        <Reveal className="md:col-span-10">
-          <span
-            aria-hidden
-            className="block font-display text-[7rem] italic leading-none text-cyan-400/40 md:text-[9rem]"
-          >
-            &ldquo;
-          </span>
-          <p className="-mt-10 max-w-3xl font-display text-3xl leading-[1.2] tracking-tight text-navy-900 md:-mt-14 md:text-5xl">
-            {quote}
-          </p>
-          <div className="mt-8 flex items-center gap-3 border-l-2 border-cyan-400/40 pl-4">
-            <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-navy-900/65">
-              {name}
-              {designation ? `, ${designation}` : ""} — {company}
-            </span>
-          </div>
-        </Reveal>
-      </div>
-    </section>
+    <Section className="pt-0 md:pt-0">
+      <Container>
+        <div className="grid grid-cols-1 md:grid-cols-12">
+          <Reveal className="md:col-span-10 md:col-start-2">
+            <blockquote className="max-w-[26ch] font-display text-3xl font-semibold leading-[1.15] tracking-[-0.02em] text-navy-900 md:text-5xl">
+              &ldquo;{quote}&rdquo;
+            </blockquote>
+            <p className="mt-8 border-l-2 border-cyan-400 pl-4 text-[15px] text-navy-600">
+              <span className="font-medium text-navy-900">{name}</span>
+              {designation ? `, ${designation}` : ""}
+              <span className="block">{company}</span>
+            </p>
+          </Reveal>
+        </div>
+      </Container>
+    </Section>
   );
 }

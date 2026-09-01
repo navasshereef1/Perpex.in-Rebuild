@@ -1,39 +1,35 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { useInView } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { animate, useInView, useReducedMotion } from "framer-motion";
 
-// Animates a numeric value from 0 up to the number embedded in `value`
-// (e.g. "140+", "₹100+ Cr") once it scrolls into view, preserving any
-// prefix/suffix text around the number.
+// Counts the number inside `value` (e.g. "140+", "Rs 100+ Cr") up from zero
+// once in view. Writes straight to the DOM node, never to React state.
 export default function CountUp({ value }: { value: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
-  const [display, setDisplay] = useState(value.replace(/[0-9]/g, "0"));
+  const reduced = useReducedMotion();
 
   const match = value.match(/[\d,]+/);
   const target = match ? parseInt(match[0].replace(/,/g, ""), 10) : null;
 
   useEffect(() => {
-    if (!inView || target === null) {
-      if (target === null) setDisplay(value);
+    const el = ref.current;
+    if (!el || !inView || target === null || !match) return;
+    if (reduced) {
+      el.textContent = value;
       return;
     }
-    const duration = 1200;
-    const start = performance.now();
-
-    let rafId: number;
-    const tick = (now: number) => {
-      const t = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - t, 3);
-      const current = Math.round(target * eased);
-      setDisplay(value.replace(match![0], current.toLocaleString()));
-      if (t < 1) rafId = requestAnimationFrame(tick);
-    };
-    rafId = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafId);
+    const controls = animate(0, target, {
+      duration: 1.2,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate: (v) => {
+        el.textContent = value.replace(match[0], Math.round(v).toLocaleString("en-IN"));
+      },
+    });
+    return () => controls.stop();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView]);
 
-  return <span ref={ref}>{display}</span>;
+  return <span ref={ref}>{target === null ? value : value.replace(match![0], "0")}</span>;
 }

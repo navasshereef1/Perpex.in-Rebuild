@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import ConsultationForm from "./ConsultationForm";
 import FAQSection from "@/components/FAQSection";
+import Container from "@/components/ui/Container";
 import { getServices } from "@/lib/db/queries";
 
 export const metadata: Metadata = {
-  title: "Start a Discovery Conversation",
+  title: "Book a discovery call",
   description:
-    "Tell us where your business is breaking. One free, no-obligation conversation with PerpeX Insights — the clarity is immediate.",
+    "Tell us where your business is breaking. One free, no-obligation call with PerpeX Insights.",
 };
 
 export const dynamic = "force-dynamic";
@@ -18,41 +19,44 @@ export default async function ConsultationPage() {
   return (
     <>
       <PageHero
-        eyebrow="The Next Step"
-        title="Free. No obligation. 30 minutes that could save you a year."
-        description="We'll ask about your team, your bottlenecks, and where growth is starting to hurt. You'll leave knowing exactly what's broken — whether or not you engage us to fix it."
+        title="Thirty minutes that could save you a year."
+        description="We ask about your team, your bottlenecks, and where growth is starting to hurt. You leave knowing what is broken, whether or not you hire us."
       />
 
-      <section className="px-6 pb-24 md:px-10 md:pb-32">
-        <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-4 md:grid-cols-12">
-          <div className="md:col-span-7">
-            <ConsultationForm services={services} />
-          </div>
-          <div className="flex flex-col gap-4 md:col-span-5">
-            <div className="grain rounded-[28px] bg-navy-900 p-8 text-cream-50">
-              <span className="text-[13px] text-cyan-300/80">Direct</span>
-              <div className="mt-4 space-y-2 text-[15px]">
-                <a href="tel:+919745100036" className="block text-cream-50/85 hover:text-white">
-                  +91 97451 00036
-                </a>
-                <a href="tel:+919745100046" className="block text-cream-50/85 hover:text-white">
-                  +91 97451 00046
-                </a>
-                <a href="mailto:info@perpex.in" className="block text-cream-50/85 hover:text-white">
-                  info@perpex.in
-                </a>
+      <section className="pb-24 md:pb-32">
+        <Container>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-12">
+            <div className="md:col-span-7">
+              <ConsultationForm services={services} />
+            </div>
+            <aside className="flex flex-col gap-6 md:col-span-5">
+              <div className="rounded-2xl bg-white p-8 ring-1 ring-navy-900/[0.06]">
+                <p className="text-[15px] text-navy-500">Call or write</p>
+                <div className="mt-4 space-y-2 text-lg">
+                  <a href="tel:+919745100036" className="block text-navy-900 hover:text-cyan-500">
+                    +91 97451 00036
+                  </a>
+                  <a href="tel:+919745100046" className="block text-navy-900 hover:text-cyan-500">
+                    +91 97451 00046
+                  </a>
+                  <a href="mailto:info@perpex.in" className="block text-navy-900 hover:text-cyan-500">
+                    info@perpex.in
+                  </a>
+                </div>
               </div>
-            </div>
-            <div className="rounded-[28px] border border-navy-900/[0.06] bg-white p-8">
-              <span className="text-[13px] text-navy-900/65">Headquarters</span>
-              <p className="mt-4 text-[15px] leading-relaxed text-navy-900/70">
-                PerpeX Insights LLP
-                <br />
-                T 1, Hilite Business Park, Calicut, Kerala
-              </p>
-            </div>
+              <div className="rounded-2xl bg-white p-8 ring-1 ring-navy-900/[0.06]">
+                <p className="text-[15px] text-navy-500">Office</p>
+                <p className="mt-4 text-lg leading-relaxed text-navy-900">
+                  PerpeX Insights LLP
+                  <br />
+                  T 1, Hilite Business Park
+                  <br />
+                  Calicut, Kerala
+                </p>
+              </div>
+            </aside>
           </div>
-        </div>
+        </Container>
       </section>
 
       <FAQSection />

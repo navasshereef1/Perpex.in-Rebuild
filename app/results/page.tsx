@@ -1,19 +1,23 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import PageHero from "@/components/PageHero";
-import Reveal from "@/components/ui/Reveal";
-import TiltCard from "@/components/ui/TiltCard";
+import DifferentiatorsSection from "@/components/home/DifferentiatorsSection";
+import Container from "@/components/ui/Container";
 import PullQuote from "@/components/ui/PullQuote";
-import { differentiators } from "@/lib/seedData";
+import Reveal from "@/components/ui/Reveal";
+import Section from "@/components/ui/Section";
 import { getTestimonials, getSectors, getCaseStudies } from "@/lib/db/queries";
-import { accentColors } from "@/lib/accentColors";
 
 export const metadata: Metadata = {
   title: "Client Results",
-  description:
-    "140+ B2B clients across 10+ sectors — the outcomes, in their own words.",
+  description: "140+ B2B clients across 10+ sectors, in their own words.",
 };
 
 export const dynamic = "force-dynamic";
+
+type Testimonial = { name: string; designation: string | null; company: string; description: string };
+type CaseStudy = { slug: string; clientName: string; summary: string | null };
 
 export default async function ResultsPage() {
   const [testimonials, sectors, caseStudies] = await Promise.all([
@@ -21,124 +25,98 @@ export default async function ResultsPage() {
     getSectors(),
     getCaseStudies(),
   ]);
+  const quotes = testimonials as Testimonial[];
+  const studies = caseStudies as CaseStudy[];
 
   return (
     <>
       <PageHero
-        eyebrow="Why PerpeX Insights"
         title="The proof, not the pitch."
-        description="140+ engagements across 10+ sectors. Here's what changed for the businesses that ran through the full framework."
+        description="140+ engagements across 10+ sectors. This is what changed for the businesses that ran the framework."
       />
 
-      {testimonials.length > 0 && (
+      {quotes.length > 0 && (
         <PullQuote
-          quote={testimonials[0].description}
-          name={testimonials[0].name}
-          designation={testimonials[0].designation}
-          company={testimonials[0].company}
+          quote={quotes[0].description}
+          name={quotes[0].name}
+          designation={quotes[0].designation}
+          company={quotes[0].company}
         />
       )}
 
-      {caseStudies.length > 0 && (
-        <section className="px-6 pb-16 md:px-10 md:pb-20">
-          <div className="mx-auto max-w-[1440px]">
+      {studies.length > 0 && (
+        <Section className="pt-0 md:pt-0">
+          <Container>
             <Reveal>
-              <span className="text-[13px] text-navy-900/65">Case Studies</span>
+              <h2 className="font-display text-3xl font-bold tracking-[-0.02em] text-navy-900 md:text-4xl">
+                Case studies
+              </h2>
             </Reveal>
-            <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
-              {caseStudies.map((c: any, i: number) => (
+            <div className="mt-10 grid grid-cols-1 gap-x-16 gap-y-10 md:grid-cols-2">
+              {studies.map((c, i) => (
                 <Reveal key={c.slug} delay={(i % 2) * 0.06}>
-                  <TiltCard
-                    as="a"
-                    href={`/case-studies/${c.slug}`}
-                    className="group block rounded-[28px] border border-navy-900/[0.06] bg-white p-8 transition-shadow hover:shadow-[0_20px_50px_rgba(0,27,74,0.08)]"
-                  >
-                    <h3 className="font-display text-2xl text-navy-900">{c.clientName}</h3>
-                    {c.summary && (
-                      <p className="mt-2 text-[15px] leading-relaxed text-navy-900/70">
-                        {c.summary}
-                      </p>
-                    )}
-                    <span className="mt-4 inline-flex items-center gap-2 text-[13px] text-navy-900/65 group-hover:text-navy-900">
+                  <Link href={`/case-studies/${c.slug}`} className="group block border-t border-line pt-7">
+                    <h3 className="font-display text-2xl font-semibold tracking-[-0.02em] text-navy-900">{c.clientName}</h3>
+                    {c.summary && <p className="mt-3 text-[15px] leading-relaxed text-navy-600">{c.summary}</p>}
+                    <span className="mt-5 inline-flex items-center gap-2 text-[15px] font-medium text-navy-900">
                       Read the case study
-                      <span className="transition-transform group-hover:translate-x-1">→</span>
+                      <ArrowRight size={16} className="transition-transform duration-500 ease-soft group-hover:translate-x-1" />
                     </span>
-                  </TiltCard>
+                  </Link>
                 </Reveal>
               ))}
             </div>
-          </div>
-        </section>
+          </Container>
+        </Section>
       )}
 
-      <section className="px-6 pb-16 md:px-10 md:pb-20">
-        <div className="mx-auto max-w-[1440px]">
+      <Section className="bg-mist">
+        <Container>
           <Reveal>
-            <span className="text-[13px] text-navy-900/65">Testimonials</span>
+            <h2 className="font-display text-3xl font-bold tracking-[-0.02em] text-navy-900 md:text-4xl">
+              What clients say
+            </h2>
           </Reveal>
-          <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
-            {testimonials.map((t: any, i: number) => (
+          <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
+            {quotes.slice(1).map((t, i) => (
               <Reveal key={t.name} delay={(i % 2) * 0.05}>
-                <TiltCard className="rounded-[28px] bg-cream-100 p-8">
-                  <p className="font-display text-xl leading-snug text-navy-900">
+                <figure className="flex h-full flex-col justify-between rounded-2xl bg-white p-8 ring-1 ring-navy-900/[0.06]">
+                  <blockquote className="font-display text-xl font-medium leading-snug tracking-[-0.01em] text-navy-900">
                     &ldquo;{t.description}&rdquo;
-                  </p>
-                  <div className="mt-6 text-[13px] text-navy-900/65">
-                    {t.name} — {t.designation}, {t.company}
-                  </div>
-                </TiltCard>
+                  </blockquote>
+                  <figcaption className="mt-8 text-[15px] text-navy-600">
+                    <span className="font-medium text-navy-900">{t.name}</span>
+                    {t.designation ? `, ${t.designation}` : ""}
+                    <span className="block">{t.company}</span>
+                  </figcaption>
+                </figure>
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
-      <section className="px-6 py-16 md:px-10 md:py-24">
-        <div className="mx-auto max-w-[1440px]">
+      <Section>
+        <Container>
           <Reveal>
-            <h2 className="max-w-xl font-display text-4xl leading-[1.1] tracking-tight text-navy-900 md:text-5xl">
-              Sectors we serve
+            <h2 className="font-display text-3xl font-bold tracking-[-0.02em] text-navy-900 md:text-4xl">
+              Sectors we have worked in
             </h2>
           </Reveal>
-          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
-            {sectors.map((s: string, i: number) => {
-              const accent = accentColors[i % accentColors.length];
-              return (
-                <Reveal key={s} delay={(i % 5) * 0.04}>
-                  <TiltCard
-                    style={{ backgroundColor: accent.bg, color: accent.text }}
-                    className="flex aspect-square items-center justify-center rounded-[24px] p-4 text-center"
-                  >
-                    <span className="font-display text-lg">{s}</span>
-                  </TiltCard>
-                </Reveal>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-16 md:px-10 md:py-24">
-        <div className="mx-auto max-w-[1440px]">
-          <Reveal className="mb-10">
-            <h2 className="max-w-lg font-display text-4xl leading-[1.1] tracking-tight text-navy-900 md:text-5xl">
-              Six reasons clients stay
-            </h2>
-          </Reveal>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {differentiators.map((d, i) => (
-              <Reveal key={d.title} delay={(i % 3) * 0.06}>
-                <TiltCard className="rounded-[28px] border border-navy-900/[0.06] bg-white p-7">
-                  <h3 className="font-display text-lg text-navy-900">{d.title}</h3>
-                  <p className="mt-2 text-[14px] leading-relaxed text-navy-900/70">
-                    {d.description}
-                  </p>
-                </TiltCard>
-              </Reveal>
+          <div className="mt-8 flex flex-wrap gap-3">
+            {(sectors as string[]).map((s) => (
+              <span
+                key={s}
+                className="rounded-full bg-white px-5 py-2.5 text-[15px] text-navy-900 ring-1 ring-navy-900/[0.08]"
+              >
+                {s}
+              </span>
             ))}
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
+
+      <DifferentiatorsSection />
     </>
   );
 }

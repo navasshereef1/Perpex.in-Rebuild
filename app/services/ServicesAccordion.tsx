@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { accentColors } from "@/lib/accentColors";
-import ServiceIcon from "@/components/ui/ServiceIcon";
+import Link from "next/link";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, Plus } from "@phosphor-icons/react";
+import Container from "@/components/ui/Container";
 
 type Service = {
   slug: string;
@@ -15,96 +16,75 @@ type Service = {
 
 export default function ServicesAccordion({ services }: { services: Service[] }) {
   const [open, setOpen] = useState(0);
+  const reduced = useReducedMotion();
 
   return (
-    <section className="px-6 pb-24 md:px-10 md:pb-32">
-      <div className="mx-auto flex max-w-[1440px] flex-col gap-3">
-        {services.map((service, i) => {
-          const isOpen = open === i;
-          const accent = accentColors[i % accentColors.length];
-
-          return (
-            <div key={service.slug} className="overflow-hidden rounded-[28px]">
-              <button
-                onClick={() => setOpen(i)}
-                className={`flex w-full items-center justify-between gap-6 px-8 py-7 text-left transition-colors ${
-                  isOpen ? "" : "bg-cream-100 hover:bg-cream-200"
-                }`}
-                style={isOpen ? { backgroundColor: accent.bg, color: accent.text } : undefined}
-              >
-                <div className="flex items-center gap-4">
-                  <span
-                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${
-                      isOpen ? "bg-white/15" : "bg-navy-900/[0.06] text-navy-900/70"
-                    }`}
-                  >
-                    <ServiceIcon slug={service.slug} />
-                  </span>
-                  <span
-                    className={`hidden rounded-full px-3.5 py-1.5 text-[13px] sm:inline-flex ${
-                      isOpen ? "bg-white/15" : "bg-navy-900/[0.06] text-navy-900/70"
-                    }`}
-                  >
-                    {service.stage}
-                  </span>
-                  <span
-                    className={`font-display text-2xl md:text-3xl ${isOpen ? "" : "text-navy-900"}`}
-                  >
-                    {service.title}
-                  </span>
-                </div>
-                <span
-                  className={`text-2xl transition-transform duration-300 ${
-                    isOpen ? "rotate-45" : "text-navy-900/65"
-                  }`}
+    <section className="pb-24 md:pb-32">
+      <Container>
+        <div className="border-t border-line">
+          {services.map((service, i) => {
+            const isOpen = open === i;
+            return (
+              <div key={service.slug} className="border-b border-line">
+                <button
+                  onClick={() => setOpen(isOpen ? -1 : i)}
+                  aria-expanded={isOpen}
+                  className="flex w-full items-center justify-between gap-6 py-7 text-left"
                 >
-                  +
-                </span>
-              </button>
+                  <span className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-6">
+                    <span className="text-[15px] text-navy-500 sm:w-24">{service.stage}</span>
+                    <span className="font-display text-2xl font-semibold tracking-[-0.02em] text-navy-900 md:text-3xl">
+                      {service.title}
+                    </span>
+                  </span>
+                  <Plus
+                    size={22}
+                    className={`shrink-0 text-navy-500 transition-transform duration-500 ease-soft ${
+                      isOpen ? "rotate-45" : ""
+                    }`}
+                  />
+                </button>
 
-              <motion.div
-                initial={false}
-                animate={{ height: isOpen ? "auto" : 0 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="overflow-hidden"
-                style={isOpen ? { backgroundColor: accent.bg } : undefined}
-              >
-                <div
-                  className="grid grid-cols-1 gap-10 px-8 pb-10 md:grid-cols-12"
-                  style={{ color: accent.text }}
-                >
-                  <div className="md:col-span-6">
-                    <p className="text-[15px] leading-relaxed opacity-80">
-                      {service.description}
-                    </p>
-                    <ul className="mt-6 space-y-2.5">
-                      {(service.deliverables ?? []).slice(0, 5).map((d) => (
-                        <li key={d} className="text-[14px] opacity-70">
-                          — {d}
-                        </li>
-                      ))}
-                    </ul>
-                    <a
-                      href={`/services/${service.slug}`}
-                      className="mt-8 inline-flex items-center gap-2 rounded-full bg-white/15 px-5 py-2.5 text-[13px] backdrop-blur-sm"
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key="panel"
+                      initial={reduced ? false : { height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={reduced ? undefined : { height: 0, opacity: 0 }}
+                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                      className="overflow-hidden"
                     >
-                      View full service page →
-                    </a>
-                  </div>
-                  <div className="relative flex min-h-[220px] items-end justify-end overflow-hidden md:col-span-6">
-                    <span className="pointer-events-none select-none font-display text-[13rem] font-medium leading-none opacity-[0.08]">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="absolute bottom-0 left-0 rounded-full bg-white/15 px-4 py-2 text-[13px] backdrop-blur-sm">
-                      {(service.deliverables ?? []).length} deliverables
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          );
-        })}
-      </div>
+                      <div className="grid grid-cols-1 gap-10 pb-10 md:grid-cols-12 md:pl-[7.5rem]">
+                        <div className="md:col-span-7">
+                          <p className="max-w-[58ch] text-lg leading-relaxed text-navy-600">
+                            {service.description}
+                          </p>
+                          <Link
+                            href={`/services/${service.slug}`}
+                            className="group mt-6 inline-flex items-center gap-2 text-[15px] font-medium text-navy-900"
+                          >
+                            Read about {service.title}
+                            <ArrowRight size={16} className="transition-transform duration-500 ease-soft group-hover:translate-x-1" />
+                          </Link>
+                        </div>
+                        <div className="md:col-span-5">
+                          <p className="text-[15px] text-navy-500">Deliverables include</p>
+                          <ul className="mt-3 space-y-2">
+                            {(service.deliverables ?? []).slice(0, 5).map((d) => (
+                              <li key={d} className="text-[15px] text-navy-900">{d}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
+      </Container>
     </section>
   );
 }

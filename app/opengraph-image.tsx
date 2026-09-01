@@ -42,7 +42,7 @@ export default async function OpengraphImage() {
             Organising the un-organised.
           </div>
           <div style={{ display: "flex", marginTop: 28, fontSize: 26, color: "#66cdff" }}>
-            PerpeX Insights — B2B Transformation &amp; Execution Services
+            PerpeX Insights. B2B Transformation &amp; Execution Services
           </div>
         </div>
       </div>

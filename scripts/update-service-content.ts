@@ -1,24 +1,31 @@
-// One-off: sync the richer whatWeAnalyze/processSteps content for
-// training + managing-monitoring into the already-seeded live DB rows.
+// One-off: sync copy from lib/seedData.ts into the already-seeded live DB rows
+// (services and engagement models). Run with: npx tsx scripts/update-service-content.ts
 import { db, client } from "../lib/db";
-import { services } from "../lib/db/schema";
+import { services, engagementModels } from "../lib/db/schema";
 import { eq } from "drizzle-orm";
-import { services as seedServices } from "../lib/seedData";
+import { services as seedServices, engagementModels as seedModels } from "../lib/seedData";
 
 async function run() {
-  for (const slug of ["gap-analysis", "documentation", "training", "managing-monitoring"]) {
-    const s = seedServices.find((x) => x.slug === slug);
-    if (!s) continue;
+  for (const s of seedServices) {
     await db
       .update(services)
       .set({
+        tagline: s.tagline,
+        description: s.description,
         whatWeAnalyze: s.whatWeAnalyze,
-        processSteps: (s as any).processSteps ?? null,
+        processSteps: (s as { processSteps?: unknown }).processSteps as never ?? null,
         deliverables: s.deliverables,
         updatedAt: new Date(),
       })
-      .where(eq(services.slug, slug));
-    console.log(`Updated ${slug}`);
+      .where(eq(services.slug, s.slug));
+    console.log(`Updated service ${s.slug}`);
+  }
+  for (const m of seedModels) {
+    await db
+      .update(engagementModels)
+      .set({ servicesIncluded: m.servicesIncluded, bestFor: m.bestFor, updatedAt: new Date() })
+      .where(eq(engagementModels.name, m.name));
+    console.log(`Updated model ${m.name}`);
   }
   await client.end();
 }

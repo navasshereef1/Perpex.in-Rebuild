@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArrowRight, Check } from "@phosphor-icons/react/dist/ssr";
 import PageHero from "@/components/PageHero";
-import Magnetic from "@/components/ui/Magnetic";
-import TiltCard from "@/components/ui/TiltCard";
-import OrganizeCanvas from "@/components/ui/OrganizeCanvas";
+import Button from "@/components/ui/Button";
+import Container from "@/components/ui/Container";
 import ProcessTimeline from "@/components/ui/ProcessTimeline";
-import ServiceIcon from "@/components/ui/ServiceIcon";
 import Reveal from "@/components/ui/Reveal";
+import Section from "@/components/ui/Section";
+import { serviceIcon } from "@/lib/serviceIcons";
 import { services as staticServices } from "@/lib/seedData";
 import { getServices, getServiceBySlug } from "@/lib/db/queries";
 
@@ -36,10 +38,12 @@ export default async function ServiceDetailPage({
   const [service, allServices] = await Promise.all([getServiceBySlug(slug), getServices()]);
   if (!service) notFound();
 
-  const index = allServices.findIndex((s: any) => s.slug === slug);
+  const index = allServices.findIndex((s: { slug: string }) => s.slug === slug);
   const next = allServices[(index + 1) % allServices.length];
-  const whatWeAnalyze = (service.whatWeAnalyze as { title: string; description?: string }[]) ?? [];
-  const processSteps = (service.processSteps as { step?: string; title: string; description?: string }[]) ?? [];
+  const covers = (service.whatWeAnalyze as { title: string; description?: string }[]) ?? [];
+  const steps = (service.processSteps as { step?: string; title: string; description?: string }[]) ?? [];
+  const deliverables = (service.deliverables as string[]) ?? [];
+  const Icon = serviceIcon(service.slug);
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -56,92 +60,99 @@ export default async function ServiceDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
-      <div className="mx-auto flex max-w-[1440px] items-center px-6 pt-6 md:px-10">
-        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400/15 text-cyan-600">
-          <ServiceIcon slug={service.slug} className="h-6 w-6" />
-        </span>
-      </div>
-      <PageHero
-        eyebrow={`Service ${String(index + 1).padStart(2, "0")} / ${allServices.length} — ${service.stage}`}
-        title={service.title}
-        description={service.description}
-      />
+      <Container className="pt-8 md:pt-14">
+        <div className="flex items-center gap-3 text-[15px] text-navy-600">
+          <Icon size={28} weight="light" className="text-cyan-500" />
+          <span>{service.stage}</span>
+        </div>
+      </Container>
+      <PageHero title={service.title} description={service.description} />
 
-      <section className="px-6 pb-16 md:px-10 md:pb-20">
-        <div className="mx-auto max-w-[1440px]">
+      <Section className="pt-0 md:pt-0">
+        <Container>
           <Reveal>
-            <span className="text-[13px] text-navy-900/65">What This Covers</span>
+            <h2 className="font-display text-3xl font-bold tracking-[-0.02em] text-navy-900 md:text-4xl">
+              What this covers
+            </h2>
           </Reveal>
-          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {whatWeAnalyze.map((item, i) => (
-              <Reveal key={item.title} delay={(i % 4) * 0.06}>
-                <TiltCard className="h-full rounded-[24px] border border-navy-900/[0.06] bg-white p-6">
-                  <span className="font-display text-lg italic text-cyan-500">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-3 font-display text-lg text-navy-900">{item.title}</h3>
+          <div className="mt-10 grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+            {covers.map((item, i) => (
+              <Reveal key={item.title} delay={(i % 3) * 0.05}>
+                <div className="border-t border-line pt-6">
+                  <h3 className="font-display text-lg font-semibold tracking-[-0.01em] text-navy-900">
+                    {item.title}
+                  </h3>
                   {item.description && (
-                    <p className="mt-1.5 text-[13px] leading-relaxed text-navy-900/70">
-                      {item.description}
-                    </p>
+                    <p className="mt-2 text-[15px] leading-relaxed text-navy-600">{item.description}</p>
                   )}
-                </TiltCard>
+                </div>
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
-      {processSteps.length > 0 && (
-        <section className="px-6 pb-16 md:px-10 md:pb-20">
-          <div className="mx-auto max-w-[1440px] rounded-[28px] bg-cream-100 p-8 md:p-12">
+      {steps.length > 0 && (
+        <Section className="bg-mist">
+          <Container>
             <Reveal>
-              <span className="text-[13px] text-navy-900/65">How It Runs</span>
+              <h2 className="font-display text-3xl font-bold tracking-[-0.02em] text-navy-900 md:text-4xl">
+                How it runs
+              </h2>
             </Reveal>
-            <div className="mt-8">
-              <ProcessTimeline steps={processSteps} />
+            <div className="mt-10">
+              <ProcessTimeline steps={steps} />
             </div>
-          </div>
-        </section>
+          </Container>
+        </Section>
       )}
 
-      <section className="px-6 pb-24 md:px-10 md:pb-32">
-        <div className="mx-auto max-w-[1440px]">
-          <div className="grain relative overflow-hidden rounded-[28px] bg-navy-900 p-8 text-cream-50 md:p-10">
-            <OrganizeCanvas
-              className="pointer-events-none absolute inset-0 h-full w-full opacity-25"
-              loop
-              dotColor="0, 178, 255"
-              lineColor="253, 252, 250"
-            />
-            <div className="relative z-10">
-              <span className="text-[13px] text-cyan-300/80">Deliverables</span>
-              <div className="mt-6 grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
-                {(service.deliverables as string[])?.map((d) => (
-                  <div key={d} className="flex gap-2.5 text-[14px] leading-relaxed text-cream-50/80">
-                    <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400" />
+      <section className="bg-navy-900 py-24 text-white md:py-32">
+        <Container>
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
+            <Reveal className="lg:col-span-5">
+              <h2 className="font-display text-3xl font-bold tracking-[-0.02em] md:text-4xl">
+                What you receive
+              </h2>
+              <p className="mt-4 max-w-[40ch] text-lg text-white/70">
+                Every item below is handed over with a walkthrough, not just a file.
+              </p>
+            </Reveal>
+            <Reveal delay={0.1} className="lg:col-span-7">
+              <ul className="grid grid-cols-1 gap-x-10 gap-y-4 sm:grid-cols-2">
+                {deliverables.map((d) => (
+                  <li key={d} className="flex gap-3 text-[15px] leading-relaxed text-white/85">
+                    <Check size={18} weight="bold" className="mt-1 shrink-0 text-cyan-300" />
                     {d}
-                  </div>
+                  </li>
                 ))}
-              </div>
-            </div>
+              </ul>
+            </Reveal>
           </div>
-
-          <div className="mt-6 flex flex-col items-start justify-between gap-6 rounded-[28px] bg-cream-100 px-8 py-8 md:flex-row md:items-center">
-            <Magnetic>
-              <a
-                href="/consultation"
-                className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-6 py-3 text-[14px] text-cream-50 hover:bg-navy-800"
-              >
-                See if {service.title} fits your business →
-              </a>
-            </Magnetic>
-            <a href={`/services/${next.slug}`} className="text-[14px] text-navy-900/70 hover:text-navy-900">
-              Next: {next.title} →
-            </a>
-          </div>
-        </div>
+        </Container>
       </section>
+
+      <Section>
+        <Container>
+          <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
+            <Reveal>
+              <h2 className="max-w-[18ch] font-display text-3xl font-bold leading-[1.08] tracking-[-0.02em] text-navy-900 md:text-5xl">
+                See whether {service.title} fits your business.
+              </h2>
+              <div className="mt-8">
+                <Button href="/consultation">Book a discovery call</Button>
+              </div>
+            </Reveal>
+            <Link
+              href={`/services/${next.slug}`}
+              className="group inline-flex items-center gap-2 text-[15px] text-navy-600 hover:text-navy-900"
+            >
+              Next: {next.title}
+              <ArrowRight size={16} className="transition-transform duration-500 ease-soft group-hover:translate-x-1" />
+            </Link>
+          </div>
+        </Container>
+      </Section>
     </>
   );
 }

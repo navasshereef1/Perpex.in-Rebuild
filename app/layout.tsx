@@ -1,20 +1,17 @@
 import type { Metadata } from "next";
-import { Fraunces, JetBrains_Mono, Hanken_Grotesk } from "next/font/google";
+import { Schibsted_Grotesk, JetBrains_Mono, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
-import CustomCursor from "@/components/CustomCursor";
 import PageTransition from "@/components/PageTransition";
 import { Analytics } from "@vercel/analytics/react";
 
-const fraunces = Fraunces({
+const schibsted = Schibsted_Grotesk({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
-  weight: "variable",
   style: ["normal", "italic"],
-  axes: ["opsz", "SOFT", "WONK"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -32,11 +29,11 @@ const hankenGrotesk = Hanken_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL("https://perpex.in"),
   title: {
-    default: "PerpeX Insights — B2B Transformation & Execution Services",
-    template: "%s // PerpeX Insights",
+    default: "PerpeX Insights: B2B Transformation & Execution Services",
+    template: "%s | PerpeX Insights",
   },
   description:
-    "Organising the Un-organised. PerpeX Insights helps businesses diagnose what's broken, build the systems needed to operate well, train teams to execute, and monitor performance daily.",
+    "Organising the un-organised. PerpeX Insights diagnoses what is broken in a growing business, builds the systems to fix it, trains the team to run them, and monitors execution daily.",
 };
 
 export default function RootLayout({
@@ -51,7 +48,7 @@ export default function RootLayout({
     legalName: "PerpeX Insights LLP",
     url: "https://perpex.in",
     description:
-      "B2B transformation and execution firm — Gap Analysis, Documentation, Training, and Managing & Monitoring for growing businesses.",
+      "B2B transformation and execution firm: Gap Analysis, Documentation, Training, and Managing & Monitoring for growing businesses.",
     address: {
       "@type": "PostalAddress",
       streetAddress: "T 1, Hilite Business Park",
@@ -65,14 +62,16 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${fraunces.variable} ${jetbrainsMono.variable} ${hankenGrotesk.variable}`}>
-      <body className="font-sans antialiased bg-cream-50 text-navy-900 selection:bg-cyan-400">
+    <html
+      lang="en"
+      className={`${schibsted.variable} ${jetbrainsMono.variable} ${hankenGrotesk.variable}`}
+    >
+      <body className="bg-base font-sans text-navy-900 antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
         <SmoothScroll />
-        <CustomCursor />
         <Navbar />
         <PageTransition>{children}</PageTransition>
         <Footer />

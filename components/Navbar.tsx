@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
-import Magnetic from "./ui/Magnetic";
+import Link from "next/link";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import Button from "./ui/Button";
 
 const links = [
   { label: "Services", href: "/services" },
@@ -15,49 +16,58 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const reduced = useReducedMotion();
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 px-6 py-6 md:px-10">
-      <div className="mx-auto flex max-w-[1440px] items-center justify-between">
-        <a
+    <header className="sticky top-0 z-40 px-6 py-4 md:px-10">
+      <div className="mx-auto flex max-w-site items-center justify-between">
+        <Link
           href="/"
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-navy-900/10 bg-cream-50 shadow-sm"
-          aria-label="PerpeX Insights — Home"
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-white ring-1 ring-navy-900/10"
+          aria-label="PerpeX Insights, home"
         >
-          <Image src="/brand/icon-cyan.svg" alt="PerpeX" width={20} height={16} />
-        </a>
+          <Image src="/brand/icon-cyan.svg" alt="" width={20} height={16} />
+        </Link>
 
-        <nav className="hidden items-center gap-1 rounded-full border border-navy-900/[0.06] bg-white/90 px-2 py-2 shadow-[0_10px_30px_rgba(0,27,74,0.06)] backdrop-blur md:flex">
+        <nav className="hidden items-center gap-1 rounded-full bg-white/90 p-1.5 ring-1 ring-navy-900/[0.08] backdrop-blur md:flex">
           {links.map((l) => (
-            <a
+            <Link
               key={l.href}
               href={l.href}
-              className="rounded-full px-4 py-2 text-[14px] text-navy-900/70 transition-colors hover:bg-navy-900/[0.05] hover:text-navy-900"
+              className="rounded-full px-4 py-2 text-[15px] text-navy-600 transition-colors duration-300 hover:bg-navy-900/[0.05] hover:text-navy-900"
             >
               {l.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="flex items-center gap-3">
-          <Magnetic className="hidden sm:inline-block">
-            <a
-              href="/consultation"
-              className="inline-block rounded-full bg-navy-900 px-5 py-2.5 text-[14px] text-cream-50 transition-colors hover:bg-navy-800"
-            >
-              Get in touch
-            </a>
-          </Magnetic>
-
+          <div className="hidden sm:block">
+            <Button href="/consultation">Book a discovery call</Button>
+          </div>
           <button
-            onClick={() => setOpen(true)}
-            aria-label="Open menu"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-navy-900/10 bg-cream-50 shadow-sm md:hidden"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            className="relative flex h-11 w-11 items-center justify-center rounded-full bg-white ring-1 ring-navy-900/10 md:hidden"
           >
-            <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
-              <path d="M0 1H18" stroke="#001b4a" strokeWidth="1.5" />
-              <path d="M0 11H18" stroke="#001b4a" strokeWidth="1.5" />
-            </svg>
+            <span
+              className={`absolute h-[1.5px] w-[18px] bg-navy-900 transition-transform duration-500 ease-soft ${
+                open ? "rotate-45" : "-translate-y-[4px]"
+              }`}
+            />
+            <span
+              className={`absolute h-[1.5px] w-[18px] bg-navy-900 transition-transform duration-500 ease-soft ${
+                open ? "-rotate-45" : "translate-y-[4px]"
+              }`}
+            />
           </button>
         </div>
       </div>
@@ -68,45 +78,31 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-50 flex flex-col bg-cream-50 px-6 py-6 md:hidden"
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 top-[76px] z-30 flex flex-col bg-base/95 px-6 pb-8 pt-10 backdrop-blur-xl md:hidden"
           >
-            <div className="flex items-center justify-between">
-              <Image src="/brand/icon-cyan.svg" alt="PerpeX" width={22} height={18} />
-              <button
-                onClick={() => setOpen(false)}
-                aria-label="Close menu"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-navy-900/10"
-              >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M1 1L15 15M15 1L1 15" stroke="#001b4a" strokeWidth="1.5" />
-                </svg>
-              </button>
-            </div>
-
-            <nav className="mt-14 flex flex-1 flex-col gap-2">
+            <nav className="flex flex-1 flex-col">
               {links.map((l, i) => (
-                <motion.a
+                <motion.div
                   key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  initial={{ opacity: 0, y: 12 }}
+                  initial={reduced ? false : { opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  className="border-b border-navy-900/10 py-4 font-display text-3xl text-navy-900"
+                  transition={{ delay: 0.05 + i * 0.06, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="overflow-hidden border-b border-line"
                 >
-                  {l.label}
-                </motion.a>
+                  <Link
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="block py-5 font-display text-3xl font-semibold tracking-[-0.02em] text-navy-900"
+                  >
+                    {l.label}
+                  </Link>
+                </motion.div>
               ))}
             </nav>
-
-            <a
-              href="/consultation"
-              onClick={() => setOpen(false)}
-              className="rounded-full bg-navy-900 px-6 py-4 text-center text-[15px] text-cream-50"
-            >
-              Get in touch
-            </a>
+            <Button href="/consultation" className="w-fit">
+              Book a discovery call
+            </Button>
           </motion.div>
         )}
       </AnimatePresence>

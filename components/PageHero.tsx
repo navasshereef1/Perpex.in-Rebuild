@@ -1,30 +1,24 @@
+import Container from "./ui/Container";
+
 export default function PageHero({
-  eyebrow,
   title,
   description,
 }: {
-  eyebrow: string;
   title: React.ReactNode;
   description?: string;
 }) {
   return (
-    <section className="px-6 pb-10 pt-6 md:px-10 md:pb-14">
-      <div className="mx-auto max-w-[1440px]">
-        <div className="mb-6 flex items-center gap-2.5">
-          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-500" />
-          <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-navy-900/65">
-            {eyebrow}
-          </span>
-        </div>
-        <h1 className="max-w-3xl font-display text-5xl leading-[1.05] tracking-tight text-navy-900 md:text-7xl">
+    <section className="pb-14 pt-8 md:pb-20 md:pt-14">
+      <Container>
+        <h1 className="max-w-[16ch] font-display text-4xl font-bold leading-[1.08] tracking-[-0.03em] text-navy-900 md:text-6xl">
           {title}
         </h1>
         {description && (
-          <p className="mt-6 max-w-md text-[16px] leading-relaxed text-navy-900/70">
+          <p className="mt-6 max-w-[56ch] text-lg leading-relaxed text-navy-600 md:text-xl">
             {description}
           </p>
         )}
-      </div>
+      </Container>
     </section>
   );
 }

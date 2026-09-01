@@ -1,41 +1,48 @@
-import { accentColors } from "@/lib/accentColors";
+import Container from "../ui/Container";
 import Reveal from "../ui/Reveal";
 
 type Testimonial = { company: string };
 
+// Client marks: until the clients' own logos arrive, each brand is a monogram
+// plus wordmark set in the display face. TODO real logos.
+function Mark({ name }: { name: string }) {
+  const initials = name
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("")
+    .toUpperCase();
+  return (
+    <div className="flex shrink-0 items-center gap-3 pr-14">
+      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-navy-900 font-display text-sm font-bold text-white">
+        {initials}
+      </span>
+      <span className="whitespace-nowrap font-display text-xl font-semibold tracking-[-0.01em] text-navy-900">
+        {name}
+      </span>
+    </div>
+  );
+}
+
 export default function ClientsGrid({ testimonials }: { testimonials: Testimonial[] }) {
   const clients = Array.from(new Set(testimonials.map((t) => t.company)));
-  const marqueeItems = clients.length > 0 ? [...clients, ...clients, ...clients] : [];
-  if (marqueeItems.length === 0) return null;
+  if (clients.length === 0) return null;
+  const loop = [...clients, ...clients];
 
   return (
-    <section className="py-16 md:py-24">
-      <div className="mx-auto max-w-[1440px] px-6 md:px-10">
+    <section className="py-16 md:py-20">
+      <Container>
         <Reveal>
-          <span className="text-[13px] text-navy-900/65">Selected Enterprise Engagements</span>
-          <h2 className="mt-3 font-display text-4xl leading-[1.1] tracking-tight text-navy-900 md:text-5xl">
-            Trusted by ₹100+ Cr companies — built for MSMEs too
-          </h2>
+          <p className="text-[15px] text-navy-600">Clients include</p>
         </Reveal>
-      </div>
-
-      <div className="relative mt-12 overflow-hidden">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-cream-50 to-transparent md:w-40" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-cream-50 to-transparent md:w-40" />
-
-        <div className="animate-marquee flex w-max gap-4 px-6">
-          {marqueeItems.map((name, i) => {
-            const accent = accentColors[i % accentColors.length];
-            return (
-              <div
-                key={`${name}-${i}`}
-                style={{ backgroundColor: accent.bg, color: accent.text }}
-                className="flex h-40 w-64 shrink-0 items-center justify-center rounded-[28px] px-6 text-center"
-              >
-                <span className="font-display text-xl leading-snug md:text-2xl">{name}</span>
-              </div>
-            );
-          })}
+      </Container>
+      <div className="relative mt-8 overflow-hidden">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-base to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-base to-transparent" />
+        <div className="animate-marquee flex w-max px-6">
+          {loop.map((name, i) => (
+            <Mark key={`${name}-${i}`} name={name} />
+          ))}
         </div>
       </div>
     </section>

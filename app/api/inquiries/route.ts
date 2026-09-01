@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
   if (!process.env.DATABASE_URL) {
     console.warn("[inquiries] DATABASE_URL not configured — inquiry not persisted:", parsed.data);
     return NextResponse.json(
-      { success: false, error: "The inquiry system isn't fully set up yet — please email info@perpex.in directly." },
+      { success: false, error: "The inquiry system is not set up yet. Please email info@perpex.in directly." },
       { status: 503 }
     );
   }
