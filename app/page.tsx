@@ -15,7 +15,7 @@ export default async function Home() {
 
   return (
     <>
-      <Hero testimonials={testimonials} />
+      <Hero />
       <ProofStrip />
       <FrameworkSection services={services} />
       <RealitySection />
