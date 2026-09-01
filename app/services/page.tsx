@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import ServicesAccordion from "./ServicesAccordion";
+import ServicesComparisonTable from "./ServicesComparisonTable";
 import { getServices } from "@/lib/db/queries";
 
 export const metadata: Metadata = {
@@ -21,6 +22,7 @@ export default async function ServicesPage() {
         title="Four services. No guesswork."
         description="Each one is powerful on its own. Run in sequence, they compound — a system that gets built once and holds."
       />
+      <ServicesComparisonTable services={services} />
       <ServicesAccordion services={services} />
     </>
   );

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Tag from "../ui/Tag";
 import TiltCard from "../ui/TiltCard";
 import Reveal from "../ui/Reveal";
+import ServiceIcon from "../ui/ServiceIcon";
 
 type Service = {
   slug: string;
@@ -44,9 +45,14 @@ export default function FrameworkSection({ services }: { services: Service[] }) 
                 </span>
                 <div className="mt-2">
                   <Tag>{services[active]?.stage}</Tag>
-                  <h3 className="mt-4 font-display text-3xl text-navy-900">
-                    {services[active]?.title}
-                  </h3>
+                  <div className="mt-4 flex items-center gap-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-cyan-400/15 text-cyan-600">
+                      <ServiceIcon slug={services[active]?.slug ?? ""} />
+                    </span>
+                    <h3 className="font-display text-3xl text-navy-900">
+                      {services[active]?.title}
+                    </h3>
+                  </div>
                 </div>
               </motion.div>
               <div className="flex gap-1.5">
@@ -76,9 +82,12 @@ export default function FrameworkSection({ services }: { services: Service[] }) 
                     </div>
                     <div className="flex items-start justify-between gap-6">
                       <div>
-                        <h3 className="mt-4 font-display text-2xl text-navy-900 md:mt-0">
-                          {service.title}
-                        </h3>
+                        <div className="mt-4 flex items-center gap-3 md:mt-0">
+                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-navy-900/[0.06] text-navy-900/60">
+                            <ServiceIcon slug={service.slug} />
+                          </span>
+                          <h3 className="font-display text-2xl text-navy-900">{service.title}</h3>
+                        </div>
                         <p className="mt-2.5 max-w-md text-[15px] leading-relaxed text-navy-900/55">
                           {service.description}
                         </p>

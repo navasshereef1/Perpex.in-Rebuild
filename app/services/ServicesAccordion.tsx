@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { accentColors } from "@/lib/accentColors";
+import ServiceIcon from "@/components/ui/ServiceIcon";
 
 type Service = {
   slug: string;
@@ -33,7 +34,14 @@ export default function ServicesAccordion({ services }: { services: Service[] })
               >
                 <div className="flex items-center gap-4">
                   <span
-                    className={`rounded-full px-3.5 py-1.5 text-[13px] ${
+                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${
+                      isOpen ? "bg-white/15" : "bg-navy-900/[0.06] text-navy-900/60"
+                    }`}
+                  >
+                    <ServiceIcon slug={service.slug} />
+                  </span>
+                  <span
+                    className={`hidden rounded-full px-3.5 py-1.5 text-[13px] sm:inline-flex ${
                       isOpen ? "bg-white/15" : "bg-navy-900/[0.06] text-navy-900/60"
                     }`}
                   >

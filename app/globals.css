@@ -38,6 +38,26 @@ body {
   position: relative;
   isolation: isolate;
 }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #fdfcfa;
+}
+::-webkit-scrollbar-thumb {
+  background: #00b2ff;
+  border-radius: 999px;
+  border: 2px solid #fdfcfa;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #001b4a;
+}
+html {
+  scrollbar-color: #00b2ff #fdfcfa;
+  scrollbar-width: thin;
+}
+
 .grain::after {
   content: "";
   position: absolute;

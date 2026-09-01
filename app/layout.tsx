@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
+import PageTransition from "@/components/PageTransition";
 import { Analytics } from "@vercel/analytics/react";
 
 const spaceGrotesk = Space_Grotesk({
@@ -70,7 +71,7 @@ export default function RootLayout({
         <SmoothScroll />
         <CustomCursor />
         <Navbar />
-        {children}
+        <PageTransition>{children}</PageTransition>
         <Footer />
         <Analytics />
       </body>

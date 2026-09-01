@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/ui/Reveal";
 import TiltCard from "@/components/ui/TiltCard";
+import PullQuote from "@/components/ui/PullQuote";
 import { differentiators } from "@/lib/seedData";
 import { getTestimonials, getSectors, getCaseStudies } from "@/lib/db/queries";
 import { accentColors } from "@/lib/accentColors";
@@ -28,6 +29,15 @@ export default async function ResultsPage() {
         title="The proof, not the pitch."
         description="140+ engagements across 10+ sectors. Here's what changed for the businesses that ran through the full framework."
       />
+
+      {testimonials.length > 0 && (
+        <PullQuote
+          quote={testimonials[0].description}
+          name={testimonials[0].name}
+          designation={testimonials[0].designation}
+          company={testimonials[0].company}
+        />
+      )}
 
       {caseStudies.length > 0 && (
         <section className="px-6 pb-16 md:px-10 md:pb-20">

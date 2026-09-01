@@ -5,6 +5,7 @@ import Magnetic from "@/components/ui/Magnetic";
 import TiltCard from "@/components/ui/TiltCard";
 import OrganizeCanvas from "@/components/ui/OrganizeCanvas";
 import ProcessTimeline from "@/components/ui/ProcessTimeline";
+import ServiceIcon from "@/components/ui/ServiceIcon";
 import Reveal from "@/components/ui/Reveal";
 import { services as staticServices } from "@/lib/seedData";
 import { getServices, getServiceBySlug } from "@/lib/db/queries";
@@ -55,6 +56,11 @@ export default async function ServiceDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
+      <div className="mx-auto flex max-w-[1440px] items-center px-6 pt-6 md:px-10">
+        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400/15 text-cyan-600">
+          <ServiceIcon slug={service.slug} className="h-6 w-6" />
+        </span>
+      </div>
       <PageHero
         eyebrow={`Service ${String(index + 1).padStart(2, "0")} / ${allServices.length} — ${service.stage}`}
         title={service.title}
@@ -127,7 +133,7 @@ export default async function ServiceDetailPage({
                 href="/consultation"
                 className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-6 py-3 text-[14px] text-cream-50 hover:bg-navy-800"
               >
-                Start a Discovery Conversation →
+                See if {service.title} fits your business →
               </a>
             </Magnetic>
             <a href={`/services/${next.slug}`} className="text-[14px] text-navy-900/55 hover:text-navy-900">
