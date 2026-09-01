@@ -6,7 +6,7 @@ import { eq } from "drizzle-orm";
 import { services as seedServices } from "../lib/seedData";
 
 async function run() {
-  for (const slug of ["training", "managing-monitoring"]) {
+  for (const slug of ["gap-analysis", "documentation", "training", "managing-monitoring"]) {
     const s = seedServices.find((x) => x.slug === slug);
     if (!s) continue;
     await db
@@ -14,6 +14,7 @@ async function run() {
       .set({
         whatWeAnalyze: s.whatWeAnalyze,
         processSteps: (s as any).processSteps ?? null,
+        deliverables: s.deliverables,
         updatedAt: new Date(),
       })
       .where(eq(services.slug, slug));
