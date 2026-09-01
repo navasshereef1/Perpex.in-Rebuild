@@ -40,7 +40,7 @@ export async function sendInquiryNotification(inquiry: {
       from: `"PerpeX Insights Website" <${fromAddress}>`,
       to: notifyTo,
       replyTo: inquiry.email,
-      subject: `New Discovery Conversation request — ${inquiry.name}${inquiry.company ? ` (${inquiry.company})` : ""}`,
+      subject: `New discovery call request: ${inquiry.name}${inquiry.company ? ` (${inquiry.company})` : ""}`,
       text: [
         `Name: ${inquiry.name}`,
         inquiry.company ? `Company: ${inquiry.company}` : null,
