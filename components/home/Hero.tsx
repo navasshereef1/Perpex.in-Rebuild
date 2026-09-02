@@ -32,7 +32,7 @@ export default function Hero() {
         };
 
   return (
-    <section className="relative flex min-h-[82svh] flex-col items-center justify-center overflow-hidden px-6 py-20 text-center md:py-28">
+    <section className="relative -mt-[76px] flex min-h-[82svh] flex-col items-center justify-center overflow-hidden px-6 pb-20 pt-[156px] text-center md:pb-28 md:pt-[188px]">
       <div className="absolute inset-0 bg-navy-900" />
       {!reduced && <HeroVideoBackground />}
       <div className="absolute inset-0 bg-navy-900/72" />
