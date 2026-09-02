@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Schibsted_Grotesk, JetBrains_Mono, Hanken_Grotesk } from "next/font/google";
+import { Schibsted_Grotesk, JetBrains_Mono, Hanken_Grotesk, Spectral } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -23,6 +23,15 @@ const jetbrainsMono = JetBrains_Mono({
 const hankenGrotesk = Hanken_Grotesk({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
+});
+
+// Used only for the homepage hero statement: one deliberate quiet, editorial
+// accent, not a site-wide typeface.
+const spectral = Spectral({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-serif",
   display: "swap",
 });
 
@@ -64,7 +73,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${schibsted.variable} ${jetbrainsMono.variable} ${hankenGrotesk.variable}`}
+      className={`${schibsted.variable} ${jetbrainsMono.variable} ${hankenGrotesk.variable} ${spectral.variable}`}
     >
       <body className="bg-base font-sans text-navy-900 antialiased">
         <script
