@@ -1,47 +1,29 @@
 import Container from "../ui/Container";
 import Reveal from "../ui/Reveal";
+import { clientLogos } from "@/lib/clientLogos";
 
-type Testimonial = { company: string };
-
-// Client marks: until the clients' own logos arrive, each brand is a monogram
-// plus wordmark set in the display face. TODO real logos.
-function Mark({ name }: { name: string }) {
-  const initials = name
-    .split(/\s+/)
-    .slice(0, 2)
-    .map((w) => w[0])
-    .join("")
-    .toUpperCase();
-  return (
-    <div className="flex shrink-0 items-center gap-3 pr-14">
-      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-navy-900 font-display text-sm font-bold text-white">
-        {initials}
-      </span>
-      <span className="whitespace-nowrap font-display text-xl font-semibold tracking-[-0.01em] text-navy-900">
-        {name}
-      </span>
-    </div>
-  );
-}
-
-export default function ClientsGrid({ testimonials }: { testimonials: Testimonial[] }) {
-  const clients = Array.from(new Set(testimonials.map((t) => t.company)));
-  if (clients.length === 0) return null;
-  const loop = [...clients, ...clients];
+export default function ClientsGrid() {
+  const loop = [...clientLogos, ...clientLogos];
 
   return (
     <section className="py-16 md:py-20">
       <Container>
         <Reveal>
-          <p className="text-[15px] text-navy-600">Clients include</p>
+          <p className="text-[15px] text-navy-600">140+ clients, including</p>
         </Reveal>
       </Container>
       <div className="relative mt-8 overflow-hidden">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-base to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-base to-transparent" />
-        <div className="animate-marquee flex w-max px-6">
-          {loop.map((name, i) => (
-            <Mark key={`${name}-${i}`} name={name} />
+        <div className="animate-marquee flex w-max items-center gap-14 px-6">
+          {loop.map((logo, i) => (
+            <img
+              key={`${logo.file}-${i}`}
+              src={`/clients/${logo.file}`}
+              alt={logo.name}
+              className="h-9 w-auto max-w-[140px] shrink-0 object-contain opacity-70 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
+              loading={i < clientLogos.length ? "eager" : "lazy"}
+            />
           ))}
         </div>
       </div>

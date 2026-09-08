@@ -9,6 +9,12 @@ import PullQuote from "@/components/ui/PullQuote";
 import Reveal from "@/components/ui/Reveal";
 import Section from "@/components/ui/Section";
 import { getTestimonials, getSectors, getCaseStudies } from "@/lib/db/queries";
+import { clientLogos } from "@/lib/clientLogos";
+
+function logoForCompany(company: string) {
+  const match = clientLogos.find((l) => l.name.toLowerCase() === company.toLowerCase());
+  return match ? `/clients/${match.file}` : null;
+}
 
 export const metadata: Metadata = {
   title: "Client Results",
@@ -97,20 +103,34 @@ export default async function ResultsPage() {
             </p>
           </Reveal>
           <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
-            {quotes.slice(1).map((t, i) => (
-              <Reveal key={t.name} delay={(i % 2) * 0.05}>
-                <figure className="flex h-full flex-col justify-between rounded-2xl bg-white p-8 ring-1 ring-navy-900/[0.06]">
-                  <blockquote className="font-display text-xl font-medium leading-snug tracking-[-0.01em] text-navy-900">
-                    &ldquo;{t.description}&rdquo;
-                  </blockquote>
-                  <figcaption className="mt-8 text-[15px] text-navy-600">
-                    <span className="font-medium text-navy-900">{t.name}</span>
-                    {t.designation ? `, ${t.designation}` : ""}
-                    <span className="block">{t.company}</span>
-                  </figcaption>
-                </figure>
-              </Reveal>
-            ))}
+            {quotes.slice(1).map((t, i) => {
+              const logo = logoForCompany(t.company);
+              return (
+                <Reveal key={t.name} delay={(i % 2) * 0.05}>
+                  <figure className="flex h-full flex-col justify-between rounded-2xl bg-white p-8 ring-1 ring-navy-900/[0.06]">
+                    <blockquote className="font-display text-xl font-medium leading-snug tracking-[-0.01em] text-navy-900">
+                      &ldquo;{t.description}&rdquo;
+                    </blockquote>
+                    <figcaption className="mt-8 flex items-center gap-3 text-[15px] text-navy-600">
+                      {logo && (
+                        <Image
+                          src={logo}
+                          alt=""
+                          width={32}
+                          height={32}
+                          className="h-8 w-8 shrink-0 rounded-full bg-mist object-contain p-1 ring-1 ring-navy-900/[0.06]"
+                        />
+                      )}
+                      <span>
+                        <span className="font-medium text-navy-900">{t.name}</span>
+                        {t.designation ? `, ${t.designation}` : ""}
+                        <span className="block">{t.company}</span>
+                      </span>
+                    </figcaption>
+                  </figure>
+                </Reveal>
+              );
+            })}
           </div>
         </Container>
       </Section>
