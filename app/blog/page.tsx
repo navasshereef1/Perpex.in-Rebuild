@@ -45,12 +45,28 @@ export default async function BlogPage() {
             <p className="max-w-[50ch] text-lg text-navy-600">No posts published yet. Check back soon.</p>
           ) : (
             <div className="grid grid-cols-1 gap-x-16 gap-y-10 md:grid-cols-2">
-              {posts.map((post) => (
-                <Link key={post.slug} href={`/blog/${post.slug}`} className="block border-t border-line pt-7">
-                  <h2 className="font-display text-2xl font-semibold tracking-[-0.02em] text-navy-900">{post.title}</h2>
-                  {post.excerpt && <p className="mt-3 text-[15px] leading-relaxed text-navy-600">{post.excerpt}</p>}
-                </Link>
-              ))}
+              {posts.map((post) => {
+                const tags = (post.tags ?? "")
+                  .split(",")
+                  .map((t) => t.trim())
+                  .filter(Boolean)
+                  .slice(0, 3);
+                return (
+                  <Link key={post.slug} href={`/blog/${post.slug}`} className="block border-t border-line pt-7">
+                    <h2 className="font-display text-2xl font-semibold tracking-[-0.02em] text-navy-900">{post.title}</h2>
+                    {post.excerpt && <p className="mt-3 text-[15px] leading-relaxed text-navy-600">{post.excerpt}</p>}
+                    {tags.length > 0 && (
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {tags.map((tag) => (
+                          <span key={tag} className="rounded-full bg-mist px-3 py-1 text-[13px] text-navy-600">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </Link>
+                );
+              })}
             </div>
           )}
         </Container>

@@ -55,6 +55,7 @@ async function run() {
       excerpt: b.excerpt,
       content: b.content,
       authorName: b.authorName,
+      tags: b.tags ?? null,
       isPublished: b.isPublished,
       publishedAt: new Date(),
       updatedAt: new Date(),
