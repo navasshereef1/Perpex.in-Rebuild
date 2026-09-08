@@ -78,7 +78,20 @@ export async function getCaseStudies() {
       .from(caseStudies)
       .where(eq(caseStudies.isPublished, true))
       .orderBy(desc(caseStudies.publishedAt));
-  }, []);
+  }, fallback.caseStudies as any);
+}
+
+export async function getTeamMembers() {
+  return safeQuery(async () => {
+    const { db } = await import("./index");
+    const { teamMembers } = await import("./schema");
+    const { asc, eq } = await import("drizzle-orm");
+    return db
+      .select()
+      .from(teamMembers)
+      .where(eq(teamMembers.isActive, true))
+      .orderBy(asc(teamMembers.displayOrder));
+  }, fallback.teamMembers as any);
 }
 
 export async function getCaseStudyBySlug(slug: string) {

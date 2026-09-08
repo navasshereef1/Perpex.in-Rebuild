@@ -5,12 +5,15 @@ import Container from "@/components/ui/Container";
 import Photo from "@/components/ui/Photo";
 import Reveal from "@/components/ui/Reveal";
 import Section from "@/components/ui/Section";
+import { getTeamMembers } from "@/lib/db/queries";
 
 export const metadata: Metadata = {
   title: "About",
   description:
     "PerpeX Insights is a B2B consulting, training, and execution firm in Kozhikode, Kerala, with 140+ clients across 10+ sectors.",
 };
+
+export const dynamic = "force-dynamic";
 
 const onboarding = [
   { title: "Discovery call", description: "We meet your leadership to understand the business, its growth stage, and what hurts most. No obligation." },
@@ -21,7 +24,28 @@ const onboarding = [
   { title: "Stabilisation", description: "We stay available after delivery, with a monthly Managing & Monitoring retainer for teams that need it." },
 ];
 
-export default function AboutPage() {
+type TeamMember = { name: string; role: string | null };
+
+function isFounder(member: TeamMember) {
+  return (member.role ?? "").toLowerCase().includes("founder");
+}
+
+function Avatar({ name, size }: { name: string; size: "lg" | "sm" }) {
+  const dims = size === "lg" ? "h-16 w-16 text-xl" : "h-11 w-11 text-[13px]";
+  return (
+    <div
+      className={`flex shrink-0 items-center justify-center rounded-full bg-cyan-400/15 font-display font-semibold text-cyan-600 ${dims}`}
+    >
+      {name.charAt(0)}
+    </div>
+  );
+}
+
+export default async function AboutPage() {
+  const team = (await getTeamMembers()) as TeamMember[];
+  const founders = team.filter(isFounder);
+  const others = team.filter((m) => !isFounder(m));
+
   return (
     <>
       <PageHero
@@ -59,22 +83,63 @@ export default function AboutPage() {
 
       <Section className="bg-mist">
         <Container>
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
-            <Reveal className="md:col-span-5">
-              <h2 className="font-display text-3xl font-bold tracking-[-0.02em] text-navy-900 md:text-4xl">
-                Founder-led, on every project
-              </h2>
-            </Reveal>
-            <Reveal delay={0.1} className="md:col-span-7">
-              {/* TODO real photo of the founder */}
-              <p className="font-display text-2xl font-semibold tracking-[-0.02em] text-navy-900">Rafi Mohammed</p>
-              <p className="mt-1 text-[15px] text-navy-600">Founder and Sales Head, PerpeX Insights LLP</p>
-              <p className="mt-6 max-w-[56ch] text-lg leading-relaxed text-navy-600">
-                Senior leadership is in the room for every significant project, from the first
-                diagnostic interview to the last review meeting, not only on the kickoff call.
-              </p>
-            </Reveal>
-          </div>
+          <Reveal>
+            <h2 className="max-w-[18ch] font-display text-3xl font-bold leading-[1.08] tracking-[-0.02em] text-navy-900 md:text-5xl">
+              Founder-led, on every project
+            </h2>
+            <p className="mt-5 max-w-[62ch] text-lg leading-relaxed text-navy-600">
+              PerpeX Insights is run by four cofounders, not one. Senior leadership is in the
+              room for every significant project, from the first diagnostic interview to the
+              last review meeting, not only on the kickoff call.
+            </p>
+          </Reveal>
+
+          {founders.length > 0 && (
+            <div className="mt-12 grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+              {founders.map((f, i) => (
+                <Reveal key={f.name} delay={(i % 4) * 0.06}>
+                  <div className="flex flex-col items-start gap-4">
+                    <Avatar name={f.name} size="lg" />
+                    <div>
+                      <p className="font-display text-lg font-semibold tracking-[-0.01em] text-navy-900">
+                        {f.name}
+                      </p>
+                      <p className="mt-0.5 text-[14px] text-navy-600">{f.role}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          )}
+
+          <Reveal delay={0.1} className="mt-10 max-w-[640px] border-l-2 border-cyan-400/40 pl-5">
+            <p className="text-lg italic leading-relaxed text-navy-900">
+              &ldquo;Senior leadership is in the room for every significant project, from the
+              first diagnostic interview to the last review meeting.&rdquo;
+            </p>
+            <p className="mt-2 text-[14px] not-italic text-navy-600">
+              Rafi Muhammed, Cofounder, PerpeX Insights LLP
+            </p>
+          </Reveal>
+
+          {others.length > 0 && (
+            <div className="mt-16 border-t border-navy-900/10 pt-10">
+              <p className="text-[13px] uppercase tracking-wide text-navy-500">The team</p>
+              <div className="mt-6 grid grid-cols-1 gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
+                {others.map((m, i) => (
+                  <Reveal key={m.name} delay={(i % 4) * 0.05}>
+                    <div className="flex items-center gap-3">
+                      <Avatar name={m.name} size="sm" />
+                      <div>
+                        <p className="text-[14px] font-medium text-navy-900">{m.name}</p>
+                        <p className="text-[13px] text-navy-600">{m.role}</p>
+                      </div>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          )}
         </Container>
       </Section>
 

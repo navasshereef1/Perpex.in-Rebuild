@@ -2,20 +2,22 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import PageHero from "@/components/PageHero";
 import Container from "@/components/ui/Container";
+import { blogs as fallbackBlogs } from "@/lib/seedData";
 
 export const dynamic = "force-dynamic";
 
 async function getPost(slug: string) {
-  if (!process.env.DATABASE_URL) return null;
+  const fallbackPost = fallbackBlogs.find((b) => b.slug === slug) ?? null;
+  if (!process.env.DATABASE_URL) return fallbackPost;
   try {
     const { db } = await import("@/lib/db");
     const { blogs } = await import("@/lib/db/schema");
     const { eq } = await import("drizzle-orm");
     const [post] = await db.select().from(blogs).where(eq(blogs.slug, slug)).limit(1);
-    return post ?? null;
+    return post ?? fallbackPost;
   } catch (err) {
     console.error("[blog] failed to load post:", err);
-    return null;
+    return fallbackPost;
   }
 }
 

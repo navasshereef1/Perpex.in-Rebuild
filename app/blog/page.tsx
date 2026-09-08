@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import Container from "@/components/ui/Container";
+import { blogs as fallbackBlogs } from "@/lib/seedData";
 
 export const metadata: Metadata = {
   title: "Insights",
@@ -11,19 +12,20 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 async function getPosts() {
-  if (!process.env.DATABASE_URL) return [];
+  if (!process.env.DATABASE_URL) return fallbackBlogs;
   try {
     const { db } = await import("@/lib/db");
     const { blogs } = await import("@/lib/db/schema");
     const { eq, desc } = await import("drizzle-orm");
-    return await db
+    const rows = await db
       .select()
       .from(blogs)
       .where(eq(blogs.isPublished, true))
       .orderBy(desc(blogs.publishedAt));
+    return rows.length > 0 ? rows : fallbackBlogs;
   } catch (err) {
     console.error("[blog] failed to load posts:", err);
-    return [];
+    return fallbackBlogs;
   }
 }
 

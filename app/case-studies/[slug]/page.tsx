@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import PageHero from "@/components/PageHero";
 import Button from "@/components/ui/Button";
@@ -31,6 +32,19 @@ export default async function CaseStudyPage({
 
   return (
     <>
+      {caseStudy.clientLogo && (
+        <Container className="pt-8 md:pt-14">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white p-2 ring-1 ring-navy-900/[0.06]">
+            <Image
+              src={caseStudy.clientLogo}
+              alt={`${caseStudy.clientName} logo`}
+              width={40}
+              height={40}
+              className="h-full w-full object-contain"
+            />
+          </div>
+        </Container>
+      )}
       <PageHero title={caseStudy.clientName} description={caseStudy.summary ?? undefined} />
 
       <section className="pb-24 md:pb-32">

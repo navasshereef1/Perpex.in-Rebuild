@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import PageHero from "@/components/PageHero";
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 type Testimonial = { name: string; designation: string | null; company: string; description: string };
-type CaseStudy = { slug: string; clientName: string; summary: string | null };
+type CaseStudy = { slug: string; clientName: string; summary: string | null; clientLogo: string | null };
 
 export default async function ResultsPage() {
   const [testimonials, sectors, caseStudies] = await Promise.all([
@@ -56,7 +57,20 @@ export default async function ResultsPage() {
               {studies.map((c, i) => (
                 <Reveal key={c.slug} delay={(i % 2) * 0.06}>
                   <Link href={`/case-studies/${c.slug}`} className="group block border-t border-line pt-7">
-                    <h3 className="font-display text-2xl font-semibold tracking-[-0.02em] text-navy-900">{c.clientName}</h3>
+                    <div className="flex items-center gap-3">
+                      {c.clientLogo && (
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white p-1.5 ring-1 ring-navy-900/[0.06]">
+                          <Image
+                            src={c.clientLogo}
+                            alt=""
+                            width={28}
+                            height={28}
+                            className="h-full w-full object-contain"
+                          />
+                        </span>
+                      )}
+                      <h3 className="font-display text-2xl font-semibold tracking-[-0.02em] text-navy-900">{c.clientName}</h3>
+                    </div>
                     {c.summary && <p className="mt-3 text-[15px] leading-relaxed text-navy-600">{c.summary}</p>}
                     <span className="mt-5 inline-flex items-center gap-2 text-[15px] font-medium text-navy-900">
                       Read the case study
