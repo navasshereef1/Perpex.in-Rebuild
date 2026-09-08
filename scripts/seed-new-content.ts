@@ -4,7 +4,7 @@
 // Run with: npx tsx scripts/seed-new-content.ts
 import { db, client } from "../lib/db";
 import { caseStudies, blogs, teamMembers } from "../lib/db/schema";
-import { eq } from "drizzle-orm";
+import { eq, notInArray } from "drizzle-orm";
 import {
   caseStudies as seedCaseStudies,
   blogs as seedBlogs,
@@ -20,6 +20,7 @@ async function run() {
       clientLogo: c.clientLogo,
       summary: c.summary,
       content: c.content,
+      results: c.results,
       isFeatured: c.isFeatured,
       isPublished: c.isPublished,
       publishedAt: new Date(),
@@ -31,6 +32,19 @@ async function run() {
       await db.insert(caseStudies).values(values);
     }
     console.log(`Case study: ${c.slug}`);
+  }
+
+  // Case studies are re-slugged when their content changes (e.g. anonymising
+  // a real client name into a generic firm-type slug); drop any row left
+  // behind under an old slug so a stale, previously-named entry doesn't keep
+  // showing up on the public site alongside its replacement.
+  const currentSlugs = seedCaseStudies.map((c) => c.slug);
+  const removed = await db
+    .delete(caseStudies)
+    .where(notInArray(caseStudies.slug, currentSlugs))
+    .returning({ slug: caseStudies.slug });
+  for (const r of removed) {
+    console.log(`Removed stale case study: ${r.slug}`);
   }
 
   for (const b of seedBlogs) {

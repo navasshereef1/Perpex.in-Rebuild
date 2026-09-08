@@ -167,120 +167,296 @@ export const teamMembers = [
 // case-study prose. No numeric results are invented: only figures the source
 // material actually states appear under `results`, and none were given for
 // these three, so that field is left empty rather than filled with guesses.
+// Every case study is anonymised by policy: no real client name and no
+// client logo, only firm type and engagement type. Content is authored with
+// "## Heading" sections, "### N. Title" numbered steps, and "- item" lists,
+// parsed by lib/caseStudyContent.ts into real page structure. `results` rows
+// are "Before → After" pairs rendered as a comparison table. Figures are only
+// included where the source material stated them and they carry no
+// financial/compliance/identifying risk; three of these case studies had
+// real disclosures (GST/financial co-mingling, a stated "confidential legal
+// strategy", and a hospital's EPF/ESI and cash-transaction compliance gaps
+// with a rupee exposure figure) which are deliberately omitted, not just the
+// client name.
 export const caseStudies = [
   {
-    slug: "evoka",
-    clientName: "Evoka School of Advertising",
-    clientLogo: "/clients/evoka.png",
-    summary: "A structured sales system and full admission-cycle support for a growing school of advertising.",
-    content: `Evoka, a school of advertising, needed to turn individual sales effort into a system the whole team could run.
+    slug: "school-of-advertising-sales-system",
+    clientName: "A School of Advertising",
+    clientLogo: null,
+    summary: "A structured sales system, team training, and full admission-cycle management and monitoring.",
+    content: `## The Challenge
 
-We built a structured sales system: lead management, a defined sales process, a follow-up system, lead tracking and reporting, clear ownership across the sales team, and a conversion-focused workflow. What had been a set of individual efforts became one trackable system.
+The admissions team was working hard, but every counsellor ran their own version of the sales process. Follow-up was inconsistent, ownership across the team was unclear, and there was no single way to see where a prospective student actually stood in the pipeline.
 
-A system only works when the team knows how to run it. We trained Evoka's team on lead handling, student counselling, follow-up technique, objection handling, and conversion strategy, with training reinforced by real-time implementation on live leads.
+Individual effort was strong. There was no system underneath it.
 
-We did not stop once the system was live. Through the full academic admission cycle, we managed and monitored the sales team's activity, reviewed performance, and adjusted where needed to keep the system on track.
+## The Approach
 
-Evoka completed a full academic admission cycle running on that system: sales system, training, management, and monitoring working together, start to finish.`,
+### 1. Build the sales system
+We designed a structured sales process end to end: lead management, a defined follow-up cadence, lead tracking and reporting, and clear ownership across the team, so individual effort became one trackable system.
+
+### 2. Train the team on it
+A system only works when the team knows how to run it. We trained the admissions team on lead handling, student counselling, follow-up technique, objection handling, and conversion strategy, reinforced by real-time coaching on live leads.
+
+### 3. Manage and monitor through the full cycle
+We did not stop once the system was live. Through the full academic admission cycle, we managed and monitored the team's activity, reviewed performance, and adjusted the approach where it was not working.
+
+## Why It Matters
+
+- A sales process that lives in individual heads breaks the moment someone is out sick, busy, or leaves.
+- Training only sticks when it is reinforced on real leads, not in a one-off workshop.
+- Management and monitoring is what turns a documented system into a habit.`,
+    results: [
+      { metric: "Sales Process", value: "Individual effort, inconsistent follow-up → One trackable system with clear ownership" },
+      { metric: "Team Capability", value: "Ad-hoc counselling technique → Trained on lead handling, objection handling, conversion strategy" },
+      { metric: "Oversight", value: "No performance review cadence → Managed and monitored through the full admission cycle" },
+    ],
     isFeatured: true,
     isPublished: true,
   },
   {
-    slug: "cloud-hub",
-    clientName: "Cloud Hub",
+    slug: "b2b-services-operating-system",
+    clientName: "A B2B Services Company",
     clientLogo: null,
-    summary: "The entire business system, built from the ground up to support scale.",
-    content: `Cloud Hub came to us needing more than advice. They needed an entire business system built from the ground up: the processes, the organisational structure, the sales system, and the execution framework required to support scale.
+    summary: "An entire business system built from the ground up: processes, structure, sales, and execution.",
+    content: `## The Challenge
 
-We designed and built that system, then stayed on to support Cloud Hub's sales activity directly, working alongside their team to turn the new system into real results.
+The business needed more than advice. It needed an operating system it did not yet have: defined processes, an organisational structure, a working sales system, and an execution framework that could actually support growth.
 
-Cloud Hub has since seen substantial growth in both scale and revenue, running on the system we built together.`,
+## The Approach
+
+### 1. Design the system
+We designed the processes, organisational structure, sales system, and execution framework the business needed to support scale, built around how the team actually worked, not a generic template.
+
+### 2. Build it, not just document it
+Rather than handing over a report, we built the system directly into the business: the workflows, the ownership, the reporting.
+
+### 3. Stay on to run it
+We stayed on to support sales activity directly, working alongside the team to turn the new system into real, working results rather than a document left on a shelf.
+
+## Why It Matters
+
+- A system that is only documented, and never run, changes nothing.
+- Growth exposes gaps that informal operations can hide at a smaller scale.
+- Staying engaged past the handover is what makes a new system actually stick.`,
+    results: [
+      { metric: "Operating System", value: "No defined processes or structure → Full operating system: processes, structure, sales, execution" },
+      { metric: "Delivery", value: "System existed only on paper → Built directly into the business and run alongside the team" },
+      { metric: "Outcome", value: "Growth constrained by lack of structure → Substantial growth in scale and revenue" },
+    ],
     isFeatured: false,
     isPublished: true,
   },
   {
-    slug: "met-leaf",
-    clientName: "MET Leaf",
+    slug: "corporate-training-program",
+    clientName: "A Corporate Training Client",
     clientLogo: null,
     summary: "Training built around the team's actual challenges, not a generic curriculum.",
-    content: `For MET Leaf, training did not start with a training room.
+    content: `## The Challenge
 
-Before designing a single session, we spent time understanding the people we would be training: their challenges, their mindset, the specific gaps in their performance, and the pressures they were facing in both their personal and professional lives.
+Training had been treated as a generic exercise: material handed down without much regard for the specific people receiving it, their existing skill gaps, or the pressures they were actually facing on the job.
 
-That analysis shaped every session that followed. Instead of generic material, MET Leaf's team received training built around their actual challenges, designed to build the right skills, improve performance, and create change that held after we left the room.`,
+## The Approach
+
+### 1. Understand the people first
+Before designing a single session, we spent time understanding the team we would be training: their challenges, their mindset, the specific gaps in their performance, and the pressures they faced in both their personal and professional lives.
+
+### 2. Build the curriculum around that
+That analysis shaped every session that followed. Instead of generic material, the team received training built around their actual challenges, designed to build the right skills and improve performance.
+
+### 3. Design for change that holds
+Sessions were built to create behavioural change that held after we left the room, not just awareness that faded within a week.
+
+## Why It Matters
+
+- Generic training produces generic, short-lived results.
+- Understanding the specific pressures a team is under changes what actually needs to be taught.
+- Training should be judged by what changes afterwards, not by attendance.`,
+    results: [
+      { metric: "Training Design", value: "Generic material → Curriculum built around the team's actual challenges" },
+      { metric: "Delivery Method", value: "Standard classroom session → Reinforced through real-world application" },
+      { metric: "Outcome", value: "Awareness that fades → Behavioural change that holds after the engagement ends" },
+    ],
     isFeatured: false,
     isPublished: true,
   },
   {
-    slug: "active-planet",
-    clientName: "Active Planet Entertainments",
-    clientLogo: "/clients/active-planet.jpg",
-    summary: "End-to-end SOPs and a clear organisational structure for an amusement park operating across rides, F&B, security, and maintenance.",
-    content: `Active Planet Entertainments needed to formalise a fast-growing amusement park operation, from ride safety to food & beverage, ticketing, and security, within a 60-day window.
-
-We ran a full gap analysis across the park and built explicit organisational charts, defining who was responsible for what across every managerial role. That alone removed a large source of overlap and confusion.
-
-From there, we wrote end-to-end SOPs for the areas that mattered most: safety and cleaning schedules for maintenance, access control for security, standardised ticketing workflows, and a formal purchase department covering everything from requisition to vendor evaluation.
-
-HR was brought into the same structure, with standardised recruitment, leave, and appraisal formats, alongside a system to collect and act on guest feedback across F&B and general operations. Perpex stayed on-site throughout, so what was documented matched what actually happened on the ground.`,
-    isFeatured: false,
-    isPublished: true,
-  },
-  {
-    slug: "aerowis-aviation",
-    clientName: "Aerowis Aviation",
+    slug: "amusement-park-sop-rollout",
+    clientName: "An Amusement Park Operator",
     clientLogo: null,
-    summary: "HR policy, CRM/HRMS technology, and structured sales training, built into one operating system.",
-    content: `Aerowis Aviation needed an organisational foundation that could support both its operations and its sales effort, built through a recurring, hands-on engagement rather than a single handover.
+    summary: "End-to-end SOPs and a clear organisational structure across rides, F&B, security, and maintenance, in 60 days.",
+    content: `## The Challenge
 
-We drafted the HR policies, role-specific KPIs, and SOPs the business was missing, and paired them with daily accountability tools: task management and sheet-tracking systems that made ownership visible rather than assumed.
+A fast-growing amusement park was operating without formal structure across its most critical departments. Reporting lines were unclear and responsibilities overlapped. Practices varied across food & beverage, ticketing, and security. There were no documented protocols for ride upkeep or facility maintenance, and recruitment and vendor management were handled informally.
 
-On the technology side, we led the rollout of an HRMS platform and a CRM/IVR system, giving the business one place to see customer data and track communication instead of scattered records.
+## The Approach
 
-For the sales team, we built standardised call pitches and delivered training tailored specifically to aviation services, then stayed engaged through daily monitoring, performance evaluations, and bi-weekly management reviews to make sure the new systems were actually being used, not just documented.`,
+### 1. Fix the organisational structure
+We built explicit organisational charts mapping clear reporting lines, and drafted detailed job roles and responsibilities for every managerial position, closing the biggest source of overlap and confusion.
+
+### 2. Write the SOPs that matter most
+We wrote end-to-end SOPs for the highest-risk and highest-touch areas: safety and cleaning schedules for maintenance, access control procedures for security, and standardised ticketing workflows.
+
+### 3. Formalise the back office
+We stood up a formal purchase department with a full requisition-to-vendor-evaluation workflow, and standardised HR templates for recruitment, leave, and performance appraisal.
+
+### 4. Build in the guest feedback loop
+We put a system in place to systematically collect, review, and act on guest feedback, so F&B and general operations kept improving after we left.
+
+## Why It Matters
+
+- In a high-liability environment like an amusement park, documented safety and maintenance protocols are not optional extras.
+- A consistent guest experience depends on consistent training and process, not individual staff judgement.
+- Unclear reporting lines create duplicated effort and dropped responsibility. Explicit structure resolves it.`,
+    results: [
+      { metric: "Maintenance & Security", value: "Undocumented protocols → Documented upkeep schedules, ride safety protocols, access control SOPs" },
+      { metric: "HR & Admin", value: "Informal hiring and reviews → Standardised offer letters, training, performance review templates" },
+      { metric: "Procurement & Projects", value: "Ad-hoc vendor management → Vendor evaluation rubrics, project scheduling, QA processes" },
+    ],
     isFeatured: false,
     isPublished: true,
   },
   {
-    slug: "scm-shipping",
-    clientName: "SCM Shipping Services",
+    slug: "aviation-services-operating-system",
+    clientName: "An Aviation Services Company",
     clientLogo: null,
-    summary: "Active sales management, live coaching, and competitor analysis for a logistics sales team.",
-    content: `SCM Shipping Services wanted more than advice for its sales team. They wanted a partner who would actively manage and coach the team day to day.
+    summary: "HR policy, CRM/HRMS technology, and structured sales training, built into one recurring operating system.",
+    content: `## The Challenge
 
-We started with a first-week gap analysis and competitor mapping, giving the five-person sales team a clear read on where they stood against rival shipping services.
+The business needed a stronger organisational foundation to support both its operations and its sales effort. Formal HR policies, defined KPIs, and SOPs did not exist. Customer data and communication were scattered across disconnected tools, and the sales team lacked a structured, repeatable pitch.
 
-From there, Perpex took on active management of the team: daily accountability, live on-the-job training tailored to logistics sales cycles, and a recurring cycle of performance reporting and correction. Training was never a one-time session. It stayed tied to real deals, real objections, and real market feedback, on a continuing monthly basis.`,
+## The Approach
+
+### 1. Document the system
+We drafted comprehensive HR policies, defined role-specific KPIs, and established SOPs, then deployed mandatory task management and sheet-tracking systems to make daily accountability visible instead of assumed.
+
+### 2. Put the technology behind it
+We led the rollout of an HRMS platform and integrated a CRM/IVR system, giving the business a single place to see customer data and track communication instead of scattered records.
+
+### 3. Train the sales team
+We built standardised call pitches and delivered modular, deck-wise training programs tailored specifically to aviation services.
+
+### 4. Manage and monitor daily
+We instituted daily on-the-job monitoring, team performance evaluations, and bi-weekly management review meetings, so the new systems were actually adopted, not just documented.
+
+## Why It Matters
+
+- New technology without process behind it rarely gets used the way it was intended.
+- Daily monitoring closes the gap between a strategy on paper and what a team actually does.
+- A standardised pitch protects the brand's narrative and makes performance easier to coach.`,
+    results: [
+      { metric: "Infrastructure", value: "No SOPs, HR policy, or KPIs → Clear operational guidelines and performance standards" },
+      { metric: "Technology", value: "Disconnected tools, no shared data → HRMS, CRM, IVR, and task trackers on one system" },
+      { metric: "Performance", value: "Unstructured sales activity → Sales training, daily monitoring, bi-weekly reviews" },
+    ],
     isFeatured: false,
     isPublished: true,
   },
   {
-    slug: "spaces-eco-clean",
-    clientName: "Spaces Eco Clean",
+    slug: "logistics-sales-management",
+    clientName: "A Logistics & Shipping Company",
     clientLogo: null,
-    summary: "Turning a strong eco-cleaning product into a structured, sales-led growth engine.",
-    content: `Spaces Eco Clean had a genuine edge in Kerala's cleaning market: non-toxic methods, verified staff, industrial-grade equipment. Their go-to-market was not yet built to convert that edge into bookings.
+    summary: "Active sales management, live coaching, and competitor analysis for a five-person logistics sales team.",
+    content: `## The Challenge
 
-We split their offering into two clear tiers: a fixed, time-capped Express Eco Clean to compete on speed, and a premium Core Deep Clean for buyers who wanted the full service, each with transparent pricing instead of one-size-fits-all quoting.
+The sales team needed more than a training workshop. There was no continuous, structured way to evaluate their day-to-day activity, no real-time coaching to help them navigate complex logistics sales cycles, and no formal read on how they compared to rival shipping services.
 
-On the sales side, we built a full CRM workflow with a fast first-response SLA, a mapped conversion pipeline, and specific scripts for discovery, value articulation, and objection handling, then ran a training sprint with role-play and call auditing so the team could sell on proof, like verified ingredients and before-after results, instead of competing purely on price.
+## The Approach
 
-Alongside that, we built a multi-channel campaign catalogue: Google Business Profile, targeted search ads, referral kits for residential communities, and B2B co-marketing plays, to diversify demand beyond generic brand awareness.`,
+### 1. Start with a baseline
+In the first week, we ran a gap analysis and mapped competitor strategy, giving the team a clear read on where they stood before any coaching began.
+
+### 2. Take on active management
+Perpex assumed day-to-day management of the five-person sales team, instituting daily accountability and performance-tracking routines as an extension of the client's own management.
+
+### 3. Coach on live deals
+We ran live, situational training tailored to the logistics sector, helping the team refine their pitches and work through specific, real prospect objections as they came up.
+
+### 4. Keep the loop running
+We established a recurring cycle of performance reporting and correction, so the sales approach kept adjusting to real market feedback on a continuing monthly basis.
+
+## Why It Matters
+
+- Classroom training fades. Coaching during live sales cycles creates change that lasts.
+- Consistent, structured monitoring is what makes a sales strategy actually get executed daily.
+- Fresh competitor intelligence lets a team sell on value instead of price.`,
+    results: [
+      { metric: "Market Intelligence", value: "No formal competitor read → Competitor and gap analysis built into onboarding" },
+      { metric: "Skill Development", value: "Ad-hoc pitching → Live, on-the-job coaching tied to real deals" },
+      { metric: "Accountability", value: "Unmeasured daily activity → Continuous monitoring and reporting" },
+    ],
     isFeatured: false,
     isPublished: true,
   },
   {
-    slug: "persian-pastries",
-    clientName: "Persian Pastries",
-    clientLogo: "/clients/persian-pastries.jpg",
+    slug: "eco-cleaning-growth-engine",
+    clientName: "An Eco-Friendly Cleaning Service",
+    clientLogo: null,
+    summary: "A sales and marketing playbook that turned a strong product into a structured growth engine.",
+    content: `## The Challenge
+
+The business had a genuine edge: non-toxic methods, verified staff, industrial-grade equipment. But its go-to-market was not built to convert that edge into bookings. Messaging was generic, follow-up was unstructured, every enquiry was pitched the same premium service regardless of what the customer actually wanted, and strong proof points sat unused.
+
+## The Approach
+
+### 1. Fix the price architecture
+We split the offering into two clear tiers: a fixed, time-capped Express Eco Clean to compete on speed, and a premium Core Deep Clean for buyers who wanted the full service, each with transparent, upfront pricing.
+
+### 2. Build the CRM and the scripts
+We instituted a fast first-response SLA, mapped the full conversion pipeline, and wrote specific scripts for discovery, value articulation, and objection handling.
+
+### 3. Train the team to sell on proof
+We ran an intensive training sprint using role-play and call auditing, so the team could confidently sell on verified ingredients, before-after results, and neighbourhood reviews instead of competing purely on price.
+
+### 4. Diversify demand
+We built a multi-channel campaign catalogue: Google Business Profile, targeted search ads, referral kits for residential communities, and B2B co-marketing plays, to reduce reliance on generic brand awareness alone.
+
+## Why It Matters
+
+- In home services, trust converts better than a lower price.
+- Forcing every enquiry into the same premium package loses the customers who just want something fast.
+- Leads are only as good as the trained team following up on them.`,
+    results: [
+      { metric: "Lead Management", value: "Unstructured, high leakage → CRM discipline with rapid response SLAs and a 4-touch follow-up" },
+      { metric: "Value Proposition", value: "Generic cleaning claims → Proof-led messaging: verified ingredients, transparent process" },
+      { metric: "Demand Generation", value: "Reliance on generic awareness → Geo-targeted micro-campaigns and systematic review collection" },
+    ],
+    isFeatured: false,
+    isPublished: true,
+  },
+  {
+    slug: "specialty-bakery-operations",
+    clientName: "A Specialty Bakery",
+    clientLogo: null,
     summary: "Role-based KPIs, department SOPs, and an HR handbook to eliminate dispatch errors and inter-department friction.",
-    content: `Persian Pastries was growing, but friction between sales, production, and accounts was creating dispatch errors, stock inaccuracies, and conflict between departments.
+    content: `## The Challenge
 
-We built a role-based KPI and appraisal framework, metrics like on-time dispatch and billing accuracy weighted against behavioural conduct, so performance stopped being a matter of opinion.
+Growth was creating friction between sales, production, and accounts. There were no KPIs, no formal HR policies, and no structured reporting, which showed up as dispatch errors, stock inaccuracies, and recurring conflict between departments.
 
-Production and dispatch got explicit SOPs: a strict cut-off time for dispatch, a final verification checklist at packing, and a move from handwritten stock notes to digital production logging. Sales moved onto a CRM, and the business adopted a weekly cash-flow reporting rhythm.
+## The Approach
 
-We also wrote and rolled out a full employee handbook, covering codes of conduct, recruitment, probation, and grievance escalation, so HR stopped being handled case by case and started running on the same rules for everyone.`,
+### 1. Build a KPI and appraisal framework
+We implemented clear, role-based metrics, on-time dispatch, billing accuracy, sales productivity, weighted against behavioural conduct, so performance stopped being a matter of opinion.
+
+### 2. Write department-specific SOPs
+We drafted explicit procedures for the areas causing the most friction: a strict dispatch cut-off time, and a mandatory final verification checklist at packing.
+
+### 3. Move reporting off paper
+We replaced handwritten stock notes with digital production logging, deployed a CRM for sales tracking, and established a weekly cash-flow reporting rhythm.
+
+### 4. Roll out a formal HR policy
+We wrote and distributed a full employee handbook covering conduct, recruitment, probation, and standardised grievance escalation.
+
+## Why It Matters
+
+- A strict, well-communicated deadline protects downstream teams from upstream delays.
+- Moving from handwritten notes to a simple digital log is often enough to restore real accountability.
+- Informal HR practices work at a small size and become a liability the moment a business scales.`,
+    results: [
+      { metric: "Dispatch", value: "Ad-hoc, cut-offs ignored, frequent errors → Dedicated team, strict cut-off, verification checklist" },
+      { metric: "Production", value: "Manual reports, one supervisor for every line → Line-specific leads, digital output and wastage logging" },
+      { metric: "Sales", value: "Unmonitored, inconsistent order handling → CRM discipline with clearly defined SLAs" },
+    ],
     isFeatured: false,
     isPublished: true,
   },
@@ -289,13 +465,34 @@ We also wrote and rolled out a full employee handbook, covering codes of conduct
     clientName: "A Premium Hospitality Group",
     clientLogo: null,
     summary: "Stabilising a fast-growing, multi-outlet F&B brand: supply chain, station SOPs, and technology, in that order.",
-    content: `A premium, multi-brand hospitality group in South India had strong products and real brand equity, but had expanded faster than its operations could support, leading to unpredictable service and, at times, production collapse.
+    content: `## The Challenge
 
-We ran a 24-week transformation across three horizons: stabilise, systematise, scale. Procurement moved from a hand-to-mouth pattern to a structured framework with mandatory buffer stock and a dedicated purchase officer. Every station, kitchen, floor, bar, got its own laminated SOP checklist, replacing oral instruction with a documented standard.
+A premium, multi-brand hospitality group had strong products and real brand equity, but had expanded faster than its operations could support. Procurement ran hand-to-mouth, causing mid-shift stockouts. Quality and turnaround time varied by shift because standards lived in oral instruction, not documentation. The point-of-sale system functioned only as a cash register. Revenue performance was left largely to chance.
 
-On the technology side, we upgraded the POS system from a cash register into an actual operational tool: kitchen display systems with colour-coded service targets, and automated recipe-level inventory deductions.
+## The Approach
 
-We finished with people: a structured onboarding curriculum, formal workforce compliance, and a clear delegation matrix that let the founders step back from daily firefighting and into strategic decisions.`,
+### 1. Fix the supply chain first
+We built a structured procurement framework with mandatory buffer stock, calibrated par levels, and a dedicated purchase officer enforcing opening stock audits, because no amount of marketing can sell what the kitchen cannot produce.
+
+### 2. Put a station-level SOP stack in place
+Every station, kitchen, floor, bar, got its own SOP checklist, covering opening and closing procedures, floor service execution, and beverage precision, replacing oral instruction with a documented standard.
+
+### 3. Turn the POS into a real operational tool
+We upgraded the point-of-sale platform into an operational control tower, phasing in kitchen display systems with colour-coded service targets and automated recipe-level inventory deductions.
+
+### 4. Enable and govern the people
+We instituted a structured onboarding curriculum, formalised workforce compliance, and built a clear delegation matrix, freeing the founders to focus on strategic decisions instead of daily firefighting.
+
+## Why It Matters
+
+- Supply chains set the ceiling on what a business can sell. Fix the back-of-house engine before the front-of-house pitch.
+- Monthly revenue targets only work once they are translated into daily shift-level goals.
+- Documented SOPs and structured onboarding are what prevent one key person leaving from becoming a crisis.`,
+    results: [
+      { metric: "Kitchen Utilisation", value: "~25% of planned capacity due to supply bottlenecks → Restored to 100% of planned capacity" },
+      { metric: "Inventory Tracking", value: "Unrecorded usage, frequent stockouts → Daily reconciliation, variance capped at 5% or less" },
+      { metric: "Shift Governance", value: "Ad-hoc shifts, no predefined targets → Daily stand-ups with active upsell scripts" },
+    ],
     isFeatured: false,
     isPublished: true,
   },
@@ -304,13 +501,34 @@ We finished with people: a structured onboarding curriculum, formal workforce co
     clientName: "An Architecture & Construction Firm",
     clientLogo: null,
     summary: "Replacing a memory-and-chat operating model with a real Project Management Office, across 70+ live sites.",
-    content: `A premium architecture and construction firm running more than 70 concurrent engagements had outgrown its informal, founder-led operating model. Coordination happened over chat apps, revisions had no limit, and there was no reliable way to see which projects were actually profitable.
+    content: `## The Challenge
 
-We introduced formal design stage gates, concept, schematic, issued-for-construction, each with a client sign-off template and a clear policy on what counted as a paid revision versus a free one.
+A premium architecture and construction firm running more than 70 concurrent engagements had outgrown its informal, founder-led operating model. Coordination happened over chat apps. There were no stage freezes or revision caps, which meant projects absorbed endless design changes. There was no standard status reporting, issue log, or escalation rule, and no project-wise view of profitability.
 
-Project coordination moved onto a proper cadence: weekly status reporting across every live project, a formal issue log, and defined escalation rules, replacing memory and chat threads with a single source of truth.
+## The Approach
 
-On the commercial side, we rolled out CRM tracking for every lead, set response-time targets, and separated the pipeline into distinct segments so resourcing matched the kind of project actually being sold. Budgets got a baseline at kickoff and were tracked against actuals from day one, with billing tied to project stages instead of ad hoc invoicing.`,
+### 1. Introduce design stage gates
+We introduced formal design stage gates, concept, schematic, issued-for-construction, each requiring a client sign-off, along with a clear policy on what counted as a paid revision versus a free one.
+
+### 2. Stand up a real project management office
+We established weekly status reporting across every live project, alongside formal change-control logs and issue tracking, replacing memory and chat threads with a single source of truth.
+
+### 3. Fix the sales pipeline
+We rolled out CRM tracking for every lead, set response-time targets, and separated the pipeline into distinct segments, so resourcing matched the kind of project actually being sold.
+
+### 4. Build in financial and site control
+We implemented budget baselines at kickoff, tracked spend against actuals from day one, tied billing to project stages, and redesigned site supervision ratios with stage inspection checklists.
+
+## Why It Matters
+
+- Informal, memory-based coordination works at a small scale and breaks well before 70 live projects.
+- Founders scale by shifting from daily operational intervention to governance and exception handling.
+- Predictability, not just design quality, is what premium clients are actually paying for.`,
+    results: [
+      { metric: "Coordination", value: "Ad-hoc, chat-app driven → Formal reporting cadence and a single source of truth" },
+      { metric: "Scope Control", value: "Unlimited revisions permitted → Stage freezes with paid change orders" },
+      { metric: "Financials", value: "Blended view, invisible project margins → Project-level tracking with milestone billing" },
+    ],
     isFeatured: false,
     isPublished: true,
   },
@@ -319,15 +537,34 @@ On the commercial side, we rolled out CRM tracking for every lead, set response-
     clientName: "An Interior Design & Fit-Out Firm",
     clientLogo: null,
     summary: "Moving a founder-dependent design firm onto a real operating system, so growth stopped depending on one person.",
-    content: `A well-regarded interior design and commercial fit-out firm had built a strong reputation and a distinctive design capability, but growth was capped by how much one person, the Managing Director, could personally hold together. Every drawing, every site escalation, and every client relationship ran through the same desk.
+    content: `## The Challenge
 
-We put people and process between the founder and the day-to-day. A Design Head took over workflow and revision control, and site supervision was restructured across clustered locations instead of one supervisor per site, freeing up capacity without adding headcount.
+A well-regarded interior design and commercial fit-out firm had built a strong reputation and a distinctive design capability, but growth was capped by how much one person, the Managing Director, could personally hold together. Every drawing, every site escalation, and every client relationship ran through the same desk, and the firm's financial structure made it difficult to see profitability at the project level.
 
-We also cleaned up the business's financial structure so decision-makers could finally see project-level profitability, instead of one blended picture across the group.
+## The Approach
 
-On the commercial side, we repositioned the offer around a free space-planning and business-design consultation, rebuilt the CRM, and fixed basic digital hygiene, an outdated website and an unclaimed business listing, so the firm's online presence matched the quality of its actual work.
+### 1. Take work off the founder's desk
+A Design Head took over workflow and revision control, and site supervision was restructured across clustered locations instead of one supervisor per site, freeing up capacity without adding headcount.
 
-We finished by publishing a clear decision-rights matrix, moving the Managing Director from doing the work to governing the business, and letting department leads own their own calls.`,
+### 2. Clean up the financial structure
+We worked with the firm to separate and formalise its financial structure, so decision-makers could finally see project-level profitability instead of one blended picture across the group.
+
+### 3. Rebuild the commercial engine
+We repositioned the offer around a free space-planning and business-design consultation, rebuilt the CRM, and fixed basic digital hygiene, an outdated website and an unclaimed business listing, so the firm's online presence matched the quality of its actual work.
+
+### 4. Formalise decision rights
+We published a clear decision-rights matrix, moving the Managing Director from doing the work to governing the business, and letting department leads own their own calls.
+
+## Why It Matters
+
+- A business valuation tied entirely to one person's bandwidth is inherently fragile.
+- Fixing financial and organisational structure has to come before scaling, not after.
+- Commercial B2B clients expect a professional digital presence that matches the quality of the work.`,
+    results: [
+      { metric: "Leadership", value: "MD reviewed every drawing and escalation → Design Head appointed, MD moved to governance" },
+      { metric: "Finance", value: "Blended view across entities → Separated structure with project-level visibility" },
+      { metric: "Sales & Digital", value: "Scattered leads, dated web presence → CRM in place, refreshed digital presence" },
+    ],
     isFeatured: false,
     isPublished: true,
   },
@@ -336,13 +573,34 @@ We finished by publishing a clear decision-rights matrix, moving the Managing Di
     clientName: "A Regional Construction & Real Estate Firm",
     clientLogo: null,
     summary: "Building the financial, design, and organisational scaffolding a construction firm needed to become a real estate developer.",
-    content: `A successful regional construction firm tried to pivot from contracting into structured real estate development, launching its own villa projects, but did not yet have the financial, regulatory, and organisational scaffolding a developer needs. The founder was working every angle personally: leads, purchasing, site escalations.
+    content: `## The Challenge
 
-We put a proper structure underneath the pivot. A decision-rights and escalation chart took routine approvals off the founder's desk, and a dual-oversight purchasing policy closed a real source of margin leakage on materials.
+A successful regional construction firm tried to pivot from contracting into structured real estate development, launching its own villa projects, but did not yet have the financial, regulatory, and organisational scaffolding a developer needs. The founder was working every angle personally: leads, purchasing, site escalations. Revision cycles ran long, and management could not always tell which projects were actually profitable.
 
-Design and site execution got the same treatment: a mandatory moodboard sign-off before any 3D rendering work began, cutting down repeated revision cycles, and a Design Head to own the workflow end to end.
+## The Approach
 
-We also rebuilt the firm's financial visibility, moving it onto proper project-wise accounting so management could finally see which projects were actually making money, and overhauled the digital presence, real project photography instead of stock images, and local search optimisation, to match the firm's ambition to compete for premium buyers.`,
+### 1. Take routine decisions off the founder
+A decision-rights and escalation chart moved routine approvals off the founder's desk, and a dual-oversight purchasing policy closed a real source of margin leakage on materials.
+
+### 2. Discipline the design process
+A mandatory moodboard sign-off before any 3D rendering work began cut down repeated revision cycles, and a dedicated Design Head took ownership of the workflow end to end.
+
+### 3. Rebuild financial visibility
+We moved the firm onto proper project-wise accounting, so management could finally see which projects were actually making money instead of relying on a single blended view.
+
+### 4. Reposition for the premium segment
+We overhauled the digital presence, real project photography instead of stock images, and local search optimisation, to match the firm's ambition to compete for premium buyers.
+
+## Why It Matters
+
+- A pivot in business model demands a pivot in systems: financial forecasting, compliance, and working capital all change.
+- Informal purchasing and vague client commitments are some of the fastest ways to bleed margin on large projects.
+- Digital presence has to match operational reality once a firm starts competing for premium buyers.`,
+    results: [
+      { metric: "Purchasing", value: "Single-person control, leakage risk → Dual-authorisation, verified vendor purchasing" },
+      { metric: "Design", value: "Freelance reliance, long delays → In-house Design Head, faster turnarounds" },
+      { metric: "Management", value: "Founder as sole integrator → General Manager-led operations, founder focused on strategy" },
+    ],
     isFeatured: false,
     isPublished: true,
   },
@@ -351,13 +609,34 @@ We also rebuilt the firm's financial visibility, moving it onto proper project-w
     clientName: "A Regional Eye Hospital",
     clientLogo: null,
     summary: "Rebuilding financial reporting and patient-flow systems for a hospital competing against corporate healthcare chains.",
-    content: `A well-established regional eye hospital, known for strong clinical care including specialised retina treatment, was losing ground to fast-expanding corporate healthcare chains, not on medicine, but on the business behind it.
+    content: `## The Challenge
 
-We rebuilt the hospital's financial reporting from the ground up, consolidating parallel systems into one, so leadership could finally trust the numbers they were looking at instead of reconciling conflicting reports by hand.
+A well-established regional eye hospital, known for strong clinical care including specialised retina treatment, was losing ground to fast-expanding corporate healthcare chains, not on medicine, but on the business behind it. Financial reporting ran across multiple disconnected systems, one counsellor handled every surgical conversion with no time left for follow-up, and the hospital's digital presence did not reflect the quality of care it delivered.
 
-On patient flow, one counsellor had been handling every surgical conversion while also carrying administrative work, with no real time left for follow-up calls. We introduced a counsellor-and-assistant model, wrote clear job descriptions, and put a structured escalation process in place so no single person was a bottleneck for surgical revenue.
+## The Approach
 
-We also cleaned up the hospital's digital presence, fixing inconsistent information across directories and tightening basic website security, so its online footprint matched the quality of care patients were actually receiving, and brought the hospital's statutory and compliance position up to where it needed to be.`,
+### 1. Rebuild financial reporting
+We consolidated parallel reporting systems into one, so leadership could finally trust the numbers they were looking at instead of reconciling conflicting reports by hand.
+
+### 2. Fix the single point of failure
+We introduced a counsellor-and-assistant model, wrote clear job descriptions, and put a structured escalation process in place, so surgical revenue no longer depended on one overloaded person.
+
+### 3. Restore digital trust
+We cleaned up the hospital's digital presence, fixed inconsistent information across directories, and tightened basic website security, so its online footprint matched the quality of care patients were actually receiving.
+
+### 4. Bring compliance up to standard
+We worked through the hospital's statutory and compliance position and brought it up to where it needed to be.
+
+## Why It Matters
+
+- When revenue generation depends on one overloaded person, the business is one absence away from a real problem.
+- A modern, secure, and consistent digital presence is part of how patients judge medical trust today.
+- Compliance is infrastructure, not paperwork. Getting it right protects everything else the business has built.`,
+    results: [
+      { metric: "Compliance", value: "Informal enrollment and cash handling → Fully compliant enrollment and transaction limits" },
+      { metric: "Surgical Revenue", value: "Counsellor overload, no follow-up → Delegated admin work, structured follow-up protocol" },
+      { metric: "Digital Reputation", value: "Outdated, insecure web presence → Refreshed, secured web presence" },
+    ],
     isFeatured: false,
     isPublished: true,
   },
