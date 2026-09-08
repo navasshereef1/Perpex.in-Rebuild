@@ -155,6 +155,35 @@ export default async function ResultsPage() {
         </Container>
       </Section>
 
+      <Section className="bg-mist">
+        <Container>
+          <Reveal>
+            <h2 className="font-display text-3xl font-bold tracking-[-0.02em] text-navy-900 md:text-4xl">
+              Not a highlight reel. The full list.
+            </h2>
+            <p className="mt-4 max-w-[62ch] text-lg text-navy-600">
+              Every logo below is a business we have actually worked with, across
+              construction, healthcare, EdTech, hospitality, F&amp;B, real estate, and more.
+              If it is not on this list, we have not done it.
+            </p>
+          </Reveal>
+          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+            {clientLogos.map((logo, i) => (
+              <Reveal key={logo.file} delay={(i % 6) * 0.03}>
+                <div className="flex h-24 items-center justify-center rounded-2xl bg-white p-4 ring-1 ring-navy-900/[0.06]">
+                  <img
+                    src={`/clients/${logo.file}`}
+                    alt={logo.name}
+                    className="max-h-14 w-auto max-w-full object-contain"
+                    loading={i < 12 ? "eager" : "lazy"}
+                  />
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
       <DifferentiatorsSection />
     </>
   );
