@@ -1,13 +1,6 @@
 import Link from "next/link";
-import {
-  ArrowRight,
-  ChalkboardTeacher,
-  ChartLineUp,
-  Files,
-  MagnifyingGlass,
-} from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import Container from "../ui/Container";
-import Photo from "../ui/Photo";
 import Reveal from "../ui/Reveal";
 import Section from "../ui/Section";
 
@@ -19,66 +12,49 @@ type Service = {
   description: string;
 };
 
-const icons: Record<string, React.ElementType> = {
-  "gap-analysis": MagnifyingGlass,
-  documentation: Files,
-  training: ChalkboardTeacher,
-  "managing-monitoring": ChartLineUp,
+type Tone = "navyDeep" | "cyan" | "mist" | "navy";
+
+const tones: Record<Tone, { bg: string; text: string; sub: string; number: string }> = {
+  navyDeep: { bg: "bg-navy-950", text: "text-white", sub: "text-white/65", number: "text-white/10" },
+  cyan: { bg: "bg-cyan-400", text: "text-navy-900", sub: "text-navy-900/70", number: "text-navy-900/10" },
+  mist: { bg: "bg-mist", text: "text-navy-900", sub: "text-navy-600", number: "text-navy-900/[0.06]" },
+  navy: { bg: "bg-navy-800", text: "text-white", sub: "text-white/65", number: "text-white/10" },
 };
 
-function Cell({
+function Quadrant({
   service,
-  tone = "white",
-  photoSeed,
-  className = "",
+  tone,
+  index,
 }: {
   service: Service;
-  tone?: "white" | "mist" | "navy";
-  photoSeed?: string;
-  className?: string;
+  tone: Tone;
+  index: number;
 }) {
-  const Icon = icons[service.slug] ?? MagnifyingGlass;
-  const dark = tone === "navy";
-  const bg =
-    tone === "navy" ? "bg-navy-900 text-white" : tone === "mist" ? "bg-mist" : "bg-white";
-
+  const t = tones[tone];
   return (
     <Link
       href={`/services/${service.slug}`}
-      className={`group flex flex-col justify-between overflow-hidden rounded-2xl ring-1 ring-navy-900/[0.06] transition-transform duration-500 ease-soft hover:-translate-y-0.5 ${bg} ${className}`}
+      className={`group relative flex min-h-[220px] flex-col justify-end overflow-hidden p-7 transition-opacity duration-300 ease-soft hover:opacity-90 md:p-9 ${t.bg} ${t.text}`}
     >
-      {photoSeed && (
-        <div className="p-3 pb-0">
-          <Photo
-            seed={photoSeed}
-            alt=""
-            width={1200}
-            height={700}
-            aspect="aspect-[16/8]"
-            className="!bg-transparent !p-0 !ring-0"
-          />
-        </div>
-      )}
-      <div className="flex flex-1 flex-col justify-between p-7 md:p-8">
-        <div className="flex items-center justify-between">
-          <Icon size={28} weight="light" className={dark ? "text-cyan-300" : "text-cyan-500"} />
-          <span className={`text-sm ${dark ? "text-white/60" : "text-navy-500"}`}>{service.stage}</span>
-        </div>
-        <div className="mt-10">
-          <h3 className="font-display text-2xl font-semibold tracking-[-0.02em] md:text-3xl">
-            {service.title}
-          </h3>
-          <p className={`mt-2 max-w-[40ch] text-[15px] leading-relaxed ${dark ? "text-white/70" : "text-navy-600"}`}>
-            {service.tagline ?? service.description}
-          </p>
-          <span
-            className={`mt-6 inline-flex items-center gap-2 text-sm font-medium ${dark ? "text-cyan-300" : "text-navy-900"}`}
-          >
-            Read about {service.title}
-            <ArrowRight size={16} className="transition-transform duration-500 ease-soft group-hover:translate-x-1" />
-          </span>
-        </div>
-      </div>
+      <span
+        className={`pointer-events-none absolute -right-2 -top-3 font-display text-[7rem] font-extrabold leading-none md:text-[8.5rem] ${t.number}`}
+        aria-hidden="true"
+      >
+        {String(index + 1).padStart(2, "0")}
+      </span>
+      <span className={`relative text-[13px] font-semibold uppercase tracking-[0.09em] ${t.sub}`}>
+        {service.stage}
+      </span>
+      <h3 className="relative mt-2 font-display text-2xl font-bold tracking-[-0.02em] md:text-3xl">
+        {service.title}
+      </h3>
+      <p className={`relative mt-3 max-w-[36ch] text-[15px] leading-relaxed ${t.sub}`}>
+        {service.tagline ?? service.description}
+      </p>
+      <span className={`relative mt-6 inline-flex items-center gap-2 text-sm font-medium ${t.text}`}>
+        Read about {service.title}
+        <ArrowRight size={16} className="transition-transform duration-500 ease-soft group-hover:translate-x-1" />
+      </span>
     </Link>
   );
 }
@@ -101,20 +77,14 @@ export default function FrameworkSection({ services }: { services: Service[] }) 
           </p>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-12 md:grid-rows-[auto_auto_auto]">
-          <Reveal className="md:col-span-7 md:row-span-2 flex">
-            <Cell service={gap} photoSeed="180" className="w-full" />
-          </Reveal>
-          <Reveal delay={0.08} className="md:col-span-5 flex">
-            <Cell service={docs} tone="mist" className="w-full" />
-          </Reveal>
-          <Reveal delay={0.12} className="md:col-span-5 flex">
-            <Cell service={training} className="w-full" />
-          </Reveal>
-          <Reveal delay={0.16} className="md:col-span-12 flex">
-            <Cell service={monitoring} tone="navy" className="w-full md:flex-row md:items-end" />
-          </Reveal>
-        </div>
+        <Reveal delay={0.08} className="mt-12">
+          <div className="grid grid-cols-1 gap-[3px] overflow-hidden rounded-2xl bg-navy-900/[0.08] md:grid-cols-2">
+            <Quadrant service={gap} tone="navyDeep" index={0} />
+            <Quadrant service={docs} tone="cyan" index={1} />
+            <Quadrant service={training} tone="mist" index={2} />
+            <Quadrant service={monitoring} tone="navy" index={3} />
+          </div>
+        </Reveal>
       </Container>
     </Section>
   );

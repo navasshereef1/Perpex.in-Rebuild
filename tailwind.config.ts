@@ -23,6 +23,12 @@ const config: Config = {
           400: "#00b2ff",
           500: "#0090d1",
         },
+        // Semantic warning accent for "cost of the problem" callouts —
+        // deliberately separate from the navy/cyan brand pair, used sparingly.
+        warn: {
+          50: "#fbece5",
+          600: "#b3401f",
+        },
       },
       fontFamily: {
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
